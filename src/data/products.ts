@@ -1,12 +1,12 @@
 // Import product images
-import productImage1 from '../assets/product/1760353406527.jpg';
-import productFront from '../assets/product/FRONT.jpg';
-import productBack from '../assets/product/BACK.jpg';
-import productImage105 from '../assets/product/image-105.png';
-import productImage117 from '../assets/product/image-117.png';
-import productImage146 from '../assets/product/image-146.png';
-import productImage152 from '../assets/product/image-152.png';
-import productImage168 from '../assets/product/image-168.png';
+import productImage1 from '../assets/PRODUCT/1760353406527.jpg';
+import productFront from '../assets/PRODUCT/FRONT.jpg';
+import productBack from '../assets/PRODUCT/BACK.jpg';
+import productImage105 from '../assets/PRODUCT/image-105.png';
+import productImage117 from '../assets/PRODUCT/image-117.png';
+import productImage146 from '../assets/PRODUCT/image-146.png';
+import productImage152 from '../assets/PRODUCT/image-152.png';
+import productImage168 from '../assets/PRODUCT/image-168.png';
 
 export interface Product {
   id: string;
