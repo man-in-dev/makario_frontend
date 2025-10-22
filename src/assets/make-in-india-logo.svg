@@ -1,0 +1,8 @@
+<!-- Save the Make in India logo as SVG -->
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Make in India Logo</title>
+  <path d="M10 10h180v80H10z" fill="#fff"/>
+  <path d="M20 20h160v60H20z" fill="#000080"/>
+  <text x="100" y="55" text-anchor="middle" fill="#fff" font-family="Arial" font-size="16" font-weight="bold">MAKE IN INDIA</text>
+</svg>

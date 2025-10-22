@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 32 18% 97%;
+    --foreground: 25 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 25 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 20% 15%;
+
+    --primary: 38 88% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 32 22% 88%;
+    --secondary-foreground: 25 20% 25%;
+
+    --muted: 32 15% 92%;
+    --muted-foreground: 25 12% 45%;
+
+    --accent: 42 85% 85%;
+    --accent-foreground: 25 40% 22%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 32 25% 88%;
+    --input: 32 25% 90%;
+    --ring: 38 88% 52%;
+
+    /* Brand specific colors - Matching with logo */
+    --golden: 38 88% 52%;
+    --golden-light: 42 85% 75%;
+    --golden-dark: 35 75% 40%;
+    --earth: 28 45% 45%;
+    --earth-light: 32 35% 82%;
+    --heritage: 25 40% 22%;
+    --nature: 120 40% 35%;
+
+    /* Gradients - Updated to match logo colors */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--golden)) 0%, hsl(var(--heritage)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--golden-light)) 0%, hsl(var(--earth-light)) 100%);
+    --gradient-earth: linear-gradient(135deg, hsl(var(--heritage)) 0%, hsl(var(--earth)) 50%, hsl(var(--golden-dark)) 100%);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 25 22% 8%;
+    --foreground: 32 18% 95%;
+
+    --card: 25 28% 12%;
+    --card-foreground: 32 18% 95%;
+
+    --popover: 25 28% 12%;
+    --popover-foreground: 32 18% 95%;
+
+    --primary: 38 88% 55%;
+    --primary-foreground: 25 22% 8%;
+
+    --secondary: 25 22% 18%;
+    --secondary-foreground: 32 18% 85%;
+
+    --muted: 25 18% 18%;
+    --muted-foreground: 32 12% 65%;
+
+    --accent: 38 70% 25%;
+    --accent-foreground: 32 18% 95%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 32 18% 95%;
+
+    --border: 25 22% 18%;
+    --input: 25 22% 18%;
+    --ring: 38 88% 55%;
+
+    /* Dark mode brand colors - Matching with logo */
+    --golden: 45 90% 60%;
+    --golden-light: 45 85% 40%;
+    --golden-dark: 45 95% 75%;
+    --earth: 35 40% 50%;
+    --earth-light: 35 25% 20%;
+    --heritage: 30 45% 70%;
+    --nature: 125 35% 60%;
+
+    /* Dark gradients - Updated to match logo colors */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--golden)) 0%, hsl(var(--golden-dark)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--golden-light)) 0%, hsl(var(--earth-light)) 100%);
+    --gradient-earth: linear-gradient(120deg, hsl(var(--earth)) 0%, hsl(var(--heritage)) 100%);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  .gradient-earth {
+    background: var(--gradient-earth);
+  }
+}

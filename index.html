@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/main.tsx" as="script" crossorigin />
+    <link rel="preload" href="/src/index.css" as="style" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Critical CSS inline (will be added by build process) -->
+    <style>
+      /* Critical CSS for above-the-fold content */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; line-height: 1.5; }
+      #root { min-height: 100vh; }
+      .loading { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    </style>
+    
+    <!-- Google Tag Manager - Deferred -->
+    <script>
+      // Defer GTM loading to improve initial page load
+      window.addEventListener('load', function() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MVLVTV94');
+      });
+    </script>
+    
+    <!-- Google Analytics - Deferred -->
+    <script>
+      window.addEventListener('load', function() {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-E0JJNGLLXE';
+        document.head.appendChild(script);
+        
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-E0JJNGLLXE');
+      });
+    </script>
+    
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="BqmTO4uqUXuLmqmxGqiv3KmjBYJ3QyjWYcSI4hPWX7g" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Makario | Premium Makhana Exporter Bihar | #1 Foxnuts Supplier India | Buy Organic Lotus Seeds</title>
+    <meta name="description" content="🏆 Makario - Bihar's Leading Makhana Exporter | Premium Quality Foxnuts | Direct from Farmers | Bulk & Retail Orders | Export Worldwide | 100% Organic Lotus Seeds | Best Price Guaranteed | Free Shipping" />
+    <meta name="keywords" content="makario, makhana online, buy makhana, foxnuts price, lotus seeds online, makhana exporter bihar, organic foxnuts india, premium makhana bulk order, makhana wholesale price, foxnuts supplier, lotus seeds export, makhana direct from farmers, bihar makhana best quality, foxnuts manufacturer, organic lotus seeds buy online, makhana export company india, premium foxnuts wholesale, makhana business, lotus seeds dealer, foxnuts online shopping" />
+    <meta name="author" content="Makario - Premium Makhana Exporters" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    
+    <!-- Advanced SEO Meta Tags -->
+    <meta name="rating" content="general" />
+    <meta name="revisit-after" content="1 day" />
+    <meta name="distribution" content="global" />
+    <meta name="classification" content="business" />
+    <meta name="category" content="Food, Agriculture, Export, Business" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="target" content="all" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    
+    <!-- E-commerce SEO -->
+    <meta property="product:brand" content="Makario" />
+    <meta property="product:availability" content="in stock" />
+    <meta property="product:condition" content="new" />
+    <meta property="product:price:amount" content="750" />
+    <meta property="product:price:currency" content="INR" />
+    
+    <!-- Geographic and Local SEO -->
+    <meta name="geo.region" content="IN-BR" />
+    <meta name="geo.placename" content="Bihar, India" />
+    <meta name="geo.position" content="25.0961;85.3131" />
+    <meta name="ICBM" content="25.0961, 85.3131" />
+    <meta name="DC.title" content="Bihar Makhana - Premium Foxnuts Exporter" />
+    
+    <!-- Language and Content -->
+    <meta http-equiv="content-language" content="en" />
+    <meta name="language" content="English" />
+    <link rel="alternate" hreflang="en" href="https://www.makario.in/" />
+    <link rel="alternate" hreflang="hi" href="https://www.makario.in/hi/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.makario.in/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.makario.in/" />
+    <meta property="og:site_name" content="Makario" />
+    <meta property="og:title" content="Makario | Premium Makhana Exporter Bihar | Buy Best Quality Foxnuts Online" />
+    <meta property="og:description" content="🏆 Makario - Bihar's Leading Makhana Exporter | Premium Quality Foxnuts | Direct from Farmers | Bulk & Retail Orders | 100% Organic Lotus Seeds | Best Price Guaranteed" />
+    <meta property="og:image" content="https://www.makario.in/images/makario-makhana-og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Makario Premium Makhana Foxnuts - Direct from Bihar Farmers" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:locale:alternate" content="hi_IN" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.makario.in/" />
+    <meta name="twitter:title" content="Makario | Premium Makhana Exporter Bihar | Buy Best Foxnuts Online" />
+    <meta name="twitter:description" content="🏆 Makario - Bihar's Leading Makhana Exporter | Premium Quality Foxnuts | Direct from Farmers | 100% Organic Lotus Seeds" />
+    <meta name="twitter:image" content="https://www.makario.in/images/makario-makhana-twitter.jpg" />
+    <meta name="twitter:image:alt" content="Makario Premium Makhana Foxnuts - Bihar Export Quality" />
+    <meta name="twitter:site" content="@makario_in" />
+    <meta name="twitter:creator" content="@makario_in" />
+    
+    <!-- Business/Local SEO -->
+    <meta name="business:contact_data:locality" content="Bihar" />
+    <meta name="business:contact_data:region" content="India" />
+    <meta name="business:contact_data:country_name" content="India" />
+    <meta name="business:contact_data:phone_number" content="+91-9953240031" />
+    <meta name="business:contact_data:email" content="info@makario.in" />
+    <meta name="business:contact_data:website" content="https://www.makario.in" />
+    
+    <!-- Local Business Schema -->
+    <meta name="local-business-type" content="Food Exporter" />
+    <meta name="local-business-name" content="Makario" />
+    <meta name="local-business-address" content="Darbhanga, Bihar, India" />
+    <meta name="local-business-phone" content="+91-9953240031" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.makario.in/" />
+    
+    <!-- Favicon and Icons - Makario Brand -->
+    <link rel="icon" type="image/svg+xml" href="/makario-favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon-32x32.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon-16x16.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#D4A574" />
+    <meta name="msapplication-TileColor" content="#D4A574" />
+    
+    <!-- Force favicon refresh -->
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Makario",
+      "alternateName": "Makario Makhana Exporters",
+      "description": "Leading Premium Makhana (Foxnuts) Exporter from Bihar, India. 100% Organic Lotus Seeds, Direct from Farmers, Bulk & Retail Orders, Worldwide Export.",
+      "url": "https://www.makario.in",
+      "logo": "https://www.makario.in/logo.png",
+      "image": "https://www.makario.in/images/makario-makhana-hero.jpg",
+      "telephone": "+91-9953240031",
+      "email": "info@makario.in",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Makario Export Center, Makhana Hub",
+        "addressLocality": "Darbhanga",
+        "addressRegion": "Bihar",
+        "postalCode": "846004",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 26.1542,
+        "longitude": 85.8918
+      },
+      "sameAs": [
+        "https://www.facebook.com/makario.in",
+        "https://www.instagram.com/makario.in",
+        "https://twitter.com/makario_in",
+        "https://www.linkedin.com/company/makario"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Makario Founder"
+      },
+      "foundingDate": "2018",
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "India"
+        },
+        {
+          "@type": "Country", 
+          "name": "United States"
+        },
+        {
+          "@type": "Country",
+          "name": "United Kingdom"
+        },
+        {
+          "@type": "Country",
+          "name": "Canada"
+        },
+        {
+          "@type": "Country",
+          "name": "Australia"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Makhana Products",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "Premium Organic Makhana",
+              "description": "100% Organic Foxnuts from Bihar"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+    
+    <!-- Product Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Makario Premium Makhana (Foxnuts)",
+      "description": "Premium quality organic makhana (foxnuts/lotus seeds) directly from Bihar farmers. 100% natural, sustainably grown, export quality. Best makhana in India.",
+      "image": "https://www.makario.in/images/makario-premium-makhana.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "Makario"
+      },
+      "category": "Food & Beverages > Snacks > Nuts & Seeds",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.makario.in/products",
+        "priceCurrency": "INR",
+        "price": "750",
+        "priceValidUntil": "2026-12-31",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Makario"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "280"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Priya Sharma"
+          },
+          "reviewBody": "Makario ki makhana quality sabse best hai! Fresh aur crunchy, bilkul export quality."
+        },
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Amit Gupta"
+          },
+          "reviewBody": "Best makhana supplier in Bihar. Direct from farmers, premium quality guaranteed."
+        }
+      ]
+    }
+    </script>
+    
+    <!-- FAQ Schema for Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Makario se makhana kaise order kare?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Makario se makhana order karne ke liye www.makario.in par visit kare ya +91-9953240031 par call kare. Hum bulk aur retail dono orders accept karte hai."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Makario makhana ki quality kaisi hai?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Makario 100% organic premium quality makhana provide karta hai jo directly Bihar ke farmers se aata hai. Export quality guarantee ke saath."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Makhana ki price kya hai?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Makario makhana ki price ₹750 per kg se start hoti hai. Bulk orders par special discount available hai. Best price guarantee."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Makario makhana export karta hai?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Haan, Makario worldwide makhana export karta hai. USA, UK, Canada, Australia aur 50+ countries me supply karte hai."
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.makario.in/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Makhana",
+          "item": "https://www.makario.in/products"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Premium Foxnuts",
+          "item": "https://www.makario.in/premium-foxnuts"
+        }
+      ]
+    }
+    </script>
+  </head>
+
+  <body>
+    <!-- Enhanced Loading Screen to prevent layout shift -->
+    <div id="root">
+      <div id="loading" style="
+        position: fixed; 
+        inset: 0; 
+        background: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #2C3E50 100%);
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        z-index: 9999;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      ">
+        <div style="text-align: center; color: white;">
+          <!-- Logo Container -->
+          <div style="position: relative; margin-bottom: 24px;">
+            <img 
+              src="/lovable-uploads/be26238e-2161-40dd-afd9-e69df2853b49.png" 
+              alt="Makario Logo" 
+              style="width: 80px; height: 80px; object-fit: contain; animation: logoFloat 3s ease-in-out infinite; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));"
+            />
+            <!-- Glowing Ring -->
+            <div style="
+              position: absolute; 
+              inset: -8px; 
+              border: 3px solid rgba(212, 165, 116, 0.3); 
+              border-radius: 50%; 
+              animation: ringGlow 2s ease-in-out infinite;
+            "></div>
+          </div>
+          
+          <!-- Brand Text -->
+          <h1 style="
+            font-size: 32px; 
+            font-weight: bold; 
+            color: #D4A574; 
+            margin: 0 0 8px 0; 
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(212, 165, 116, 0.3);
+            animation: textGlow 2s ease-in-out infinite;
+          ">
+            Makario
+          </h1>
+          <p style="
+            color: #8FBC8F; 
+            font-size: 12px; 
+            font-weight: 500; 
+            letter-spacing: 3px; 
+            margin: 0 0 24px 0;
+            text-transform: uppercase;
+          ">
+            The Pride of Bihar
+          </p>
+          
+          <!-- Loading Message -->
+          <p style="
+            color: rgba(255,255,255,0.8); 
+            font-size: 14px; 
+            margin: 0 0 16px 0;
+            animation: pulse 2s ease-in-out infinite;
+          ">
+            Loading Premium Makhana...
+          </p>
+          
+          <!-- Loading Bar -->
+          <div style="
+            width: 200px; 
+            height: 3px; 
+            background: rgba(255,255,255,0.1); 
+            border-radius: 2px; 
+            margin: 0 auto;
+            overflow: hidden;
+          ">
+            <div style="
+              height: 100%; 
+              width: 30%; 
+              background: #D4A574; 
+              border-radius: 2px;
+              animation: loadingBar 1.5s ease-in-out infinite;
+            "></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Enhanced Loading Animations -->
+    <style>
+      @keyframes logoFloat {
+        0%, 100% { transform: translateY(0px) rotateY(0deg); }
+        50% { transform: translateY(-10px) rotateY(180deg); }
+      }
+      
+      @keyframes ringGlow {
+        0%, 100% { 
+          transform: scale(1) rotate(0deg); 
+          opacity: 0.3; 
+        }
+        50% { 
+          transform: scale(1.1) rotate(180deg); 
+          opacity: 0.6; 
+        }
+      }
+      
+      @keyframes textGlow {
+        0%, 100% { 
+          text-shadow: 0 2px 10px rgba(212, 165, 116, 0.3);
+        }
+        50% { 
+          text-shadow: 0 2px 20px rgba(212, 165, 116, 0.6);
+        }
+      }
+      
+      @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+      
+      @keyframes loadingBar {
+        0% { transform: translateX(-100%); }
+        50% { transform: translateX(0%); }
+        100% { transform: translateX(300%); }
+      }
+    </style>
+    
+    <!-- Main script with performance optimizations -->
+    <script type="module">
+      // Performance observer for monitoring
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (entry.entryType === 'largest-contentful-paint') {
+              console.log('LCP:', entry.startTime);
+            }
+          }
+        });
+        observer.observe({entryTypes: ['largest-contentful-paint']});
+      }
+    </script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('Service Worker registered successfully:', registration);
+            })
+            .catch(function(registrationError) {
+      //         console.log('SW registration failed: ', registrationError);
+      //       });
+      //   });
+      // }
+    </script>
+    
+    <!-- Remove loading spinner when app loads and clean unwanted text -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Clear any cached data that might contain the verification code
+        try {
+          localStorage.clear();
+          sessionStorage.clear();
+          if ('caches' in window) {
+            caches.keys().then(function(names) {
+              for (let name of names) {
+                caches.delete(name);
+              }
+            });
+          }
+        } catch(e) {
+          console.log('Cache clearing failed:', e);
+        }
+        
+        setTimeout(function() {
+          const spinner = document.getElementById('loading');
+          if (spinner) {
+            spinner.style.display = 'none';
+          }
+          
+          // Clean any unwanted verification text nodes
+          function removeUnwantedText() {
+            // Remove text nodes containing verification codes
+            const walker = document.createTreeWalker(
+              document.body,
+              NodeFilter.SHOW_TEXT,
+              null,
+              false
+            );
+            
+            const nodesToRemove = [];
+            let node;
+            
+            while (node = walker.nextNode()) {
+              const text = node.textContent.trim();
+              if (text.includes('google-site-verification') || 
+                  text.includes('BqmTO4uqUXuLmqmxGqiv') ||
+                  text.includes('3KmjBYJ3QyjWYcSI4hPWX7g') ||
+                  text.match(/^google-site-verification=/)) {
+                nodesToRemove.push(node);
+              }
+            }
+            
+            nodesToRemove.forEach(node => {
+              if (node.parentNode) {
+                console.log('Removing unwanted verification text:', node.textContent);
+                node.parentNode.removeChild(node);
+              }
+            });
+            
+            // Also check for any elements with this text
+            const elements = document.querySelectorAll('*');
+            elements.forEach(element => {
+              if (element.textContent && element.textContent.includes('BqmTO4uqUXuLmqmxGqiv')) {
+                console.log('Removing element with verification text:', element);
+                element.remove();
+              }
+            });
+          }
+          
+          // Run cleanup multiple times
+          removeUnwantedText();
+          setTimeout(removeUnwantedText, 1000);
+          setTimeout(removeUnwantedText, 3000);
+          
+          // Set up MutationObserver to catch dynamically added content
+          const observer = new MutationObserver(function(mutations) {
+            let shouldClean = false;
+            mutations.forEach(function(mutation) {
+              if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                mutation.addedNodes.forEach(function(node) {
+                  if (node.textContent && node.textContent.includes('BqmTO4uqUXuLmqmxGqiv')) {
+                    shouldClean = true;
+                  }
+                });
+              }
+            });
+            if (shouldClean) {
+              setTimeout(removeUnwantedText, 100);
+            }
+          });
+          
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            characterData: true
+          });
+        }, 1000);
+      });
+    </script>
+    
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

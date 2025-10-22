@@ -1,0 +1,55 @@
+/* Mobile Menu Styles */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Active Menu Item Animation */
+.menu-item {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.menu-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: theme('colors.golden.DEFAULT');
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 4px 4px 0 0;
+  opacity: 0;
+}
+
+.menu-item.active::after {
+  width: 50%;
+  opacity: 1;
+}
+
+.menu-item .icon {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-item.active .icon {
+  transform: scale(1.1) translateY(-2px);
+}
+
+.menu-item .label {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.2s ease;
+}
+
+.menu-item:not(.active) .label {
+  transform: translateY(4px);
+  opacity: 0.7;
+}
+
+/* Safe Area Support */
+@supports (padding: max(0px)) {
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+  }
+}

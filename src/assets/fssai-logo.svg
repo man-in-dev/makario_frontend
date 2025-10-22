@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>FSSAI Logo</title>
+  <path d="M20 10h160v60H20z" fill="#fff"/>
+  <path d="M30 15h140v50H30z" fill="#2b3990"/>
+  <text x="100" y="45" text-anchor="middle" fill="#fff" font-family="Arial" font-size="24" font-weight="bold">FSSAI</text>
+</svg>

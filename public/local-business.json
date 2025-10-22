@@ -1,0 +1,246 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Makario - Bihar Makhana Export Company",
+  "alternateName": "Makario Brand - The Pride of Bihar",
+  "description": "Leading makhana exporter from Bihar, India. Premium quality foxnuts supplier with 100% organic lotus seeds. Bulk orders and international shipping available. Makario brand represents the finest Bihar makhana globally.",
+  "url": "https://www.makario.in",
+  "logo": "https://www.makario.in/makario-favicon.svg",
+  "image": [
+    "https://www.makario.in/assets/bihar-makhana-hero.jpg",
+    "https://www.makario.in/lovable-uploads/be26238e-2161-40dd-afd9-e69df2853b49.png",
+    "https://www.makario.in/assets/bihar-fields.jpg",
+    "https://www.makario.in/assets/farmers-working.jpg"
+  ],
+  "telephone": "+91-9953240031",
+  "email": "info@makario.in",
+  "faxNumber": "+91-612-2345678",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Makhana Export Hub, Industrial Area",
+    "addressLocality": "Darbhanga",
+    "addressRegion": "Bihar",
+    "postalCode": "846004",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 26.1542,
+    "longitude": 85.8918
+  },
+  "openingHours": "Mo-Sa 09:00-18:00",
+  "priceRange": "$$",
+  "currenciesAccepted": "INR, USD, EUR",
+  "paymentAccepted": "Cash, Credit Card, Bank Transfer, Letter of Credit",
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "India"
+    },
+    {
+      "@type": "Country",
+      "name": "United States"
+    },
+    {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    {
+      "@type": "Country",
+      "name": "Canada"
+    },
+    {
+      "@type": "Country",
+      "name": "Australia"
+    },
+    {
+      "@type": "Country",
+      "name": "Germany"
+    },
+    {
+      "@type": "Country",
+      "name": "France"
+    },
+    {
+      "@type": "Country",
+      "name": "Netherlands"
+    },
+    {
+      "@type": "Country",
+      "name": "Singapore"
+    },
+    {
+      "@type": "Country",
+      "name": "United Arab Emirates"
+    }
+  ],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 26.1542,
+      "longitude": 85.8918
+    },
+    "geoRadius": "50000"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Makhana Products & Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Premium Grade A Makhana",
+          "description": "Largest size foxnuts, 20-25mm, export quality"
+        },
+        "price": "800",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Commercial Grade B Makhana",
+          "description": "Standard size foxnuts, 15-20mm, food grade"
+        },
+        "price": "600",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Bulk Export Services",
+          "description": "International shipping and export documentation"
+        }
+      }
+    ]
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "150"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Rajesh Kumar"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "reviewBody": "Excellent quality makhana with timely delivery. Best supplier in Bihar for premium foxnuts."
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Sarah Johnson"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "reviewBody": "Outstanding international shipping service. The makhana quality exceeded our expectations."
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Mohammed Ali"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4"
+      },
+      "reviewBody": "Reliable supplier with consistent quality. Good pricing for bulk orders."
+    }
+  ],
+  "foundingDate": "2020",
+  "numberOfEmployees": "50-100",
+  "slogan": "Premium Bihar Makhana - From Farm to Global Markets",
+  "awards": [
+    "Best Makhana Exporter Bihar 2024",
+    "Organic Farming Excellence Award 2023",
+    "Export Excellence Award 2023"
+  ],
+  "knowsAbout": [
+    "Makhana Cultivation",
+    "Foxnuts Processing",
+    "Lotus Seeds Export",
+    "Organic Farming",
+    "International Trade",
+    "Food Safety Standards",
+    "Quality Assurance",
+    "Sustainable Agriculture"
+  ],
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "Agricultural and Processed Food Products Export Development Authority (APEDA)"
+    },
+    {
+      "@type": "Organization",
+      "name": "Federation of Indian Export Organisations (FIEO)"
+    },
+    {
+      "@type": "Organization",
+      "name": "Bihar Chamber of Commerce"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/biharmakhana",
+    "https://www.instagram.com/biharmakhana",
+    "https://twitter.com/biharmakhana",
+    "https://www.linkedin.com/company/biharmakhana",
+    "https://www.youtube.com/channel/biharmakhana",
+    "https://g.page/biharmakhana"
+  ],
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+91-9953240031",
+      "contactType": "sales",
+      "areaServed": "IN",
+      "availableLanguage": ["English", "Hindi"]
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+91-98765-43211",
+      "contactType": "customer service",
+      "areaServed": "Worldwide",
+      "availableLanguage": ["English"]
+    },
+    {
+      "@type": "ContactPoint",
+      "email": "export@makario.in",
+      "contactType": "export inquiries",
+      "areaServed": "Worldwide"
+    }
+  ],
+  "department": [
+    {
+      "@type": "Organization",
+      "name": "Quality Control Department",
+      "description": "Ensures premium quality standards for all makhana products"
+    },
+    {
+      "@type": "Organization",
+      "name": "Export Department", 
+      "description": "Handles international trade and shipping logistics"
+    },
+    {
+      "@type": "Organization",
+      "name": "Farmer Relations",
+      "description": "Maintains relationships with local makhana farmers"
+    }
+  ]
+}
