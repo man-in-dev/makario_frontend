@@ -8,13 +8,13 @@
     <!-- Homepage - Bihar Makhana Makario Brand -->
     <url>
         <loc>https://www.makario.in/</loc>
-        <lastmod>2025-09-11</lastmod>
-        <changefreq>daily</changefreq>
+        <lastmod>2025-10-23</lastmod>
+        <changefreq>always</changefreq>
         <priority>1.0</priority>
         <image:image>
-            <image:loc>https://www.makario.in/assets/bihar-makhana-hero.jpg</image:loc>
-            <image:title>Makario - Bihar Makhana Premium Foxnuts</image:title>
-            <image:caption>Premium quality makhana (foxnuts) from Bihar, India - Makario Brand</image:caption>
+            <image:loc>https://www.makario.in/assets/homepage/Makhana_Cultivation_f677e7f8e0.webp</image:loc>
+            <image:title>Makario - Premium Bihar Makhana Brand</image:title>
+            <image:caption>India's Premium Fox Nuts (Makhana) - Direct from Bihar's Best Farms</image:caption>
         </image:image>
     </url>
 

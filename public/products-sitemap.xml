@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Main Products Page -->
+    <url>
+        <loc>https://www.makario.in/products</loc>
+        <lastmod>2025-10-23</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://www.makario.in/assets/PRODUCT/FRONT.jpg</image:loc>
+            <image:title>Premium Makhana Collection - Makario Brand</image:title>
+            <image:caption>Complete range of premium grade fox nuts from Bihar</image:caption>
+        </image:image>
+    </url>
+
+    <!-- Individual Product Pages -->
+    <url>
+        <loc>https://www.makario.in/product/100g-pack-1</loc>
+        <lastmod>2025-10-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.makario.in/assets/PRODUCT/FRONT.jpg</image:loc>
+            <image:title>Makhana 100g Pack - Single Pack</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.makario.in/assets/PRODUCT/BACK.jpg</image:loc>
+            <image:title>Makhana Package Details - Nutritional Information</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://www.makario.in/product/100g-pack-2</loc>
+        <lastmod>2025-10-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.makario.in/assets/PRODUCT/FRONT.jpg</image:loc>
+            <image:title>Makhana 100g Pack - Pack of 2</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://www.makario.in/product/100g-pack-3</loc>
+        <lastmod>2025-10-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.makario.in/assets/PRODUCT/FRONT.jpg</image:loc>
+            <image:title>Makhana 100g Pack - Pack of 3</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://www.makario.in/product/100g-pack-4</loc>
+        <lastmod>2025-10-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.makario.in/assets/PRODUCT/FRONT.jpg</image:loc>
+            <image:title>Makhana 100g Pack - Pack of 4</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://www.makario.in/product/100g-pack-5</loc>
+        <lastmod>2025-10-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://www.makario.in/assets/PRODUCT/FRONT.jpg</image:loc>
+            <image:title>Makhana 100g Pack - Pack of 5</image:title>
+        </image:image>
+    </url>
+</urlset>
