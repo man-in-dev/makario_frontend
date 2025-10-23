@@ -82,7 +82,7 @@ const MumbaiPage = () => {
               </div>
               <div className="relative">
                 <img 
-                  src="/assets/hero-makhana.jpg" 
+                  src="/assets/homepage/Makhana_Cultivation_f677e7f8e0.webp" 
                   alt="Premium Makhana Delivery Mumbai"
                   className="rounded-lg shadow-2xl"
                 />

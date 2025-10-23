@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, Package, Award, Truck, Globe, Shield } from "lucide-react";
-import globalExportImage from "@/assets/global-export.jpg";
+import globalExportImage from "@/assets/homepage/Makhana_Cultivation_f677e7f8e0.webp";
 import { useState } from "react";
 
 const Products = () => {

@@ -14,12 +14,12 @@ import { Button } from "@/components/ui/button";
 import { Globe, Heart, Shield, Truck, Users, Sprout, Award, Leaf, Target, CheckCircle, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import biharFieldsImage from "@/assets/bihar-fields.jpg";
-import globalExportImage from "@/assets/global-export.jpg";
-import farmersWorkingImage from "@/assets/farmers-working.jpg";
-import cultivationProcessImage from "@/assets/cultivation-process.jpg";
-import biharAgricultureImage from "@/assets/bihar-agriculture.jpg";
-import brandStoryImage from "@/assets/brand-story.jpg";
+import biharFieldsImage from "@/assets/homepage/makhana khet farming.jpg";
+import globalExportImage from "@/assets/homepage/Makhana_Cultivation_f677e7f8e0.webp";
+import farmersWorkingImage from "@/assets/homepage/WhatsApp-Image-2025-04-07-at-08.38.17_0b1146ba-1024x683.webp";
+import cultivationProcessImage from "@/assets/homepage/makhana process.png";
+import biharAgricultureImage from "@/assets/homepage/makhana khet farming.jpg";
+import brandStoryImage from "@/assets/homepage/makhana process 1.png";
 
 const Index = () => {
   const [showContactForm, setShowContactForm] = useState(false);

@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, Trophy } from "lucide-react";
 import { useState } from "react";
-import biharFieldsImage from "@/assets/bihar-fields.jpg";
+import biharFieldsImage from "@/assets/homepage/makhana khet farming.jpg";
 
 const About = () => {
   const [showContactForm, setShowContactForm] = useState(false);

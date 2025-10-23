@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import LazyImage from "@/components/LazyImage";
-import heroImage from "@/assets/hero-makhana.jpg";
+import heroImage from "@/assets/homepage/Makhana_Cultivation_f677e7f8e0.webp";
 
 const Hero = () => {
   return (

@@ -34,7 +34,7 @@ export const setupImageLazyLoading = () => {
 // Preload critical resources
 export const preloadCriticalResources = () => {
   const criticalImages = [
-    '/assets/hero-makhana.jpg',
+    '/assets/homepage/Makhana_Cultivation_f677e7f8e0.webp',
     '/lovable-uploads/be26238e-2161-40dd-afd9-e69df2853b49.png'
   ];
 
