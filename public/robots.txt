@@ -1,74 +1,35 @@
 # Robots.txt for Makario - Bihar Makhana Premium Foxnuts
-# Website: www.makario.in
-# Contact: info@makario.in
+# Website: https://www.makario.in
 
 User-agent: *
-Allow: /
-
-# High-priority pages for search engine crawling
-Allow: /products
-Allow: /about
-Allow: /agriculture
-Allow: /global
-Allow: /farmers
-Allow: /export-services
-Allow: /quality-assurance
-Allow: /bulk-order
-Allow: /contact
-Allow: /blog
-Allow: /faq
-Allow: /custom-packaging
-
-# Regional target market pages
-Allow: /mumbai
-Allow: /gujarat
-Allow: /south-india
-Allow: /logistics
-
-# Allow all major search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Slurp
-Allow: /
-Crawl-delay: 2
-
-User-agent: DuckDuckBot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Baiduspider
-Allow: /
-Crawl-delay: 3
-
-User-agent: YandexBot
-Allow: /
-Crawl-delay: 2
-
-# Block unnecessary crawling and files
 Disallow: /api/
-Disallow: /*.json$
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /*.log
+Disallow: /*.json
 Disallow: /src/
 Disallow: /node_modules/
 Disallow: /.git/
+
+# Googlebot specific rules
+User-agent: Googlebot
+Disallow: /api/
 Disallow: /admin/
 Disallow: /private/
-Disallow: /*.log$
 Disallow: /temp/
 Disallow: /cache/
 
-# Block bad bots
+# Bingbot specific rules
+User-agent: Bingbot
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+
+# Block specific bots
 User-agent: AhrefsBot
 Disallow: /
 
@@ -78,14 +39,12 @@ Disallow: /
 User-agent: MJ12bot
 Disallow: /
 
-# General crawl delay for respectful crawling
-Crawl-delay: 1
+# Social Media Bots
+User-agent: Twitterbot
+Allow: /
 
-# Sitemap locations
+User-agent: facebookexternalhit
+Allow: /
+
+# Sitemap
 Sitemap: https://www.makario.in/sitemap.xml
-
-# Host directive (preferred domain)
-Host: https://www.makario.in
-
-# Host preference (remove www if using non-www)
-Host: biharmakhana.com
