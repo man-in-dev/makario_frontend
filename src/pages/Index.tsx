@@ -8,6 +8,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { ProductList } from "../components/product/ProductList";
 import { FeaturedProductsSection } from "../components/product/FeaturedProductsSection";
 import BlogSection from "@/components/BlogSection";
+import { MarketplaceSection } from "@/components/MarketplaceSection";
 import { getFeaturedProducts } from "../data/products";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -832,7 +833,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 text-center w-full">
             {[
               { country: "🇺🇸 USA", market: "Premium Health Food", region: "North America" },
               { country: "🇬🇧 UK", market: "Organic Snacks", region: "Europe" },
@@ -995,6 +996,10 @@ const Index = () => {
       )}
 
       <WhatsAppButton />
+
+      {/* Marketplace Section - Before Footer */}
+      <MarketplaceSection />
+
       <Footer />
     </div>
   );

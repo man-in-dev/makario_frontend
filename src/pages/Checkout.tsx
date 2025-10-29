@@ -13,6 +13,7 @@ import { Alert, AlertDescription } from '../components/ui/alert';
 import { useNavigate } from 'react-router-dom';
 import { AuthModal } from '../components/auth/AuthModal';
 import LazyImage from '../components/LazyImage';
+import { toast } from 'sonner';
 
 export const Checkout: React.FC = () => {
   const { items, getTotalPrice, clearCart } = useCart();
@@ -21,11 +22,13 @@ export const Checkout: React.FC = () => {
   const [discount, setDiscount] = useState(0);
   const { user } = useAuth();
   const navigate = useNavigate();
-  
+
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false);
+  const [isGuestCheckout, setIsGuestCheckout] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
-  
+
   const [shippingInfo, setShippingInfo] = useState({
     fullName: user?.name || '',
     email: user?.email || '',
@@ -35,7 +38,7 @@ export const Checkout: React.FC = () => {
     state: '',
     pincode: '',
   });
-  
+
   const [paymentMethod, setPaymentMethod] = useState('cod');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,39 +49,182 @@ export const Checkout: React.FC = () => {
     }));
   };
 
-  const handlePlaceOrder = async (e: React.FormEvent) => {
+  const handleProceedToCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!user) {
+
+    // Validate shipping info
+    if (!shippingInfo.fullName || !shippingInfo.email || !shippingInfo.phone ||
+        !shippingInfo.address || !shippingInfo.city || !shippingInfo.state || !shippingInfo.pincode) {
+      toast.error('Please fill all shipping details');
+      return;
+    }
+
+    // If COD is selected, process order directly (no login required)
+    if (paymentMethod === 'cod') {
+      await handlePlaceOrder();
+      return;
+    }
+
+    // If online payment and user is already logged in, proceed to payment
+    if (paymentMethod === 'online' && user) {
+      await handlePlaceOrder();
+      return;
+    }
+
+    // If online payment and not logged in, show modal to choose between guest checkout and login
+    if (paymentMethod === 'online' && !user) {
+      setShowCheckoutModal(true);
+      return;
+    }
+  };
+
+  const handlePlaceOrder = async (isGuest: boolean = isGuestCheckout) => {
+    // For COD, allow without login (guest checkout)
+    // For online payment, if not logged in and not guest checkout, show auth modal
+    if (paymentMethod === 'online' && !user && !isGuest) {
       setShowAuthModal(true);
       return;
     }
 
-  setIsProcessing(true);
-    
-    // Simulate order processing
-    setTimeout(() => {
-      // Create order object
-      const order = {
-        id: Date.now().toString(),
-        items: items,
-        shippingInfo,
-        paymentMethod,
-        total: getTotalPrice() + 50 - discount,
-        orderDate: new Date().toISOString(),
-        status: 'pending',
-        coupon: couponApplied ? coupon : null,
-        discount
-      };
-      // Save order to localStorage (in real app, send to backend)
-      const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
-      existingOrders.push(order);
-      localStorage.setItem('orders', JSON.stringify(existingOrders));
-      // Clear cart
-      clearCart();
-      setOrderPlaced(true);
+    setIsProcessing(true);
+
+    try {
+      const totalAmount = getTotalPrice() + 50 - discount;
+      const orderId = `ORD-${Date.now()}`;
+
+      // If COD, save order directly and show confirmation (no login required)
+      if (paymentMethod === 'cod') {
+        const order = {
+          id: orderId,
+          items: items,
+          shippingInfo,
+          paymentMethod,
+          total: totalAmount,
+          orderDate: new Date().toISOString(),
+          status: 'confirmed',
+          coupon: couponApplied ? coupon : null,
+          discount,
+          userId: user?.id || null, // Optional: link to user if logged in
+          userEmail: user?.email || shippingInfo.email // Track email for both logged-in and guest
+        };
+        const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+        existingOrders.push(order);
+        localStorage.setItem('orders', JSON.stringify(existingOrders));
+        clearCart();
+        setOrderPlaced(true);
+        setIsProcessing(false);
+        toast.success('Order placed successfully!');
+        return;
+      }
+
+      // For online payment, create Razorpay order
+      if (paymentMethod === 'online') {
+        const response = await fetch('http://localhost:5000/api/create-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount: totalAmount,
+            currency: 'INR',
+            receipt: orderId
+          })
+        });
+
+        const data = await response.json();
+        if (!data.success) {
+          throw new Error('Failed to create order');
+        }
+
+        // Open Razorpay checkout
+        const options = {
+          key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_xxxxxxxxxxxxxxxx',
+          amount: data.order.amount,
+          currency: 'INR',
+          name: 'Makario',
+          description: 'Premium Makhana Order',
+          order_id: data.order.id,
+          handler: async function (response: any) {
+            try {
+              // Verify payment on backend
+              const verifyResponse = await fetch('http://localhost:5000/api/verify-payment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                  orderDetails: {
+                    orderId,
+                    amount: totalAmount,
+                    products: items.map(item => ({
+                      id: item.product.id,
+                      name: item.product.name,
+                      sku: item.product.id,
+                      quantity: item.quantity,
+                      price: item.product.price
+                    })),
+                    customer: {
+                      name: shippingInfo.fullName,
+                      email: shippingInfo.email,
+                      phone: shippingInfo.phone,
+                      address: shippingInfo.address,
+                      city: shippingInfo.city,
+                      state: shippingInfo.state,
+                      pincode: shippingInfo.pincode
+                    }
+                  }
+                })
+              });
+
+              const verifyData = await verifyResponse.json();
+              if (verifyData.success) {
+                // Save order to localStorage
+                const order = {
+                  id: orderId,
+                  items: items,
+                  shippingInfo,
+                  paymentMethod,
+                  total: totalAmount,
+                  orderDate: new Date().toISOString(),
+                  status: 'confirmed',
+                  coupon: couponApplied ? coupon : null,
+                  discount,
+                  paymentId: response.razorpay_payment_id,
+                  shipmentData: verifyData.shipment,
+                  userId: user?.id || null,
+                  userEmail: user?.email || shippingInfo.email
+                };
+                const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
+                existingOrders.push(order);
+                localStorage.setItem('orders', JSON.stringify(existingOrders));
+                clearCart();
+                setOrderPlaced(true);
+                toast.success('Payment successful! Shipment created on iThink Logistics.');
+              } else {
+                throw new Error(verifyData.message || 'Payment verification failed');
+              }
+            } catch (error) {
+              toast.error(`Error: ${error instanceof Error ? error.message : 'Payment verification failed'}`);
+            } finally {
+              setIsProcessing(false);
+            }
+          },
+          prefill: {
+            name: shippingInfo.fullName,
+            email: shippingInfo.email,
+            contact: shippingInfo.phone
+          },
+          theme: {
+            color: '#D4A574'
+          }
+        };
+
+        const razorpay = new (window as any).Razorpay(options);
+        razorpay.open();
+      }
+    } catch (error) {
+      toast.error(`Error: ${error instanceof Error ? error.message : 'Something went wrong'}`);
       setIsProcessing(false);
-    }, 2000);
+    }
   };
 
   if (items.length === 0 && !orderPlaced) {
@@ -129,7 +275,7 @@ export const Checkout: React.FC = () => {
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Checkout Form */}
         <div className="lg:col-span-2">
-          <form onSubmit={handlePlaceOrder} className="space-y-6">
+          <form onSubmit={handleProceedToCheckout} className="space-y-6">
             {/* Shipping Information */}
             <Card>
               <CardHeader>
@@ -230,27 +376,29 @@ export const Checkout: React.FC = () => {
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="online" id="online" />
-                    <Label htmlFor="online">Online Payment (Coming Soon)</Label>
+                    <Label htmlFor="online">Online Payment (Razorpay - UPI, Card, NetBanking)</Label>
                   </div>
                 </RadioGroup>
-                
+
                 {paymentMethod === 'online' && (
-                  <Alert className="mt-4">
-                    <AlertDescription>
-                      Online payment integration is coming soon. Please select Cash on Delivery for now.
+                  <Alert className="mt-4 bg-blue-50 border-blue-200">
+                    <AlertDescription className="text-blue-800">
+                      ✅ Razorpay integration active! Pay securely via UPI, Credit/Debit Card, or Net Banking.
                     </AlertDescription>
                   </Alert>
                 )}
               </CardContent>
             </Card>
 
-            {!user && (
-              <Alert>
-                <AlertDescription>
-                  Please login to place your order.
-                </AlertDescription>
-              </Alert>
-            )}
+            {/* Submit Button - Inside Form */}
+            <Button
+              type="submit"
+              className="w-full mt-6"
+              size="lg"
+              disabled={isProcessing}
+            >
+              {isProcessing ? 'Processing...' : 'Proceed to Checkout'}
+            </Button>
           </form>
         </div>
 
@@ -336,18 +484,66 @@ export const Checkout: React.FC = () => {
                   <span>₹{(getTotalPrice() + 50 - discount).toLocaleString()}</span>
                 </div>
               {/* End of order summary content */}
-              <Button 
-                onClick={handlePlaceOrder}
-                className="w-full"
-                size="lg"
-                disabled={isProcessing || paymentMethod === 'online'}
-              >
-                {isProcessing ? 'Processing...' : 'Place Order'}
-              </Button>
             </CardContent>
           </Card>
         </div>
       </div>
+
+      {/* Checkout Options Modal */}
+      {showCheckoutModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <Card className="w-full max-w-md mx-4">
+            <CardHeader>
+              <CardTitle className="text-center">Choose Checkout Option</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-center text-muted-foreground mb-6">
+                Would you like to continue as a guest or login to your account?
+              </p>
+
+              <Button
+                onClick={async () => {
+                  setShowCheckoutModal(false);
+                  await handlePlaceOrder(true);
+                }}
+                className="w-full"
+                size="lg"
+                variant="outline"
+              >
+                👤 Continue as Guest
+              </Button>
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <Separator />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                  <span className="bg-background px-2 text-muted-foreground">Or</span>
+                </div>
+              </div>
+
+              <Button
+                onClick={() => {
+                  setShowCheckoutModal(false);
+                  setShowAuthModal(true);
+                }}
+                className="w-full"
+                size="lg"
+              >
+                🔐 Login to Account
+              </Button>
+
+              <Button
+                onClick={() => setShowCheckoutModal(false)}
+                className="w-full"
+                variant="ghost"
+              >
+                Cancel
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       {/* Auth Modal */}
       <AuthModal
