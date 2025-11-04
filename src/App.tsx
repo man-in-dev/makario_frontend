@@ -1,18 +1,20 @@
-import ShippingPolicy from "./pages/ShippingPolicy";
-import RefundPolicy from "./pages/RefundPolicy";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
+// Providers
 import { AuthProvider } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
 import { WishlistProvider } from "./contexts/WishlistContext";
 import { LoadingProvider } from "./contexts/LoadingContext";
 import { AdminAuthProvider } from "./contexts/AdminAuthContext";
+
+// Components
 import RouteLoader from "./components/RouteLoader";
 import GlobalMeta from "./components/GlobalMeta";
-import { lazy } from "react";
 import ChatbotPopup from "./components/ChatbotPopup";
 import MobileBottomMenu from "./components/MobileBottomMenu";
 import OfferPopup from "./components/OfferPopup";
@@ -20,7 +22,9 @@ import OfferPopup from "./components/OfferPopup";
 // Lazy load all page components for better performance
 const Index = lazy(() => import("./pages/Index"));
 const About = lazy(() => import("./pages/About"));
-import BulkOrders from './pages/BulkOrders';
+const BulkOrders = lazy(() => import("./pages/BulkOrders"));
+const ShippingPolicy = lazy(() => import("./pages/ShippingPolicy"));
+const RefundPolicy = lazy(() => import("./pages/RefundPolicy"));
 const Shop = lazy(() => import("./pages/Shop").then(module => ({ default: module.Shop })));
 const Checkout = lazy(() => import("./pages/Checkout").then(module => ({ default: module.Checkout })));
 const Wishlist = lazy(() => import("./pages/Wishlist").then(module => ({ default: module.default })));
