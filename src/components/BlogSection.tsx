@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User } from 'lucide-react';
+import SectionHeader from './SectionHeader';
 // Using direct image URLs instead of imports
 import makhanaHeritageBlog from '../assets/blog/makhana-feature.jpg';
 import makhanaHealthBlog from '../assets/blog/Makhana-The-Healthy-Indian-Snack.jpg';
@@ -64,15 +65,14 @@ const BlogSection = () => {
   return (
     <section className="py-16 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-heritage/10 text-heritage rounded-full text-sm font-semibold mb-4">
-            OUR BLOG
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-heritage mb-4">Latest from Our Blog</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Stay updated with the latest news, recipes, and stories about Bihar's finest Makhana
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="OUR BLOG"
+          title="Latest from Our Blog"
+          highlightWord="Blog"
+          highlightColor="green"
+          description="Stay updated with the latest news, recipes, and stories about Bihar's finest Makhana"
+          className="mb-12"
+        />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {sampleBlogs.map((blog) => (

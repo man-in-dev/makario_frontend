@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -106,23 +107,30 @@ const BulkOrder = () => {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-card">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6 text-heritage">Bulk Orders & Wholesale</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Partner with Bihar's leading makhana exporters. Get competitive pricing, 
-            premium quality assurance, and reliable global shipping for your business needs.
-          </p>
+          <SectionHeader
+            eyebrow="BULK ORDERS"
+            icon={Package}
+            title="Bulk Orders & Wholesale"
+            highlightWord="Wholesale"
+            highlightColor="green"
+            description="Partner with Bihar's leading makhana exporters. Get competitive pricing, premium quality assurance, and reliable global shipping for your business needs."
+            className="mb-8"
+          />
         </div>
       </section>
 
       {/* Benefits */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-heritage">Why Choose Our Bulk Service?</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Experience the advantages of working directly with Bihar's premium makhana producers
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="BULK SERVICE"
+            icon={Truck}
+            title="Why Choose Our Bulk Service?"
+            highlightWord="Bulk Service"
+            highlightColor="green"
+            description="Experience the advantages of working directly with Bihar's premium makhana producers"
+            className="mb-12"
+          />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {bulkBenefits.map((benefit, index) => (
@@ -257,12 +265,15 @@ const BulkOrder = () => {
       {/* Pricing Information */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-heritage">Bulk Pricing & Terms</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Transparent pricing and flexible terms for all business sizes
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="PRICING & TERMS"
+            icon={Package}
+            title="Bulk Pricing & Terms"
+            highlightWord="Pricing & Terms"
+            highlightColor="green"
+            description="Transparent pricing and flexible terms for all business sizes"
+            className="mb-12"
+          />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card>

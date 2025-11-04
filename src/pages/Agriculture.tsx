@@ -1,6 +1,7 @@
 import { Leaf, Droplets, Sun, TreePine, Sprout, Globe } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -54,13 +55,15 @@ const Agriculture = () => {
       {/* Traditional Practices */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-heritage">Traditional Agricultural Practices</h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Our farming methods have been refined over generations, combining ancient wisdom 
-              with sustainable modern techniques.
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="AGRICULTURAL PRACTICES"
+            icon={Sprout}
+            title="Traditional Agricultural Practices"
+            highlightWord="Agricultural Practices"
+            highlightColor="green"
+            description="Our farming methods have been refined over generations, combining ancient wisdom with sustainable modern techniques."
+            className="mb-12"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {practices.map((practice, index) => (
@@ -94,12 +97,15 @@ const Agriculture = () => {
       >
         <div className="absolute inset-0 bg-white/85"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-heritage">Agriculture in Numbers</h2>
-            <p className="text-heritage/80 text-lg max-w-3xl mx-auto">
-              Bihar's agricultural achievements in makhana production
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="AGRICULTURE STATS"
+            icon={Leaf}
+            title="Agriculture in Numbers"
+            highlightWord="Numbers"
+            highlightColor="green"
+            description="Bihar's agricultural achievements in makhana production"
+            className="mb-12"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">

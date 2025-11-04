@@ -1,6 +1,7 @@
 import { Users, Heart, HandHeart, Sprout, Award, TrendingUp } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -113,13 +114,15 @@ const Farmers = () => {
       {/* Farmer Stories */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-heritage">Farmer Stories</h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Real stories from real farmers who have transformed their lives through 
-              sustainable makhana cultivation.
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="FARMER STORIES"
+            icon={Users}
+            title="Farmer Stories"
+            highlightWord="Farmer Stories"
+            highlightColor="green"
+            description="Real stories from real farmers who have transformed their lives through sustainable makhana cultivation."
+            className="mb-12"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {stories.map((story, index) => (
@@ -146,13 +149,15 @@ const Farmers = () => {
       {/* Support Programs */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-heritage">How We Support Our Farmers</h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Our comprehensive support system ensures that farmers have everything they need 
-              to succeed and prosper.
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="FARMER SUPPORT"
+            icon={HandHeart}
+            title="How We Support Our Farmers"
+            highlightWord="Support Our Farmers"
+            highlightColor="green"
+            description="Our comprehensive support system ensures that farmers have everything they need to succeed and prosper."
+            className="mb-12"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {support.map((program, index) => (
@@ -187,12 +192,15 @@ const Farmers = () => {
       >
         <div className="absolute inset-0 bg-white/85"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-heritage">Our Impact</h2>
-            <p className="text-heritage/80 text-lg max-w-3xl mx-auto">
-              Together, we're building a sustainable future for Bihar's farming communities.
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="OUR IMPACT"
+            icon={TrendingUp}
+            title="Our Impact"
+            highlightWord="Impact"
+            highlightColor="green"
+            description="Together, we're building a sustainable future for Bihar's farming communities."
+            className="mb-12"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {impact.map((stat, index) => (
@@ -211,7 +219,15 @@ const Farmers = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-6 text-heritage">Community Development</h2>
+              <SectionHeader
+                eyebrow="COMMUNITY"
+                icon={Users}
+                title="Community Development"
+                highlightWord="Community Development"
+                highlightColor="green"
+                className="mb-6"
+                align="left"
+              />
               <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
                 Beyond farming, we invest in community development programs that improve 
                 education, healthcare, and infrastructure in farming villages.

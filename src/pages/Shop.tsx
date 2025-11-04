@@ -11,7 +11,7 @@ import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Search, Filter, SlidersHorizontal, Grid3X3, List } from 'lucide-react';
 
-export const Shop: React.FC = () => {
+const Shop: React.FC = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -544,3 +544,6 @@ export const Shop: React.FC = () => {
     </>
   );
 };
+
+export { Shop };
+export default Shop;

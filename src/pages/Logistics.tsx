@@ -303,7 +303,7 @@ const Logistics = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="lg" asChild>
-              <Link to="/bulk-order">Get Shipping Quote</Link>
+              <Link to="/bulk-orders">Get Shipping Quote</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
               <Link to="/contact">Contact Logistics Team</Link>

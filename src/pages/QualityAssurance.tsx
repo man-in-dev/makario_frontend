@@ -1,6 +1,7 @@
 import { Shield, Award, Microscope, CheckCircle, FileText, Users } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
@@ -98,13 +99,15 @@ const QualityAssurance = () => {
       {/* Quality Standards */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-heritage">Our Quality Standards</h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              We maintain the highest quality standards through rigorous certification 
-              and continuous monitoring processes.
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="QUALITY STANDARDS"
+            icon={Shield}
+            title="Our Quality Standards"
+            highlightWord="Quality Standards"
+            highlightColor="green"
+            description="We maintain the highest quality standards through rigorous certification and continuous monitoring processes."
+            className="mb-12"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {standards.map((standard, index) => (
@@ -130,12 +133,15 @@ const QualityAssurance = () => {
       {/* Quality Process */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-heritage">Quality Control Process</h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Our comprehensive quality control process ensures excellence at every step.
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="QUALITY PROCESS"
+            icon={Award}
+            title="Quality Control Process"
+            highlightWord="Quality Control"
+            highlightColor="green"
+            description="Our comprehensive quality control process ensures excellence at every step."
+            className="mb-12"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {process.map((step, index) => (
@@ -161,12 +167,15 @@ const QualityAssurance = () => {
       {/* Certifications */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-heritage">Our Certifications</h2>
-            <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-              Recognized certifications that validate our commitment to quality and safety.
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="CERTIFICATIONS"
+            icon={Award}
+            title="Our Certifications"
+            highlightWord="Certifications"
+            highlightColor="green"
+            description="Recognized certifications that validate our commitment to quality and safety."
+            className="mb-12"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
@@ -195,12 +204,15 @@ const QualityAssurance = () => {
       >
         <div className="absolute inset-0 bg-white/85"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-6 text-heritage">Quality Metrics</h2>
-            <p className="text-heritage/80 text-lg max-w-3xl mx-auto">
-              Numbers that showcase our commitment to maintaining the highest quality standards.
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="QUALITY METRICS"
+            icon={Shield}
+            title="Quality Metrics"
+            highlightWord="Quality Metrics"
+            highlightColor="green"
+            description="Numbers that showcase our commitment to maintaining the highest quality standards."
+            className="mb-12"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
@@ -226,10 +238,15 @@ const QualityAssurance = () => {
       {/* CTA Section */}
       <section className="py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-6 text-heritage">Trust Our Quality</h2>
-          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
-            Experience the difference that rigorous quality assurance makes in every batch.
-          </p>
+          <SectionHeader
+            eyebrow="TRUST US"
+            icon={Shield}
+            title="Trust Our Quality"
+            highlightWord="Quality"
+            highlightColor="green"
+            description="Experience the difference that rigorous quality assurance makes in every batch."
+            className="mb-8"
+          />
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="hero" size="lg" asChild>
               <Link to="/products">View Products</Link>

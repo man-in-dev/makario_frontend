@@ -2,11 +2,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
+import SectionHeader from "@/components/SectionHeader";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Users, Trophy } from "lucide-react";
+import { Calendar, MapPin, Users, Trophy, Heart, Globe, Target, Shield, Sprout, Award, CheckCircle } from "lucide-react";
 import { useState } from "react";
 import biharFieldsImage from "@/assets/homepage/makhana khet farming.jpg";
+import { motion } from "framer-motion";
 
 const About = () => {
   const [showContactForm, setShowContactForm] = useState(false);
@@ -111,9 +113,17 @@ const About = () => {
       {/* Story Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
+          <SectionHeader
+            eyebrow="OUR STORY"
+            icon={Trophy}
+            title="Our Story"
+            highlightWord="Story"
+            highlightColor="green"
+            description="Bihar has been the cradle of makhana cultivation for over a millennium, creating the world's finest makhana through unique agro-climatic conditions and fertile alluvial soil."
+            className="mb-12"
+          />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-6 text-heritage">Our Story</h2>
               <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
                 Bihar has been the cradle of makhana cultivation for over a millennium. The state's unique 
                 agro-climatic conditions, with its seasonal floods and fertile alluvial soil, create the 
@@ -143,12 +153,15 @@ const About = () => {
       {/* Statistics */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-heritage">Our Impact</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Numbers that showcase our commitment to excellence and community development
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="OUR IMPACT"
+            icon={Trophy}
+            title="Our Impact"
+            highlightWord="Impact"
+            highlightColor="green"
+            description="Numbers that showcase our commitment to excellence and community development"
+            className="mb-12"
+          />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
@@ -169,12 +182,15 @@ const About = () => {
       {/* Timeline */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-heritage">Our Journey</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Milestones that mark our evolution from local farmers to global exporters
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="OUR JOURNEY"
+            icon={Calendar}
+            title="Our Journey"
+            highlightWord="Journey"
+            highlightColor="green"
+            description="Milestones that mark our evolution from local farmers to global exporters"
+            className="mb-12"
+          />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {milestones.map((milestone, index) => (

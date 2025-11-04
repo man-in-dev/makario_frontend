@@ -259,7 +259,7 @@ const FAQ = () => {
                   Contact Our Experts
                 </Button>
               </Link>
-              <Link to="/bulk-order">
+              <Link to="/bulk-orders">
                 <Button size="lg" variant="outline">
                   Request Quote
                 </Button>

@@ -246,7 +246,7 @@ const CustomPackaging = () => {
               <Link to="/contact">Start Custom Design</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link to="/bulk-order">Get Packaging Quote</Link>
+              <Link to="/bulk-orders">Get Packaging Quote</Link>
             </Button>
           </div>
         </div>

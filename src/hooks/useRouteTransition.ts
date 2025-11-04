@@ -28,7 +28,7 @@ const useRouteTransition = () => {
       '/quality-assurance': 'Loading Quality Assurance...',
       '/custom-packaging': 'Loading Custom Packaging...',
       '/logistics': 'Loading Logistics...',
-      '/bulk-order': 'Loading Bulk Order...',
+      '/bulk-orders': 'Loading Bulk Orders...',
       '/cart': 'Loading Cart...',
       '/checkout': 'Loading Checkout...',
       '/wishlist': 'Loading Wishlist...',

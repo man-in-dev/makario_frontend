@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { LoadingScreen } from './LoadingSpinner';
@@ -12,14 +12,19 @@ interface RouteLoaderProps {
 const RouteLoader: React.FC<RouteLoaderProps> = ({ children }) => {
   const location = useLocation();
   const { isLoading, loadingMessage, showProgress, progress } = useLoading();
+  const hasInitialLoadRef = useRef(false);
   
   // Handle route transitions
   useRouteTransition();
 
+  useEffect(() => {
+    hasInitialLoadRef.current = true;
+  }, []);
+
   return (
     <>
       <AnimatePresence mode="wait">
-        {isLoading && (
+        {hasInitialLoadRef.current && isLoading && (
           <LoadingScreen 
             key="loading"
             message={loadingMessage}
@@ -29,14 +34,7 @@ const RouteLoader: React.FC<RouteLoaderProps> = ({ children }) => {
         )}
       </AnimatePresence>
       
-      <Suspense 
-        fallback={
-          <LoadingScreen 
-            message="Loading components..."
-            showProgress={false}
-          />
-        }
-      >
+      <Suspense fallback={<div className="min-h-screen bg-white" />}>
         <AnimatePresence mode="wait" initial={false}>
           <div key={location.pathname}>
             {children}

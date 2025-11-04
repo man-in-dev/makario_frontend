@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import LazyImage from "@/components/LazyImage";
-import heroImage from "@/assets/homepage/Makhana_Cultivation_f677e7f8e0.webp";
+import heroImage from "@/assets/homepage/makhana khet farming.jpg";
 
 const Hero = () => {
   return (
@@ -16,7 +16,8 @@ const Hero = () => {
           width={1920}
           height={1080}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-heritage/80 via-heritage/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-heritage/90 via-heritage/70 to-transparent"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
       </div>
 
       {/* Content */}
@@ -49,13 +50,13 @@ const Hero = () => {
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 group border-white text-white hover:bg-white hover:text-heritage" asChild>
-              <Link to="/products">
+              <Link to="/shop">
                 <span className="text-golden">Explore Products</span>
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform text-golden" />
               </Link>
             </Button>
             <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-white/10 border-white text-white hover:bg-white hover:text-heritage" asChild>
-              <Link to="/bulk-order">Bulk Orders</Link>
+              <Link to="/bulk-orders">Bulk Orders</Link>
             </Button>
           </div>
 

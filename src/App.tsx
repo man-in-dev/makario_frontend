@@ -20,8 +20,7 @@ import OfferPopup from "./components/OfferPopup";
 // Lazy load all page components for better performance
 const Index = lazy(() => import("./pages/Index"));
 const About = lazy(() => import("./pages/About"));
-const BulkOrder = lazy(() => import("./pages/BulkOrder"));
-const Products = lazy(() => import("./pages/Products"));
+import BulkOrders from './pages/BulkOrders';
 const Shop = lazy(() => import("./pages/Shop").then(module => ({ default: module.Shop })));
 const Checkout = lazy(() => import("./pages/Checkout").then(module => ({ default: module.Checkout })));
 const Wishlist = lazy(() => import("./pages/Wishlist").then(module => ({ default: module.default })));
@@ -32,18 +31,13 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Agriculture = lazy(() => import("./pages/Agriculture"));
-const Global = lazy(() => import("./pages/Global"));
 const Farmers = lazy(() => import("./pages/Farmers"));
-const ExportServices = lazy(() => import("./pages/ExportServices"));
 const QualityAssurance = lazy(() => import("./pages/QualityAssurance"));
 const CustomPackaging = lazy(() => import("./pages/CustomPackaging"));
 const Logistics = lazy(() => import("./pages/Logistics"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const FAQ = lazy(() => import("./pages/FAQ"));
-const Mumbai = lazy(() => import("./pages/Mumbai"));
-const Gujarat = lazy(() => import("./pages/Gujarat"));
-const SouthIndia = lazy(() => import("./pages/SouthIndia"));
 const Login = lazy(() => import("./pages/Login"));
 const UserProfile = lazy(() => import("./pages/UserProfile"));
 const Orders = lazy(() => import("./pages/Orders"));
@@ -90,13 +84,12 @@ const App = () => (
                       {/* Chatbot Popup */}
                   <Route path="/" element={<Index />} />
                   <Route path="/about" element={<About />} />
-                  <Route path="/products" element={<Products />} />
                   <Route path="/shop" element={<Shop />} />
                   <Route path="/product/:id" element={<ProductDetail />} />
-                                    <Route path="/cart" element={<CartPage />} />
+                  <Route path="/cart" element={<CartPage />} />
                   <Route path="/checkout" element={<Checkout />} />
                   <Route path="/wishlist" element={<Wishlist />} />
-                  <Route path="/bulk-order" element={<BulkOrder />} />
+                  <Route path="/bulk-orders" element={<BulkOrders />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/:id" element={<BlogPost />} />
@@ -106,18 +99,13 @@ const App = () => (
                   <Route path="/shipping" element={<ShippingPolicy />} />
                   <Route path="/refund" element={<RefundPolicy />} />
                   <Route path="/agriculture" element={<Agriculture />} />
-                  <Route path="/global" element={<Global />} />
                   <Route path="/farmers" element={<Farmers />} />
-                  <Route path="/export-services" element={<ExportServices />} />
                   <Route path="/quality-assurance" element={<QualityAssurance />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/profile" element={<UserProfile />} />
                   <Route path="/orders" element={<Orders />} />
                   <Route path="/custom-packaging" element={<CustomPackaging />} />
                   <Route path="/logistics" element={<Logistics />} />
-                  <Route path="/mumbai" element={<Mumbai />} />
-                  <Route path="/gujarat" element={<Gujarat />} />
-                  <Route path="/south-india" element={<SouthIndia />} />
                   <Route path="*" element={<NotFound />} />
                   
                   {/* Admin Routes */}
