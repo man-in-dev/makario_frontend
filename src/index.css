@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide Google reCAPTCHA badge and any stray meta content */
+.grecaptcha-badge { 
+  visibility: hidden !important;
+}
+
+/* Hide any text content after body that's not in root */
+body > :not(#root):not(script):not(noscript) {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Ensure no content after footer */
+footer ~ *:not(script) {
+  display: none !important;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */

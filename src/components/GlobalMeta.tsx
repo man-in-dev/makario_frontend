@@ -16,12 +16,6 @@ const GlobalMeta = () => {
       <meta name="geo.placename" content="Bihar, India" />
       <meta name="geo.position" content="25.0961;85.3131" />
       <meta name="ICBM" content="25.0961, 85.3131" />
-      
-      {/* Favicon and App Icons */}
-      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
-      <link rel="manifest" href="/site.webmanifest" />
     </Helmet>
   );
 };

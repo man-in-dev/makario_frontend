@@ -150,6 +150,16 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      
+      {/* Force hide any stray content after footer */}
+      <style>{`
+        footer + * {
+          display: none !important;
+        }
+        body > *:not(#root) {
+          display: none !important;
+        }
+      `}</style>
     </footer>
   );
 };

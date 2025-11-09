@@ -4,6 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useRemoveGoogleText } from "./hooks/useRemoveGoogleText";
 
 // Providers
 import { AuthProvider } from "./contexts/AuthContext";
@@ -18,6 +19,7 @@ import GlobalMeta from "./components/GlobalMeta";
 import ChatbotPopup from "./components/ChatbotPopup";
 import MobileBottomMenu from "./components/MobileBottomMenu";
 import OfferPopup from "./components/OfferPopup";
+import MarketplaceSlider from "./components/MarketplaceSlider";
 
 // Lazy load all page components for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -45,6 +47,7 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const Login = lazy(() => import("./pages/Login"));
 const UserProfile = lazy(() => import("./pages/UserProfile"));
 const Orders = lazy(() => import("./pages/Orders"));
+const TrackOrder = lazy(() => import("./pages/TrackOrder"));
 
 // Admin Components
 const AdminLogin = lazy(() => import("./components/admin/AdminLogin"));
@@ -68,10 +71,14 @@ const AdminEmailCampaigns = lazy(() => import("./components/admin/AdminEmailCamp
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <HelmetProvider>
-    <GlobalMeta />
-    <QueryClientProvider client={queryClient}>
+const App = () => {
+  // Remove any Google verification text that appears
+  useRemoveGoogleText();
+  
+  return (
+    <HelmetProvider>
+      <GlobalMeta />
+      <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AuthProvider>
           <AdminAuthProvider>
@@ -108,6 +115,7 @@ const App = () => (
                   <Route path="/login" element={<Login />} />
                   <Route path="/profile" element={<UserProfile />} />
                   <Route path="/orders" element={<Orders />} />
+                  <Route path="/track-order" element={<TrackOrder />} />
                   <Route path="/custom-packaging" element={<CustomPackaging />} />
                   <Route path="/logistics" element={<Logistics />} />
                   <Route path="*" element={<NotFound />} />
@@ -166,6 +174,7 @@ const App = () => (
       </TooltipProvider>
     </QueryClientProvider>
   </HelmetProvider>
-);
+  );
+};
 
 export default App;

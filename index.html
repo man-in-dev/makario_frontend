@@ -5,19 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="/src/main.tsx" as="script" crossorigin />
-    <link rel="preload" href="/src/index.css" as="style" />
+    <link rel="preload" href="/src/main.tsx" as="module" crossorigin />
+    <link rel="preload" href="/src/index.css" as="style" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Critical CSS inline (will be added by build process) -->
-    <style>
-      /* Critical CSS for above-the-fold content */
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; line-height: 1.5; }
-      #root { min-height: 100vh; }
-      .loading { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-    </style>
     
     <!-- Google Tag Manager - Deferred -->
     <script>
@@ -46,8 +37,7 @@
       });
     </script>
     
-    <!-- Google Site Verification -->
-    <meta name="google-site-verification" content="BqmTO4uqUXuLmqmxGqiv3KmjBYJ3QyjWYcSI4hPWX7g" />
+
     
     <!-- Primary SEO Meta Tags -->
     <title>Makario | Premium Makhana Exporter Bihar | #1 Foxnuts Supplier India | Buy Organic Lotus Seeds</title>
@@ -361,6 +351,7 @@
   </head>
 
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     
     <!-- Main script with performance optimizations -->
@@ -387,103 +378,20 @@
               console.log('Service Worker registered successfully:', registration);
             })
             .catch(function(registrationError) {
-      //         console.log('SW registration failed: ', registrationError);
-      //       });
-      //   });
-      // }
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
     </script>
     
-    <!-- Remove loading spinner when app loads and clean unwanted text -->
+    <!-- Handle loading spinner -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // Clear any cached data that might contain the verification code
-        try {
-          localStorage.clear();
-          sessionStorage.clear();
-          if ('caches' in window) {
-            caches.keys().then(function(names) {
-              for (let name of names) {
-                caches.delete(name);
-              }
-            });
-          }
-        } catch(e) {
-          console.log('Cache clearing failed:', e);
-        }
-        
         setTimeout(function() {
           const spinner = document.getElementById('loading');
           if (spinner) {
             spinner.style.display = 'none';
           }
-          
-          // Clean any unwanted verification text nodes
-          function removeUnwantedText() {
-            // Remove text nodes containing verification codes
-            const walker = document.createTreeWalker(
-              document.body,
-              NodeFilter.SHOW_TEXT,
-              null,
-              false
-            );
-            
-            const nodesToRemove = [];
-            let node;
-            
-            while (node = walker.nextNode()) {
-              const text = node.textContent.trim();
-              if (text.includes('google-site-verification') || 
-                  text.includes('BqmTO4uqUXuLmqmxGqiv') ||
-                  text.includes('3KmjBYJ3QyjWYcSI4hPWX7g') ||
-                  text.match(/^google-site-verification=/)) {
-                nodesToRemove.push(node);
-              }
-            }
-            
-            nodesToRemove.forEach(node => {
-              if (node.parentNode) {
-                console.log('Removing unwanted verification text:', node.textContent);
-                node.parentNode.removeChild(node);
-              }
-            });
-            
-            // Also check for any elements with this text
-            const elements = document.querySelectorAll('*');
-            elements.forEach(element => {
-              if (element.textContent && element.textContent.includes('BqmTO4uqUXuLmqmxGqiv')) {
-                console.log('Removing element with verification text:', element);
-                element.remove();
-              }
-            });
-          }
-          
-          // Run cleanup multiple times
-          removeUnwantedText();
-          setTimeout(removeUnwantedText, 1000);
-          setTimeout(removeUnwantedText, 3000);
-          
-          // Set up MutationObserver to catch dynamically added content
-          const observer = new MutationObserver(function(mutations) {
-            let shouldClean = false;
-            mutations.forEach(function(mutation) {
-              if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                mutation.addedNodes.forEach(function(node) {
-                  if (node.textContent && node.textContent.includes('BqmTO4uqUXuLmqmxGqiv')) {
-                    shouldClean = true;
-                  }
-                });
-              }
-            });
-            if (shouldClean) {
-              setTimeout(removeUnwantedText, 100);
-            }
-          });
-          
-          observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-            characterData: true
-          });
         }, 1000);
       });
     </script>

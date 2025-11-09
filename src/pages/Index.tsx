@@ -6,16 +6,16 @@ import QuoteForm from "@/components/QuoteForm";
 import SEO from "@/components/SEO";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SectionHeader from "@/components/SectionHeader";
+import MarketplaceSlider from "@/components/MarketplaceSlider";
 import { ProductList } from "../components/product/ProductList";
 import { FeaturedProductsSection } from "../components/product/FeaturedProductsSection";
 import BlogSection from "@/components/BlogSection";
-import { MarketplaceSection } from "@/components/MarketplaceSection";
 import { getFeaturedProducts } from "../data/products";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Globe, Heart, Shield, Truck, Users, Sprout, Award, Leaf, Target, CheckCircle, MapPin, Package } from "lucide-react";
+import { Globe, Heart, Shield, Truck, Users, Sprout, Award, Leaf, Target, CheckCircle, MapPin, Package, Image as ImageIcon, Play } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import biharFieldsImage from "@/assets/homepage/makhana khet farming.jpg";
 import globalExportImage from "@/assets/homepage/Makhana_Cultivation_f677e7f8e0.webp";
 import farmersWorkingImage from "@/assets/homepage/WhatsApp-Image-2025-04-07-at-08.38.17_0b1146ba-1024x683.webp";
@@ -126,6 +126,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <Header />
       <SEO
         title="Buy Premium Bihar Makhana Online India | #1 Fox Nuts Delivery | Makario"
         description="� India's #1 Premium Bihar Makhana! ✅ 100% Organic Fox Nuts ✅ Free Delivery Mumbai, Gujarat, South India ✅ COD Available ✅ Same Day Delivery. Order Fresh Healthy Snacks Now!"
@@ -225,7 +226,6 @@ const Index = () => {
           ]
         }}
       />
-      <Header />
       <Hero />
       
       {/* Featured Products Section - Season's Top Picks */}
@@ -279,6 +279,98 @@ const Index = () => {
       {/* Blog Section */}
       <section className="py-8">
         <BlogSection />
+      </section>
+
+      {/* Gallery Section */}
+      <section className="py-16 bg-gradient-to-br from-heritage/5 via-golden/5 to-muted/30">
+        <div className="container mx-auto px-4">
+          <SectionHeader
+            eyebrow="OUR GALLERY"
+            icon={ImageIcon}
+            title="Visual Journey of Bihar Makhana"
+            highlightWord="Visual Journey"
+            highlightColor="green"
+            description="Explore the beauty of makhana farming from fields to final product"
+            className="mb-12"
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                image: biharFieldsImage,
+                title: "Bihar Makhana Fields",
+                description: "Pristine wetlands where premium makhana grows",
+                category: "Farming"
+              },
+              {
+                image: globalExportImage,
+                title: "Traditional Cultivation",
+                description: "Ancient farming techniques passed down generations",
+                category: "Heritage"
+              },
+              {
+                image: farmersWorkingImage,
+                title: "Skilled Farmers",
+                description: "Expert hands nurturing every lotus seed",
+                category: "People"
+              },
+              {
+                image: cultivationProcessImage,
+                title: "Processing Excellence",
+                description: "Modern facilities maintaining traditional quality",
+                category: "Process"
+              },
+              {
+                image: biharAgricultureImage,
+                title: "Organic Growth",
+                description: "100% chemical-free natural cultivation",
+                category: "Quality"
+              },
+              {
+                image: brandStoryImage,
+                title: "Premium Product",
+                description: "Final product ready for global markets",
+                category: "Product"
+              }
+            ].map((item, index) => (
+              <div 
+                key={index} 
+                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 h-80"
+              >
+                <img 
+                  src={item.image} 
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-heritage/90 via-heritage/50 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500"></div>
+                
+                {/* Category Badge */}
+                <div className="absolute top-4 right-4 bg-golden/90 backdrop-blur-sm px-4 py-1 rounded-full text-white text-xs font-semibold tracking-wide">
+                  {item.category}
+                </div>
+                
+                {/* Content - Shows on hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <h3 className="text-white text-xl font-bold mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                    {item.title}
+                  </h3>
+                  <p className="text-white/90 text-sm mb-4 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                    {item.description}
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="border-golden bg-golden text-white hover:bg-white hover:text-golden hover:border-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-300 font-semibold"
+                  >
+                    View Details
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Bihar Heritage Section */}
@@ -907,6 +999,96 @@ const Index = () => {
 
       
 
+      {/* Customer Review Video Section */}
+      <section className="py-16 bg-gradient-to-br from-heritage/5 via-golden/5 to-muted/20">
+        <div className="container mx-auto px-4">
+          <SectionHeader
+            eyebrow="CUSTOMER TESTIMONIALS"
+            icon={Play}
+            title="What Our Customers Say"
+            highlightWord="Customers Say"
+            highlightColor="green"
+            description="Real experiences from our valued customers across the globe"
+            className="mb-12"
+          />
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 max-w-7xl mx-auto">
+            {[
+              { id: '1I18rdBfV3CdmVB7-4wKzmEh9LauyKn7e', num: 1 },
+              { id: '1I18rdBfV3CdmVB7-4wKzmEh9LauyKn7e', num: 2 },
+              { id: '1I18rdBfV3CdmVB7-4wKzmEh9LauyKn7e', num: 3 },
+              { id: '1I18rdBfV3CdmVB7-4wKzmEh9LauyKn7e', num: 4 },
+              { id: '1I18rdBfV3CdmVB7-4wKzmEh9LauyKn7e', num: 5 }
+            ].map((video) => {
+              const VideoCard = () => {
+                const [isPlaying, setIsPlaying] = useState(false);
+                const [isLoading, setIsLoading] = useState(false);
+
+                const handleClick = () => {
+                  setIsLoading(true);
+                  setIsPlaying(true);
+                };
+
+                return (
+                  <div 
+                    className="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-black cursor-pointer group"
+                    style={{ aspectRatio: '9/16', minHeight: '400px' }}
+                    onClick={!isPlaying ? handleClick : undefined}
+                  >
+                    {/* Video Iframe - Google Drive */}
+                    {isPlaying && (
+                      <iframe
+                        src={`https://drive.google.com/file/d/${video.id}/preview?autoplay=1`}
+                        className="absolute inset-0 w-full h-full border-0"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                        style={{ zIndex: 20 }}
+                        onLoad={() => setIsLoading(false)}
+                      />
+                    )}
+                    
+                    {/* Loading Spinner */}
+                    {isLoading && (
+                      <div className="absolute inset-0 bg-black/80 flex items-center justify-center z-30">
+                        <div className="flex flex-col items-center gap-3">
+                          <div className="w-12 h-12 border-4 border-golden border-t-transparent rounded-full animate-spin"></div>
+                          <p className="text-white text-sm">Loading video...</p>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Thumbnail overlay with Play button */}
+                    {!isPlaying && !isLoading && (
+                      <div className="absolute inset-0 bg-gradient-to-br from-heritage via-golden/40 to-heritage/90 flex items-center justify-center z-20 group-hover:scale-105 transition-transform duration-500">
+                        <div className="w-24 h-24 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center border-4 border-white/60 transition-all duration-500 group-hover:scale-110 group-hover:bg-white/40">
+                          <Play className="w-12 h-12 text-white ml-1" fill="white" />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Decorative corner badge */}
+                    <div className="absolute top-3 right-3 bg-golden/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-xs font-bold z-30 shadow-lg">
+                      Review #{video.num}
+                    </div>
+                    
+                    {/* Click instruction */}
+                    {!isPlaying && !isLoading && (
+                      <div className="absolute bottom-3 left-3 right-3 text-center z-25">
+                        <p className="text-white text-xs font-semibold bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full group-hover:bg-golden/70 transition-colors duration-300">
+                          Click to Watch
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                );
+              };
+
+              return <VideoCard key={video.num} />;
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section - Enhanced */}
       <section className="py-16 bg-gradient-to-br from-heritage/10 via-golden/10 to-muted/30 relative overflow-hidden">
         {/* Background Decorative Elements */}
@@ -1018,9 +1200,7 @@ const Index = () => {
 
       <WhatsAppButton />
 
-      {/* Marketplace Section - Before Footer */}
-      <MarketplaceSection />
-
+      <MarketplaceSlider />
       <Footer />
     </div>
   );
