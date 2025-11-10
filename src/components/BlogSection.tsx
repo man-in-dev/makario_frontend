@@ -20,44 +20,44 @@ interface BlogPost {
 
 const sampleBlogs: BlogPost[] = [
   {
-    id: '1',
-    title: 'Buy Makhana Online: Complete Guide to Fox Nuts Benefits and Price',
-    excerpt: 'Ultimate guide to buying premium Bihar Makhana (Fox Nuts) online. Compare prices, health benefits, and quality grades of makhana.',
-    image: makhanaHeritageBlog,
-    date: 'October 19, 2025',
-    author: 'Team Makario',
-    category: 'Buying Guide',
+    id: 'katihar-premium-makhana-production-hub',
+    title: 'Why Katihar is Emerging as Bihar\'s Hub for Premium Makhana Production',
+    excerpt: 'Katihar has emerged as the epicenter of India\'s premium makhana production. Discover the geographical advantages, climate benefits, and agricultural innovation that make Katihar special.',
+    image: makhanaHealthBlog,
+    date: 'November 10, 2025',
+    author: 'Makario Team',
+    category: 'Katihar Region',
     readTime: '8 min read'
   },
   {
-    id: '2',
-    title: 'Makhana Benefits: 15 Proven Health Benefits of Fox Nuts (Research-Based)',
-    excerpt: 'Scientific research reveals makhana\'s benefits for weight loss, diabetes, heart health, and more. Learn why fox nuts are India\'s top superfood.',
-    image: makhanaHealthBlog,
-    date: 'October 18, 2025',
-    author: 'Team Makario',
-    category: 'Health',
+    id: 'makario-katihar-bihar-handpicked-makhana',
+    title: 'Makario: The Pride of Katihar – Bringing Bihar\'s Handpicked Makhana to India',
+    excerpt: 'Makario represents a new era in Bihar\'s makhana industry. Learn how direct farmer partnerships and handpicking traditions ensure premium quality.',
+    image: makhanaHeritageBlog,
+    date: 'November 9, 2025',
+    author: 'Makario Team',
+    category: 'Katihar Region',
+    readTime: '9 min read'
+  },
+  {
+    id: 'katihar-farmers-makhana-revolution-bihar',
+    title: 'How Katihar Farmers Are Powering the Makhana Revolution in Bihar',
+    excerpt: 'The true heroes of Bihar\'s makhana revolution are the farmers of Katihar. Discover how they\'re transforming traditional practices into modern, sustainable enterprise.',
+    image: makhanaProcessBlog,
+    date: 'November 8, 2025',
+    author: 'Makario Team',
+    category: 'Katihar Region',
     readTime: '10 min read'
   },
   {
-    id: '3',
-    title: 'Makhana Price List 2025: Wholesale Fox Nuts Rates in India',
-    excerpt: 'Compare makhana prices across different grades and quantities. Find best wholesale rates for premium quality Bihar fox nuts.',
-    image: makhanaProcessBlog,
-    date: 'October 17, 2025',
-    author: 'Team Makario',
-    category: 'Price Guide',
-    readTime: '6 min read'
-  },
-  {
-    id: '4',
-    title: 'Makhana Recipes: 10 Healthy Fox Nuts Snacks for Weight Loss',
-    excerpt: 'Easy and delicious makhana recipes for weight loss. Healthy roasted fox nuts snacks with detailed nutritional information.',
+    id: 'katihar-makhana-bulk-buyers-top-reasons',
+    title: 'Top 5 Reasons Katihar Makhana is the Best in India for Bulk Buyers',
+    excerpt: 'If you\'re a wholesaler or distributor, Katihar makhana offers superior quality, competitive pricing, and reliable supply. Here\'s why leading bulk buyers prefer Katihar.',
     image: makhanaRecipesBlog,
-    date: 'October 16, 2025',
-    author: 'Team Makario',
-    category: 'Recipes',
-    readTime: '7 min read'
+    date: 'November 7, 2025',
+    author: 'Makario Team',
+    category: 'Katihar Region',
+    readTime: '10 min read'
   }
 ];
 
