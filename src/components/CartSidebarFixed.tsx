@@ -36,14 +36,14 @@ export const CartSidebar: React.FC = () => {
       {/* Overlay */}
       {isCartOpen && (
         <div 
-          className="fixed inset-0 bg-black/80 z-[99]"
+          className="fixed inset-0 bg-black/80 z-40"
           onClick={closeCart}
         />
       )}
       
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-lg transition-transform duration-300 ease-in-out z-[100] flex flex-col ${
+        className={`fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-lg transition-transform duration-300 ease-in-out z-50 flex flex-col ${
           isCartOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >

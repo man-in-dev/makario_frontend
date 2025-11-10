@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogOverlay } from '../ui/dialog';
+import { X } from 'lucide-react';
+import { Button } from '../ui/button';
 import { Login } from './Login';
 import { Signup } from './Signup';
 
@@ -16,28 +17,49 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 }) => {
   const [view, setView] = useState<'login' | 'signup'>(initialView);
 
+  if (!isOpen) return null;
+
   const handleClose = () => {
     onClose();
-    // Reset to login view when modal closes
-    setTimeout(() => setView('login'), 300);
+    setTimeout(() => setView(initialView), 300);
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogOverlay className="bg-black/50" />
-      <DialogContent className="p-0 border-0 bg-transparent shadow-none max-w-md">
-        {view === 'login' ? (
-          <Login
-            onSwitchToSignup={() => setView('signup')}
-            onClose={handleClose}
-          />
-        ) : (
-          <Signup
-            onSwitchToLogin={() => setView('login')}
-            onClose={handleClose}
-          />
-        )}
-      </DialogContent>
-    </Dialog>
+    <>
+      {/* Overlay */}
+      <div 
+        className="fixed inset-0 bg-black/80 z-[99]"
+        onClick={handleClose}
+      />
+      
+      {/* Modal */}
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="bg-white rounded-lg shadow-lg max-w-md w-full animate-in fade-in duration-200 relative">
+          {/* Close Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleClose}
+            className="absolute top-4 right-4 h-8 w-8 p-0 hover:bg-gray-100"
+          >
+            <X className="h-5 w-5" />
+          </Button>
+          
+          {view === 'login' ? (
+            <Login
+              onSwitchToSignup={() => setView('signup')}
+              onClose={handleClose}
+            />
+          ) : (
+            <Signup
+              onSwitchToLogin={() => setView('login')}
+              onClose={handleClose}
+            />
+          )}
+        </div>
+      </div>
+    </>
   );
 };
+
+export default AuthModal;

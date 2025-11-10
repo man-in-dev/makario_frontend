@@ -50,7 +50,7 @@ const Hero = () => {
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-6 group border-white text-white hover:bg-white hover:text-heritage" asChild>
-              <Link to="/shop">
+              <Link to="/products">
                 <span className="text-golden">Explore Products</span>
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform text-golden" />
               </Link>

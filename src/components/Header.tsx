@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -8,6 +8,7 @@ import { useCart } from "../contexts/CartContext";
 import { useWishlist } from "../contexts/WishlistContext";
 import { useAuth } from "../contexts/AuthContext";
 import { AuthModal } from "./auth/AuthModal";
+import { SearchModal } from "./SearchModal";
 import CartSidebar from "./CartSidebar";
 import WishlistSidebar from "./WishlistSidebar";
 import makarioLogo from "../assets/Makario png Logo.png";
@@ -15,45 +16,25 @@ import makarioLogo from "../assets/Makario png Logo.png";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showSearchModal, setShowSearchModal] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   
-  // Safe hooks with fallbacks
-  let getTotalItems, wishlistItems, user, logout, isCartOpen, openCart, closeCart, isWishlistOpen, openWishlist, closeWishlist;
+  const { 
+    getTotalItems, 
+    isCartOpen, 
+    openCart, 
+    closeCart 
+  } = useCart();
   
-  try {
-    const cart = useCart();
-    getTotalItems = cart.getTotalItems;
-    isCartOpen = cart.isCartOpen;
-    openCart = cart.openCart;
-    closeCart = cart.closeCart;
-  } catch {
-    getTotalItems = () => 0;
-    isCartOpen = false;
-    openCart = () => {};
-    closeCart = () => {};
-  }
+  const { 
+    items: wishlistItems, 
+    isWishlistOpen, 
+    openWishlist, 
+    closeWishlist 
+  } = useWishlist();
   
-  try {
-    const wishlist = useWishlist();
-    wishlistItems = wishlist.items;
-    isWishlistOpen = wishlist.isWishlistOpen;
-    openWishlist = wishlist.openWishlist;
-    closeWishlist = wishlist.closeWishlist;
-  } catch {
-    wishlistItems = [];
-    isWishlistOpen = false;
-    openWishlist = () => {};
-    closeWishlist = () => {};
-  }
-  
-  try {
-    const auth = useAuth();
-    user = auth.user;
-    logout = auth.logout;
-  } catch {
-    user = null;
-    logout = () => {};
-  }
+  const { user, logout } = useAuth();
 
   type NavigationItem = {
     name: string;
@@ -174,26 +155,12 @@ const Header = () => {
 
             {/* E-commerce Actions */}
             <div className="flex items-center gap-2 lg:gap-4">
-              {/* Search - Desktop */}
-              <div className="hidden lg:flex">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="hover:bg-golden/5 text-heritage hover:text-golden transition-colors rounded-lg"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </Button>
-              </div>
-
               {/* Wishlist */}
               <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={openWishlist} 
-                className="relative hover:bg-golden/5 text-heritage hover:text-golden transition-colors rounded-lg"
+               variant="ghost" 
+               size="sm" 
+               onClick={() => openWishlist()} 
+              className="relative hover:bg-golden/5 text-heritage hover:text-golden transition-colors rounded-lg"
               >
                 <Heart className="h-5 w-5" />
                 {wishlistItems.length > 0 && (
@@ -207,7 +174,7 @@ const Header = () => {
               <Button 
                 variant="ghost" 
                 size="sm" 
-                onClick={openCart} 
+                onClick={() => openCart()} 
                 className="relative hover:bg-golden/5 text-heritage hover:text-golden transition-colors rounded-lg"
               >
                 <ShoppingCart className="h-5 w-5" />
@@ -258,15 +225,15 @@ const Header = () => {
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={() => setShowAuthModal(true)}
-                  className="bg-golden/10 hover:bg-golden/20 transition-all duration-200 hover:scale-105"
-                >
-                  <User className="h-5 w-5 text-golden" />
-                  <span className="hidden md:inline md:ml-2 text-golden">Login</span>
-                </Button>
+                 <Button 
+                   variant="ghost" 
+                   size="sm" 
+                   onClick={() => setShowAuthModal(true)}
+                 className="bg-golden/10 hover:bg-golden/20 transition-all duration-200 hover:scale-105"
+              >
+                   <User className="h-5 w-5 text-golden" />
+                   <span className="hidden md:inline md:ml-2 text-golden">Login</span>
+                 </Button>
               )}
             </div>
 
@@ -430,11 +397,17 @@ const Header = () => {
         </div>
       </header>
 
+      {/* Search Modal */}
+      <SearchModal
+        isOpen={showSearchModal}
+        onClose={() => setShowSearchModal(false)}
+      />
+
       {/* Auth Modal */}
       <AuthModal
-        isOpen={showAuthModal}
-        onClose={() => setShowAuthModal(false)}
-        initialView="login"
+         isOpen={showAuthModal}
+         onClose={() => setShowAuthModal(false)}
+         initialView="login"
       />
 
       {/* Cart Sidebar */}

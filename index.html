@@ -354,21 +354,6 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     
-    <!-- Main script with performance optimizations -->
-    <script type="module">
-      // Performance observer for monitoring
-      if ('PerformanceObserver' in window) {
-        const observer = new PerformanceObserver((list) => {
-          for (const entry of list.getEntries()) {
-            if (entry.entryType === 'largest-contentful-paint') {
-              console.log('LCP:', entry.startTime);
-            }
-          }
-        });
-        observer.observe({entryTypes: ['largest-contentful-paint']});
-      }
-    </script>
-    
     <!-- Service Worker Registration -->
     <script>
       if ('serviceWorker' in navigator) {

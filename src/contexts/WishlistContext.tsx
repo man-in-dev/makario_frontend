@@ -31,7 +31,11 @@ export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     const savedWishlist = localStorage.getItem('wishlist');
     if (savedWishlist) {
-      setItems(JSON.parse(savedWishlist));
+      try {
+        setItems(JSON.parse(savedWishlist));
+      } catch (e) {
+        console.error('Error loading wishlist from localStorage:', e);
+      }
     }
   }, []);
 

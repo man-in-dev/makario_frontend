@@ -16,7 +16,7 @@ import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 // Components
 import RouteLoader from "./components/RouteLoader";
 import GlobalMeta from "./components/GlobalMeta";
-import ChatbotPopup from "./components/ChatbotPopup";
+
 import MobileBottomMenu from "./components/MobileBottomMenu";
 import OfferPopup from "./components/OfferPopup";
 import MarketplaceSlider from "./components/MarketplaceSlider";
@@ -85,10 +85,9 @@ const App = () => {
             <LoadingProvider>
             <CartProvider>
               <WishlistProvider>
-                <Toaster />
-                <ChatbotPopup />
-                <OfferPopup />
                 <BrowserRouter>
+                  <Toaster />
+                  <OfferPopup />
                   <MobileBottomMenu />
                   <RouteLoader>
                     <Routes>

@@ -34,20 +34,21 @@ export const WishlistSidebar: React.FC = () => {
       {/* Overlay */}
       {isWishlistOpen && (
         <div 
-          className="fixed inset-0 bg-black/80 z-[99]"
+          className="fixed inset-0 bg-black/80 z-40"
           onClick={closeWishlist}
         />
       )}
       
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-lg transition-transform duration-300 ease-in-out z-[100] flex flex-col ${
+        className={`fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-lg transition-transform duration-300 ease-in-out z-50 flex flex-col ${
           isWishlistOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         {/* Header */}
         <div className="p-6 pb-4 border-b flex items-center justify-between">
-          <h2 className="text-xl font-semibold">
+          <h2 className="text-xl font-semibold flex items-center gap-2">
+            <Heart className="h-5 w-5 text-red-500" />
             Wishlist ({items.length})
           </h2>
           <Button
