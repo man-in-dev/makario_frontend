@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import globalExportImage from "@/assets/homepage/Makhana_Cultivation_f677e7f8e0.webp";
+import globalExportImage from "@/assets/blog/Makhana-The-Healthy-Indian-Snack.jpg";
 
 const CustomPackaging = () => {
   const packagingOptions = [

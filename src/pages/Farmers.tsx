@@ -5,7 +5,7 @@ import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import biharFieldsImage from "@/assets/homepage/makhana khet farming.jpg";
+import biharFieldsImage from "@/assets/blog/Makhana-The-Healthy-Indian-Snack.jpg";
 
 const Farmers = () => {
   const stories = [

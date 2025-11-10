@@ -7,6 +7,7 @@ import SEO from "@/components/SEO";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SectionHeader from "@/components/SectionHeader";
 import MarketplaceSlider from "@/components/MarketplaceSlider";
+import ComparisonSection from "@/components/ComparisonSection";
 import { ProductList } from "../components/product/ProductList";
 import { FeaturedProductsSection } from "../components/product/FeaturedProductsSection";
 import BlogSection from "@/components/BlogSection";
@@ -247,6 +248,10 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Comparison Section - Mere Makhana Ka Pack */}
+      <ComparisonSection />
+
       {/* Features Section */}
       <section className="py-6 bg-muted/30">
         <div className="container mx-auto px-4">

@@ -10,7 +10,7 @@ import makhanaHealthBlog from '../assets/blog/Makhana-The-Healthy-Indian-Snack.j
 import makhanaHeritageBlog from '../assets/blog/makhana-feature.jpg';
 import makhanaProcessBlog from '../assets/blog/Roasted-Makhana-Recipe.webp';
 import makhanaRecipesBlog from '../assets/blog/recipie.webp';
-import heroBg from '../assets/blog/makhana-feature.jpg';
+import heroBg from '../assets/blog/Makhana-The-Healthy-Indian-Snack.jpg';
 
 const Blog = () => {
     const blogPosts = [

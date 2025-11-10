@@ -45,9 +45,9 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4 text-golden">Quick Links</h4>
             <ul className="space-y-3">
               <li><Link to="/about" className="text-gray-300 hover:text-golden transition-colors">About Us</Link></li>
-              <li><Link to="/products" className="text-gray-300 hover:text-golden transition-colors">Our Products</Link></li>
+              <li><Link to="/blog" className="text-gray-300 hover:text-golden transition-colors">Blog</Link></li>
+              <li><Link to="/shop" className="text-gray-300 hover:text-golden transition-colors">Shop</Link></li>
               <li><Link to="/agriculture" className="text-gray-300 hover:text-golden transition-colors">Agriculture</Link></li>
-              <li><Link to="/global" className="text-gray-300 hover:text-golden transition-colors">Global Reach</Link></li>
               <li><Link to="/farmers" className="text-gray-300 hover:text-golden transition-colors">Our Farmers</Link></li>
             </ul>
           </div>
@@ -57,7 +57,6 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4 text-golden">Services</h4>
             <ul className="space-y-3">
               <li><Link to="/products" className="text-gray-300 hover:text-golden transition-colors">Bulk Orders</Link></li>
-              <li><Link to="/export-services" className="text-gray-300 hover:text-golden transition-colors">Export Services</Link></li>
               <li><Link to="/quality-assurance" className="text-gray-300 hover:text-golden transition-colors">Quality Assurance</Link></li>
               <li><Link to="/custom-packaging" className="text-gray-300 hover:text-golden transition-colors">Custom Packaging</Link></li>
               <li><Link to="/logistics" className="text-gray-300 hover:text-golden transition-colors">Logistics</Link></li>
