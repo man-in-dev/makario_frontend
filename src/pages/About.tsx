@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, Trophy, Heart, Globe, Target, Shield, Sprout, Award, CheckCircle, Leaf } from "lucide-react";
 import { useState } from "react";
 import biharFieldsImage from "@/assets/blog/Makhana-The-Healthy-Indian-Snack.jpg";
-import foundersImage from "@/assets/founders.jpg";
+import foundersImage from "@/assets/brand-story.jpg";
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -210,9 +210,9 @@ const About = () => {
                                     {/* Main image container */}
                                     <div className="relative bg-white p-2 rounded-lg shadow-2xl border-4 border-heritage/10">
                                         <img
-                                            src={foundersImage}
-                                            alt="Founders - Er. Raja Raj and Dr. Abdullah Kalam"
-                                            className="rounded-md w-full h-auto aspect-square object-cover"
+                                        src={foundersImage}
+                                        alt="Founders - Er. Raja Raj and Dr. Abdullah Kalam - Makario Founders"
+                                        className="rounded-md w-full h-auto aspect-square object-cover"
                                         />
 
                                         {/* Golden accent border */}
