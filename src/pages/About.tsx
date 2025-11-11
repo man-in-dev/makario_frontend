@@ -128,87 +128,87 @@ const About = () => {
             </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Text Content */}
             <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6 order-2 lg:order-1"
+            className="space-y-4 order-2 lg:order-1 flex flex-col justify-center"
             >
-            <p className="text-gray-700 text-lg leading-relaxed">
-            <span className="text-2xl font-bold text-heritage">Makario</span> is not just a brand — it's a vision born in the small town of <span className="font-semibold text-heritage">Falka, Katihar (Bihar)</span>, where purity, hard work, and tradition still define quality.
+            <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+            <span className="text-xl md:text-2xl font-bold text-heritage">Makario</span> is a vision from <span className="font-semibold text-heritage">Falka, Katihar</span> where purity, hard work, and tradition define quality.
             </p>
 
-            <p className="text-gray-700 text-lg leading-relaxed">
-            The journey began when <span className="font-bold text-heritage">two friends</span> decided to bring Bihar's most loved superfood — <span className="font-semibold">Makhana</span> — to the national and global stage.
+            <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+            Two friends united to bring Bihar's superfood — <span className="font-semibold">Makhana</span> — to the world stage.
             </p>
 
-            {/* Founders Cards */}
-            <div className="space-y-4 mt-8 mb-8">
+            {/* Founders Cards - Compact */}
+            <div className="space-y-3">
             <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-gradient-to-r from-heritage/5 to-golden/5 p-6 rounded-xl border-2 border-heritage/20 hover:border-golden/40 hover:shadow-lg transition-all"
+            className="bg-gradient-to-r from-heritage/5 to-golden/5 p-4 rounded-lg border-2 border-heritage/20 hover:border-golden/40 hover:shadow-lg transition-all"
             >
-            <div className="flex gap-4 items-start">
-            <div className="flex items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-heritage to-heritage/60 flex-shrink-0">
-                <Leaf className="h-7 w-7 text-white" />
-                </div>
-                  <div className="flex-1">
-                        <h3 className="font-bold text-heritage text-lg mb-1">Er. Raja Raj</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                    A software engineer who worked in a reputed Bangalore-based tech company, dreamt of returning to his roots and creating something meaningful from his homeland.
-                    </p>
-                      </div>
-                </div>
+            <div className="flex gap-3 items-start">
+            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-gradient-to-br from-heritage to-heritage/60 flex-shrink-0">
+            <Leaf className="h-5 w-5 text-white" />
+            </div>
+            <div className="flex-1">
+            <h3 className="font-bold text-heritage text-sm mb-1">Er. Raja Raj</h3>
+            <p className="text-gray-600 text-xs leading-tight">
+            Software engineer turned entrepreneur, bringing tech expertise to tradition.
+            </p>
+            </div>
+            </div>
             </motion.div>
-              
-                  <motion.div
-                initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
+            
+            <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-gradient-to-r from-golden/5 to-heritage/5 p-6 rounded-xl border-2 border-golden/30 hover:border-heritage/40 hover:shadow-lg transition-all"
+            className="bg-gradient-to-r from-golden/5 to-heritage/5 p-4 rounded-lg border-2 border-golden/30 hover:border-heritage/40 hover:shadow-lg transition-all"
             >
-            <div className="flex gap-4 items-start">
-              <div className="flex items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-golden to-golden/60 flex-shrink-0">
-              <Heart className="h-7 w-7 text-white" />
-              </div>
-                <div className="flex-1">
-                  <h3 className="font-bold text-golden text-lg mb-1">Dr. Abdullah Kalam</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                A physiotherapy specialist at Max Hospital, believed in promoting healthy, natural foods that support wellness and better living.
-              </p>
-              </div>
+            <div className="flex gap-3 items-start">
+            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-gradient-to-br from-golden to-golden/60 flex-shrink-0">
+            <Heart className="h-5 w-5 text-white" />
+            </div>
+            <div className="flex-1">
+            <h3 className="font-bold text-golden text-sm mb-1">Dr. Abdullah Kalam</h3>
+            <p className="text-gray-600 text-xs leading-tight">
+            Health specialist promoting natural, wellness foods for better living.
+            </p>
+            </div>
             </div>
             </motion.div>
             </div>
 
-            <p className="text-gray-700 text-lg leading-relaxed font-medium pt-4 border-t-2 border-golden/20">
-                  Together, they combined their <span className="text-heritage">technical expertise</span>, <span className="text-golden">health knowledge</span>, and <span className="text-heritage">love for Bihar</span> to create <span className="font-bold text-lg text-heritage">Makario</span> — a brand that represents <span className="font-semibold">purity, authenticity, and the pride of Bihar's handpicked makhana</span>.
+            <p className="text-gray-700 text-base md:text-lg leading-relaxed font-medium">
+            Together, combining <span className="text-heritage font-bold">technical</span> & <span className="text-golden font-bold">health</span> expertise to create <span className="font-bold text-heritage">Makario</span> — pure, authentic Bihar makhana.
             </p>
 
-            <div className="bg-white p-6 rounded-xl border-2 border-heritage/30 shadow-md">
-            <p className="text-gray-700 text-base leading-relaxed mb-4">
-            Every grain of <span className="font-bold text-heritage">Makario makhana</span> is <span className="font-semibold text-golden">hand-selected</span>, sourced directly from local farmers in Katihar, ensuring <span className="font-bold text-heritage">100% raw, natural, and chemical-free</span> quality.
+            <div className="bg-white p-4 rounded-lg border-2 border-heritage/30 shadow-md">
+            <p className="text-gray-700 text-base leading-relaxed">
+            Hand-selected, sourced from local farmers — <span className="font-bold text-heritage">100% raw, natural, chemical-free</span> quality.
             </p>
             </div>
 
-                {/* Mission & Vision Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-                <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="bg-gradient-to-br from-heritage/10 to-heritage/5 p-5 rounded-xl border-2 border-heritage/30 hover:shadow-lg transition-all"
-                >
-                <h4 className="font-bold text-heritage mb-3 flex items-center gap-2 text-lg">
-                <Target className="w-5 h-5 text-golden" />
-                Our Mission
-              </h4>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                To make Bihar's makhana a symbol of <span className="font-semibold text-heritage">purity and pride</span> across India and the world.
+            {/* Mission & Vision - Compact */}
+            <div className="grid grid-cols-2 gap-3">
+            <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="bg-gradient-to-br from-heritage/10 to-heritage/5 p-4 rounded-lg border-2 border-heritage/30 hover:shadow-lg transition-all"
+            >
+            <h4 className="font-bold text-heritage mb-2 flex items-center gap-1 text-xs md:text-sm">
+            <Target className="w-4 h-4 text-golden" />
+            Mission
+            </h4>
+            <p className="text-xs text-gray-600 leading-tight">
+            Bihar's makhana, symbol of <span className="font-semibold text-heritage">purity & pride</span> globally.
             </p>
             </motion.div>
 
@@ -216,27 +216,27 @@ const About = () => {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="bg-gradient-to-br from-golden/10 to-golden/5 p-5 rounded-xl border-2 border-golden/30 hover:shadow-lg transition-all"
+            className="bg-gradient-to-br from-golden/10 to-golden/5 p-4 rounded-lg border-2 border-golden/30 hover:shadow-lg transition-all"
             >
-              <h4 className="font-bold text-heritage mb-3 flex items-center gap-2 text-lg">
-                <Globe className="w-5 h-5 text-golden" />
-                Our Vision
-                </h4>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                      Empower local farmers, deliver <span className="font-semibold">authentic makhana globally</span>, make Makario the trusted premium brand.
-                      </p>
-                      </motion.div>
-                      </div>
+            <h4 className="font-bold text-heritage mb-2 flex items-center gap-1 text-xs md:text-sm">
+            <Globe className="w-4 h-4 text-golden" />
+            Vision
+            </h4>
+            <p className="text-xs text-gray-600 leading-tight">
+            <span className="font-semibold">Authentic makhana globally</span>, trusted premium brand.
+            </p>
+            </motion.div>
+            </div>
 
-                {/* Identity Statement */}
-                <div className="bg-gradient-to-r from-heritage to-golden/20 p-6 rounded-xl text-white shadow-lg border border-golden/30 pt-6">
-                  <p className="text-sm md:text-base leading-relaxed space-y-3">
-                    <span className="font-bold text-lg block mb-3">📍 Makario – The Pride of Bihar</span>
-                    <span className="block">🌾 Founded by <span className="font-semibold">Er. Raja Raj</span> & <span className="font-semibold">Dr. Abdullah Kalam</span>, from Falka, Katihar</span>
-                    <span className="block font-semibold">💚 Pure | Handpicked | Farm Fresh | 100% Natural</span>
-                  </p>
-                </div>
-              </motion.div>
+            {/* Identity Statement - Compact */}
+            <div className="bg-gradient-to-r from-heritage to-golden/20 p-4 rounded-lg text-white shadow-lg border border-golden/30">
+            <p className="text-xs md:text-sm leading-relaxed space-y-2">
+            <span className="font-bold block">📍 Makario – Pride of Bihar</span>
+            <span className="block">Founded by Er. Raja Raj & Dr. Abdullah Kalam</span>
+            <span className="block font-semibold">Pure | Handpicked | Farm Fresh</span>
+            </p>
+            </div>
+            </motion.div>
 
               {/* Image Section */}
               <motion.div
