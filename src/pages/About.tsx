@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, Trophy, Heart, Globe, Target, Shield, Sprout, Award, CheckCircle, Leaf } from "lucide-react";
 import { useState } from "react";
 import biharFieldsImage from "@/assets/blog/Makhana-The-Healthy-Indian-Snack.jpg";
-import foundersImage from "@/assets/About/founder.jpg";
+import foundersImage from "@/assets/farmers-working.jpg";
 import { motion } from "framer-motion";
 
 const About = () => {
