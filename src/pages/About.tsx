@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, Trophy, Heart, Globe, Target, Shield, Sprout, Award, CheckCircle, Leaf } from "lucide-react";
 import { useState } from "react";
 import biharFieldsImage from "@/assets/blog/Makhana-The-Healthy-Indian-Snack.jpg";
-import foundersImage from "@/assets/brand-story.jpg";
+import foundersImage from "@/assets/founder.jpg";
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -95,138 +95,201 @@ const About = () => {
             <Header />
 
             {/* Founders Section - Replaces Hero */}
-            <section className="relative py-20 bg-gradient-to-b from-heritage/5 to-white">
-                <div className="container mx-auto px-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="max-w-6xl mx-auto"
-                    >
-                        <div className="text-center mb-12">
-                            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-heritage">
-                                The Story Behind Makario
-                            </h1>
-                            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                                From the heart of Bihar to every corner of India.
-                            </p>
-                        </div>
+            <section className="relative py-16 md:py-24 bg-gradient-to-br from-heritage/10 via-white to-golden/5 overflow-hidden">
+            {/* Decorative background elements */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-golden/5 rounded-full -mr-48 -mt-48"></div>
+            <div className="absolute bottom-0 left-0 w-72 h-72 bg-heritage/5 rounded-full -ml-36 -mb-36"></div>
+            
+            <div className="container mx-auto px-4 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-7xl mx-auto"
+            >
+            {/* Section Header */}
+            <div className="text-center mb-16">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+            >
+              <div className="inline-flex items-center gap-3 mb-4">
+              <Leaf className="w-6 h-6 text-golden" />
+              <span className="text-sm font-semibold text-golden uppercase tracking-widest">Our Heritage</span>
+              <Leaf className="w-6 h-6 text-golden" />
+            </div>
+            </motion.div>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-heritage">
+            The Story Behind <span className="text-golden">Makario</span>
+            </h1>
+              <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto font-light">
+            "From the heart of Bihar to every corner of India."
+            </p>
+            </div>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                            {/* Text Content */}
-                            <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                className="space-y-6"
-                            >
-                                <p className="text-gray-700 text-lg leading-relaxed">
-                                    Makario is not just a brand — it's a vision born in the small town of <span className="font-semibold text-heritage">Falka, Katihar (Bihar)</span>, where purity, hard work, and tradition still define quality.
-                                </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Text Content */}
+            <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-6 order-2 lg:order-1"
+            >
+            <p className="text-gray-700 text-lg leading-relaxed">
+            <span className="text-2xl font-bold text-heritage">Makario</span> is not just a brand — it's a vision born in the small town of <span className="font-semibold text-heritage">Falka, Katihar (Bihar)</span>, where purity, hard work, and tradition still define quality.
+            </p>
 
-                                <p className="text-gray-700 text-lg leading-relaxed">
-                                    The journey began when two friends decided to bring Bihar's most loved superfood — Makhana — to the national and global stage.
-                                </p>
+            <p className="text-gray-700 text-lg leading-relaxed">
+            The journey began when <span className="font-bold text-heritage">two friends</span> decided to bring Bihar's most loved superfood — <span className="font-semibold">Makhana</span> — to the national and global stage.
+            </p>
 
-                                <div className="space-y-4 bg-heritage/5 p-6 rounded-lg border border-heritage/20">
-                                    <div className="flex gap-4">
-                                        <div className="flex-shrink-0">
-                                            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-heritage/10">
-                                                <Leaf className="h-6 w-6 text-heritage" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-semibold text-heritage mb-1">Er. Raja Raj</h3>
-                                            <p className="text-sm text-gray-600">
-                                                A software engineer who worked in a reputed Bangalore-based tech company, dreamt of returning to his roots and creating something meaningful from his homeland.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex gap-4">
-                                        <div className="flex-shrink-0">
-                                            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-heritage/10">
-                                                <Heart className="h-6 w-6 text-heritage" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-semibold text-heritage mb-1">Dr. Abdullah Kalam</h3>
-                                            <p className="text-sm text-gray-600">
-                                                A physiotherapy specialist at Max Hospital, believed in promoting healthy, natural foods that support wellness and better living.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <p className="text-gray-700 text-lg leading-relaxed">
-                                    Together, they combined their technical expertise, health knowledge, and love for Bihar to create <span className="font-semibold text-heritage">Makario</span> — a brand that represents purity, authenticity, and the pride of Bihar's handpicked makhana.
-                                </p>
-
-                                <p className="text-gray-700 text-lg leading-relaxed">
-                                    Every grain of Makario makhana is <span className="font-semibold">hand-selected</span>, sourced directly from local farmers in Katihar, ensuring <span className="font-semibold">100% raw, natural, and chemical-free</span> quality.
-                                </p>
-
-                                <div className="grid grid-cols-2 gap-4 pt-4">
-                                    <div className="bg-golden/10 p-4 rounded-lg border border-golden/20">
-                                        <h4 className="font-semibold text-heritage mb-2 flex items-center gap-2">
-                                            <Target className="w-4 h-4" />
-                                            Our Mission
-                                        </h4>
-                                        <p className="text-sm text-gray-600">
-                                            To make Bihar's makhana a symbol of purity and pride across India and the world.
-                                        </p>
-                                    </div>
-                                    <div className="bg-golden/10 p-4 rounded-lg border border-golden/20">
-                                        <h4 className="font-semibold text-heritage mb-2 flex items-center gap-2">
-                                            <Globe className="w-4 h-4" />
-                                            Our Vision
-                                        </h4>
-                                        <p className="text-sm text-gray-600">
-                                            Empower local farmers, deliver authentic makhana globally, and make Makario the trusted name for premium quality.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="pt-4 border-t border-gray-200">
-                                    <p className="text-gray-700 text-sm leading-relaxed">
-                                        <span className="font-semibold block mb-2">📍 Makario – The Pride of Bihar</span>
-                                        <span className="block mb-1">🌾 Founded by Er. Raja Raj & Dr. Abdullah Kalam, from Falka, Katihar</span>
-                                        <span className="block">💚 Pure | Handpicked | Farm Fresh | 100% Natural</span>
-                                    </p>
-                                </div>
-                            </motion.div>
-
-                            {/* Image Section */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                className="flex justify-center"
-                            >
-                                <div className="relative">
-                                    {/* Outer border decoration */}
-                                    <div className="absolute inset-0 border-4 border-heritage/20 rounded-lg transform -rotate-3 scale-105"></div>
-
-                                    {/* Main image container */}
-                                    <div className="relative bg-white p-2 rounded-lg shadow-2xl border-4 border-heritage/10">
-                                        <img
-                                        src={foundersImage}
-                                        alt="Founders - Er. Raja Raj and Dr. Abdullah Kalam - Makario Founders"
-                                        className="rounded-md w-full h-auto aspect-square object-cover"
-                                        />
-
-                                        {/* Golden accent border */}
-                                        <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-golden rounded-full opacity-30"></div>
-                                    </div>
-
-                                    {/* Bottom accent element */}
-                                    <div className="absolute -bottom-3 -right-3 w-32 h-32 border-4 border-golden/20 rounded-lg"></div>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </motion.div>
+            {/* Founders Cards */}
+            <div className="space-y-4 mt-8 mb-8">
+            <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="bg-gradient-to-r from-heritage/5 to-golden/5 p-6 rounded-xl border-2 border-heritage/20 hover:border-golden/40 hover:shadow-lg transition-all"
+            >
+            <div className="flex gap-4 items-start">
+            <div className="flex items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-heritage to-heritage/60 flex-shrink-0">
+                <Leaf className="h-7 w-7 text-white" />
                 </div>
-            </section>
+                  <div className="flex-1">
+                        <h3 className="font-bold text-heritage text-lg mb-1">Er. Raja Raj</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                    A software engineer who worked in a reputed Bangalore-based tech company, dreamt of returning to his roots and creating something meaningful from his homeland.
+                    </p>
+                      </div>
+                </div>
+            </motion.div>
+              
+                  <motion.div
+                initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="bg-gradient-to-r from-golden/5 to-heritage/5 p-6 rounded-xl border-2 border-golden/30 hover:border-heritage/40 hover:shadow-lg transition-all"
+            >
+            <div className="flex gap-4 items-start">
+              <div className="flex items-center justify-center h-14 w-14 rounded-full bg-gradient-to-br from-golden to-golden/60 flex-shrink-0">
+              <Heart className="h-7 w-7 text-white" />
+              </div>
+                <div className="flex-1">
+                  <h3 className="font-bold text-golden text-lg mb-1">Dr. Abdullah Kalam</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                A physiotherapy specialist at Max Hospital, believed in promoting healthy, natural foods that support wellness and better living.
+              </p>
+              </div>
+            </div>
+            </motion.div>
+            </div>
+
+            <p className="text-gray-700 text-lg leading-relaxed font-medium pt-4 border-t-2 border-golden/20">
+                  Together, they combined their <span className="text-heritage">technical expertise</span>, <span className="text-golden">health knowledge</span>, and <span className="text-heritage">love for Bihar</span> to create <span className="font-bold text-lg text-heritage">Makario</span> — a brand that represents <span className="font-semibold">purity, authenticity, and the pride of Bihar's handpicked makhana</span>.
+            </p>
+
+            <div className="bg-white p-6 rounded-xl border-2 border-heritage/30 shadow-md">
+            <p className="text-gray-700 text-base leading-relaxed mb-4">
+            Every grain of <span className="font-bold text-heritage">Makario makhana</span> is <span className="font-semibold text-golden">hand-selected</span>, sourced directly from local farmers in Katihar, ensuring <span className="font-bold text-heritage">100% raw, natural, and chemical-free</span> quality.
+            </p>
+            </div>
+
+                {/* Mission & Vision Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                className="bg-gradient-to-br from-heritage/10 to-heritage/5 p-5 rounded-xl border-2 border-heritage/30 hover:shadow-lg transition-all"
+                >
+                <h4 className="font-bold text-heritage mb-3 flex items-center gap-2 text-lg">
+                <Target className="w-5 h-5 text-golden" />
+                Our Mission
+              </h4>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                To make Bihar's makhana a symbol of <span className="font-semibold text-heritage">purity and pride</span> across India and the world.
+            </p>
+            </motion.div>
+
+            <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="bg-gradient-to-br from-golden/10 to-golden/5 p-5 rounded-xl border-2 border-golden/30 hover:shadow-lg transition-all"
+            >
+              <h4 className="font-bold text-heritage mb-3 flex items-center gap-2 text-lg">
+                <Globe className="w-5 h-5 text-golden" />
+                Our Vision
+                </h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                      Empower local farmers, deliver <span className="font-semibold">authentic makhana globally</span>, make Makario the trusted premium brand.
+                      </p>
+                      </motion.div>
+                      </div>
+
+                {/* Identity Statement */}
+                <div className="bg-gradient-to-r from-heritage to-golden/20 p-6 rounded-xl text-white shadow-lg border border-golden/30 pt-6">
+                  <p className="text-sm md:text-base leading-relaxed space-y-3">
+                    <span className="font-bold text-lg block mb-3">📍 Makario – The Pride of Bihar</span>
+                    <span className="block">🌾 Founded by <span className="font-semibold">Er. Raja Raj</span> & <span className="font-semibold">Dr. Abdullah Kalam</span>, from Falka, Katihar</span>
+                    <span className="block font-semibold">💚 Pure | Handpicked | Farm Fresh | 100% Natural</span>
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Image Section */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex justify-center items-center order-1 lg:order-2"
+              >
+                <div className="relative w-full max-w-md">
+                  {/* Animated background circle */}
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 border-4 border-dashed border-golden/30 rounded-2xl"
+                  ></motion.div>
+
+                  {/* Main image container with multiple borders */}
+                  <div className="relative p-1 bg-gradient-to-br from-golden via-golden/50 to-heritage rounded-3xl shadow-2xl">
+                    <div className="bg-white p-4 rounded-3xl">
+                      <img
+                        src={foundersImage}
+                        alt="Founders - Er. Raja Raj and Dr. Abdullah Kalam - Makario Founders from Bihar"
+                        className="rounded-2xl w-full h-auto aspect-square object-cover shadow-lg"
+                      />
+                    </div>
+
+                    {/* Corner accent elements */}
+                    <motion.div
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                      className="absolute -top-6 -right-6 w-20 h-20 border-4 border-golden rounded-full opacity-40"
+                    ></motion.div>
+                    <div className="absolute -bottom-8 -left-8 w-32 h-32 border-4 border-heritage/20 rounded-3xl opacity-40"></div>
+
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white via-transparent to-transparent opacity-20 pointer-events-none"></div>
+                  </div>
+
+                  {/* Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                    className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-heritage to-golden text-white px-6 py-3 rounded-full font-bold shadow-lg border-4 border-white"
+                  >
+                    🌾 Founders of Makario
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
             {/* Story Section */}
             <section className="py-16">
