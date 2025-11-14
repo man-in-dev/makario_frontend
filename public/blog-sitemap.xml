@@ -1,63 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-    
-    <!-- Main Blog Page -->
-    <url>
-        <loc>https://www.makario.in/blog</loc>
-        <lastmod>2025-11-10</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.makario.in/assets/blog/makhana-feature.jpg</image:loc>
-            <image:title>Makhana Blog - Expert Guide and Tips</image:title>
-        </image:image>
-    </url>
-
-    <!-- Katihar Region Blog Posts -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Blog Posts - Katihar Region -->
     <url>
         <loc>https://www.makario.in/blog/katihar-premium-makhana-production-hub</loc>
         <lastmod>2025-11-10</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
         <loc>https://www.makario.in/blog/makario-katihar-bihar-handpicked-makhana</loc>
         <lastmod>2025-11-09</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
         <loc>https://www.makario.in/blog/katihar-farmers-makhana-revolution-bihar</loc>
         <lastmod>2025-11-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
         <loc>https://www.makario.in/blog/katihar-makhana-bulk-buyers-top-reasons</loc>
         <lastmod>2025-11-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
         <loc>https://www.makario.in/blog/makario-sourcing-raw-makhana-katihar</loc>
         <lastmod>2025-11-06</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
         <loc>https://www.makario.in/blog/katihar-bihar-makhana-journey-nation</loc>
         <lastmod>2025-11-05</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
         <loc>https://www.makario.in/blog/katihar-raw-handpicked-makhana-quality</loc>
         <lastmod>2025-11-04</lastmod>
@@ -65,109 +44,90 @@
         <priority>0.8</priority>
     </url>
 
-    <!-- Purnea Region Blog Posts -->
+    <!-- Blog Posts - Purnea Region -->
     <url>
         <loc>https://www.makario.in/blog/purnea-bihar-makhana-trade-growth</loc>
         <lastmod>2025-11-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/purnea-makhana-wholesalers-india-supply</loc>
+        <loc>https://www.makario.in/blog/purnea-makhana-farming-practices</loc>
         <lastmod>2025-11-02</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/makario-purnea-bihar-makhana-network</loc>
+        <loc>https://www.makario.in/blog/purnea-exporters-makhana-quality</loc>
         <lastmod>2025-11-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/purnea-makhana-distribution-hub</loc>
+        <loc>https://www.makario.in/blog/purnea-raw-organic-makhana</loc>
         <lastmod>2025-10-31</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/purnea-farmers-makhana-supply-chain</loc>
+        <loc>https://www.makario.in/blog/purnea-farmers-sustainability</loc>
         <lastmod>2025-10-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
-    <!-- Bihar Statewide Blog Posts -->
     <url>
-        <loc>https://www.makario.in/blog/bihar-birthplace-india-best-makhana</loc>
+        <loc>https://www.makario.in/blog/purnea-wholesale-bulk-makhana</loc>
         <lastmod>2025-10-29</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/bihar-makhana-global-popularity-2025</loc>
+        <loc>https://www.makario.in/blog/purnea-makhana-market-trends</loc>
         <lastmod>2025-10-28</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
 
+    <!-- Blog Posts - Bihar Statewide -->
     <url>
-        <loc>https://www.makario.in/blog/bihar-makhana-producing-districts-guide</loc>
+        <loc>https://www.makario.in/blog/bihar-makhana-capital-india</loc>
         <lastmod>2025-10-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/bihar-makhana-tradition-modern-trade</loc>
+        <loc>https://www.makario.in/blog/bihar-foxnuts-export-market</loc>
         <lastmod>2025-10-26</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/bihar-climate-makhana-quality-taste</loc>
+        <loc>https://www.makario.in/blog/bihar-makhana-health-benefits</loc>
         <lastmod>2025-10-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/bihar-top-makhana-wholesalers-exporters</loc>
+        <loc>https://www.makario.in/blog/bihar-sustainable-makhana-farming</loc>
         <lastmod>2025-10-24</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/bihar-farmers-makhana-heritage-alive</loc>
+        <loc>https://www.makario.in/blog/bihar-makhana-processing-techniques</loc>
         <lastmod>2025-10-23</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/bihar-raw-roasted-makhana-export</loc>
+        <loc>https://www.makario.in/blog/bihar-organic-makhana-certification</loc>
         <lastmod>2025-10-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-
     <url>
-        <loc>https://www.makario.in/blog/bihar-makhana-economic-impact-farming</loc>
+        <loc>https://www.makario.in/blog/bihar-makhana-recipes-nutrition</loc>
         <lastmod>2025-10-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <url>
-        <loc>https://www.makario.in/blog/makario-ars-bihar-makhana-identity</loc>
-        <lastmod>2025-10-20</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

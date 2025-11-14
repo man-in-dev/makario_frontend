@@ -94,7 +94,10 @@ Disallow: /
 User-agent: MJ12bot
 Disallow: /
 
-# XML Sitemaps
+# XML Sitemaps - Index all pages, products and blog posts
 Sitemap: https://www.makario.in/sitemap.xml
 Sitemap: https://www.makario.in/products-sitemap.xml
 Sitemap: https://www.makario.in/blog-sitemap.xml
+
+# Crawl Delay - Set crawl speed for respectful indexing
+Crawl-Delay: 1
