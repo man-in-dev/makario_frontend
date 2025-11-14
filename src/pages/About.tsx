@@ -63,9 +63,9 @@ const About = () => {
     return (
         <div className="min-h-screen">
             <SEO
-                title="About Makario | Premium Bihar Makhana Company Mumbai Gujarat South India | Fox Nuts Story"
-                description="🌾 Discover Makario's journey from Bihar wetlands to India's premium makhana brand. Serving Mumbai, Gujarat, South India with authentic fox nuts. 25+ years of excellence!"
-                keywords="makario about us, bihar makhana company, fox nuts company mumbai, premium makhana brand gujarat, south india makhana supplier, authentic bihar lotus seeds, family business makhana, organic fox nuts bihar, heritage makhana brand"
+                title="About Makario | Premium Bihar Makhana Exporter Story"
+                description="Learn about Makario - Bihar's leading premium makhana exporter. Direct farmer partnerships, 100% organic, trusted by thousands of customers."
+                keywords="makario brand story, makario founders, makario mission vision, best makhana company india, bihar food startup, organic snacks brand india, trusted fox nut manufacturer, premium food brand india, family heritage makhana"
                 canonical="https://makario.in/about"
                 region="india"
                 ogImage="https://makario.in/images/makario-about-bihar-heritage.jpg"

@@ -51,9 +51,9 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Contact Makario | Order Makhana Mumbai Gujarat South India | Fox Nuts Delivery | +91-9953240031"
-        description="📞 Contact Makario for premium Bihar makhana delivery! Mumbai, Gujarat, South India. Call +91-9953240031 for orders. WhatsApp available. Same day delivery in select cities!"
-        keywords="contact makario makhana, order fox nuts mumbai, gujarat makhana delivery contact, south india lotus seeds order, makhana phone number, fox nuts whatsapp order, premium makhana contact bihar, healthy snacks order india"
+        title="Contact Makario | Makhana Supplier Support & Enquiry"
+        description="Contact Makario for makhana orders, wholesale enquiries, bulk supplies. Call +91-9953240031 or email info@makario.in"
+        keywords="contact makario team, makario support, makario enquiry, makhana supplier contact, wholesale enquiry india, healthy snacks customer care, bulk order support, fox nuts phone"
         canonical="https://makario.in/contact"
         region="india"
         ogImage="https://makario.in/images/contact-makario-makhana.jpg"

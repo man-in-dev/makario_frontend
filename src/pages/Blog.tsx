@@ -266,13 +266,13 @@ const Blog = () => {
     const blogStructuredData = {
         "@context": "https://schema.org",
         "@type": "Blog",
-        "name": "Bihar Makhana Blog",
+        "name": "Makario Blog",
         "description": "Expert insights on Bihar makhana, foxnuts cultivation, health benefits, export trends, and sustainable farming practices.",
-        "url": "https://biharmakhana.com/blog",
+        "url": "https://www.makario.in/blog",
         "publisher": {
             "@type": "Organization",
-            "name": "Bihar Makhana",
-            "logo": "https://biharmakhana.com/logo.png"
+            "name": "Makario",
+            "logo": "https://www.makario.in/logo.png"
         },
         "blogPost": blogPosts.map(post => ({
             "@type": "BlogPosting",
@@ -298,15 +298,15 @@ const Blog = () => {
     return (
         <div className="min-h-screen">
             <SEO
-                title="Bihar Makhana Blog | Expert Insights on Foxnuts, Health Benefits & Farming"
-                description="Expert blog on Bihar makhana - health benefits, sustainable farming, export trends, recipes, and quality insights. Latest news on premium foxnuts industry and organic lotus seeds cultivation."
-                keywords="bihar makhana blog, foxnuts health benefits, makhana farming techniques, lotus seeds nutrition, sustainable agriculture bihar, makhana export trends, foxnuts recipes, organic farming blog, agriculture news bihar, makhana industry insights"
-                canonical="https://biharmakhana.com/blog"
+                title="Makario Blog | Makhana Health Benefits & Food Tips"
+                description="Read Makario's blog about makhana health benefits, nutrition facts, recipes & healthy living tips. Expert food insights."
+                keywords="makario blog, makario healthy food tips, makario knowledge hub, makhana benefits, fox nuts nutrition, healthy eating blog india, organic snacks information, food health tips, makhana recipes"
+                canonical="https://www.makario.in/blog"
                 ogImage="https://biharmakhana.com/images/blog-og.jpg"
                 structuredData={blogStructuredData}
                 breadcrumbs={[
-                    { name: "Home", url: "https://biharmakhana.com/" },
-                    { name: "Blog", url: "https://biharmakhana.com/blog" }
+                    { name: "Home", url: "https://www.makario.in/" },
+                    { name: "Blog", url: "https://www.makario.in/blog" }
                 ]}
             />
             <Header />

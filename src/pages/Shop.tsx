@@ -95,9 +95,9 @@ const Shop: React.FC = () => {
   return (
     <>
       <SEO 
-        title="Shop Premium Bihar Makhana Online | Buy Best Quality Fox Nuts | Makario"
-        description="🛒 Shop Premium Bihar Makhana Online! 100% Organic Fox Nuts ✓ Free Home Delivery ✓ Best Quality ✓ Secure Checkout ✓ COD Available. Order Now & Get Fresh Makhana!"
-        keywords="shop makhana online, buy premium fox nuts, bihar makhana online store, organic makhana shop, healthy snacks online shopping, fox nuts ecommerce, makhana delivery india, premium lotus seeds buy, bulk makhana order, fresh makhana online"
+        title="Buy Makario Makhana Online | Premium Flavoured Snacks India"
+        description="Shop premium makhana snacks online at best prices. Flavoured fox nuts, combo packs & healthy snacks. Free delivery in India."
+        keywords="makario snacks online, makario makhana shop, makario special products, buy flavoured makhana, healthy snacks online india, premium fox nuts rate, makhana combo packs, best makhana for weight loss, organic lotus seeds, flavoured foxnuts"
         canonical="https://makario.in/shop"
         ogImage="https://makario.in/images/makhana-online-shop.jpg"
         structuredData={{
