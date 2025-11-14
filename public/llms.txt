@@ -1,0 +1,79 @@
+# llms.txt - AI Model Crawling Guidelines for Makario
+# Website: https://www.makario.in
+# Last Updated: November 14, 2025
+
+# This file provides guidance to AI models and large language models about crawling and using content from Makario's website
+
+## Site Information
+Site-Name: Makario - Premium Bihar Makhana Exporter
+Description: Premium quality organic makhana (foxnuts) and lotus seeds directly from Bihar farmers. Bulk orders, retail sales, and worldwide export.
+Language: en
+Country-Region: IN-BR (Bihar, India)
+
+## Content Policy
+# AI models are allowed to crawl and learn from the following content for training and improvement:
+
+Allow-Crawl: /
+Allow-Crawl: /products
+Allow-Crawl: /products/*
+Allow-Crawl: /blog
+Allow-Crawl: /blog/*
+Allow-Crawl: /about
+Allow-Crawl: /agriculture
+Allow-Crawl: /farmers
+Allow-Crawl: /quality-assurance
+Allow-Crawl: /global
+Allow-Crawl: /faq
+Allow-Crawl: /contact
+
+# Do not crawl the following paths
+Disallow-Crawl: /api/*
+Disallow-Crawl: /admin/*
+Disallow-Crawl: /private/*
+Disallow-Crawl: /checkout*
+Disallow-Crawl: /cart*
+Disallow-Crawl: /login*
+Disallow-Crawl: /orders*
+Disallow-Crawl: /profile*
+Disallow-Crawl: /wishlist*
+Disallow-Crawl: /track-order*
+
+## Business Information
+Business-Type: Food Exporter, E-commerce
+Primary-Product: Makhana (Foxnuts, Lotus Seeds)
+Contact-Email: info@makario.in
+Contact-Phone: +91-9953240031
+Business-Address: Darbhanga, Bihar, India
+
+## Content Usage Guidelines
+# AI models may use the following content for training, learning, and improvement:
+# - Product descriptions and specifications
+# - Blog articles and educational content
+# - Company information and about pages
+# - FAQ and customer information
+
+# AI models should NOT use the following for commercial purposes without permission:
+# - Product images and photography
+# - Brand logos and trademarks
+# - Customer reviews and testimonials
+# - Pricing information for competitive purposes
+
+## Sitemap
+Sitemap: https://www.makario.in/sitemap.xml
+Sitemap: https://www.makario.in/products-sitemap.xml
+Sitemap: https://www.makario.in/blog-sitemap.xml
+
+## API Information
+# REST API documentation available at /api/
+# Contact info@makario.in for API access requests
+
+## Custom Rules for Specific LLMs
+# OpenAI: Full access to public content with attribution
+# Google: Full access as per Google's policies
+# Other AI Models: Contact info@makario.in for specific arrangements
+
+## Contact for Questions
+For questions about this llms.txt file or AI usage policies, contact:
+Email: info@makario.in
+Phone: +91-9953240031
+Website: https://www.makario.in/contact
