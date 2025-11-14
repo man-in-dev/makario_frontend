@@ -5,9 +5,15 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import crypto from "crypto";
 import axios from "axios";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 const app = express();
+
+// Get __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(cors());
@@ -169,7 +175,17 @@ app.get("/api/health", (req, res) => {
 });
 
 // ============================================
-// 5. START SERVER
+// 5. SERVE STATIC FILES & SPA ROUTING
+// ============================================
+app.use(express.static(path.join(__dirname, "dist")));
+
+// Handle SPA routing - serve index.html for all non-API routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
+// ============================================
+// 6. START SERVER
 // ============================================
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

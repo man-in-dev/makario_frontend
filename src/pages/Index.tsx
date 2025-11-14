@@ -230,7 +230,7 @@ const Index = () => {
       <Hero />
       
       {/* Featured Products Section - Season's Top Picks */}
-      <section className="py-8">
+      <section className="py-6">
         <div className="container mx-auto px-4">
           <SectionHeader
             eyebrow="FEATURED COLLECTION"
@@ -238,9 +238,9 @@ const Index = () => {
             title="Season's Top Picks"
             highlightWord="Top Picks"
             highlightColor="green"
-            className="mb-4"
+            className="mb-0"
           />
-          <div className="mt-8">
+          <div className="mt-0">
             <FeaturedProductsSection 
               products={getFeaturedProducts()}
               title=""
@@ -779,68 +779,6 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Regional Delivery Section */}
-      <section className="py-16 bg-heritage text-white">
-        <div className="container mx-auto px-4">
-          <SectionHeader
-            eyebrow="DELIVERY NETWORK"
-            icon={Truck}
-            title="We Deliver Across India"
-            highlightWord="India"
-            highlightColor="green"
-            description="Fresh Bihar makhana delivered to your doorstep across India's major cities. Same day delivery available in select areas!"
-            className="mb-12 text-white"
-          />
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <Link to="/mumbai" className="group">
-              <Card className="bg-white/10 border-white/20 hover:bg-white/20 transition-all duration-300 text-center">
-                <CardContent className="pt-8 pb-6">
-                  <MapPin className="h-12 w-12 text-golden mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Mumbai</h3>
-                  <p className="text-white/80 mb-4">Same day delivery across Mumbai, Thane & Navi Mumbai</p>
-                  <div className="bg-golden text-heritage px-4 py-2 rounded-full font-semibold">
-                    Free Delivery Above ₹500
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-            
-            <Link to="/gujarat" className="group">
-              <Card className="bg-white/10 border-white/20 hover:bg-white/20 transition-all duration-300 text-center">
-                <CardContent className="pt-8 pb-6">
-                  <MapPin className="h-12 w-12 text-golden mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Gujarat</h3>
-                  <p className="text-white/80 mb-4">Ahmedabad, Surat, Vadodara, Rajkot & more</p>
-                  <div className="bg-golden text-heritage px-4 py-2 rounded-full font-semibold">
-                    Next Day Delivery
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-            
-            <Link to="/south-india" className="group">
-              <Card className="bg-white/10 border-white/20 hover:bg-white/20 transition-all duration-300 text-center">
-                <CardContent className="pt-8 pb-6">
-                  <MapPin className="h-12 w-12 text-golden mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">South India</h3>
-                  <p className="text-white/80 mb-4">Bangalore, Chennai, Hyderabad, Kochi</p>
-                  <div className="bg-golden text-heritage px-4 py-2 rounded-full font-semibold">
-                    Express Delivery
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-          
-          <div className="text-center mt-8">
-            <Button size="lg" className="bg-golden hover:bg-golden/90 text-heritage font-semibold">
-              Order Now - Call +91-9953240031
-            </Button>
           </div>
         </div>
       </section>
