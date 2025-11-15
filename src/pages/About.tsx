@@ -111,10 +111,10 @@ const About = () => {
                         className="max-w-6xl mx-auto"
                     >
                         <div className="text-center mb-8">
-                            <h1 className="text-4xl md:text-5xl font-bold mb-2 text-heritage">
+                            <h1 className="text-4xl md:text-5xl font-bold mb-2 text-heritage" style={{ fontFamily: "'Caveat', cursive" }}>
                                 The Story Behind Makario
                             </h1>
-                            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto font-medium">
+                            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto font-medium" style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 600 }}>
                                 From the heart of Bihar to every corner of India.
                             </p>
                         </div>
@@ -143,11 +143,11 @@ const About = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-heritage mb-0.5 text-sm">Er. Raja Raj</h3>
-                                            <p className="text-xs text-gray-600 leading-snug">
-                                                A software engineer who returned to his roots to create something meaningful from his homeland.
-                                            </p>
-                                        </div>
+                                             <h3 className="font-bold text-heritage mb-0.5 text-sm" style={{ fontFamily: "'Caveat', cursive", fontSize: '18px' }}>Er. Raja Raj</h3>
+                                             <p className="text-xs text-gray-600 leading-snug" style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 500 }}>
+                                                 A software engineer who returned to his roots to create something meaningful from his homeland.
+                                             </p>
+                                         </div>
                                     </div>
 
                                     <div className="flex gap-3">
@@ -157,11 +157,11 @@ const About = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-heritage mb-0.5 text-sm">Dr. Abdullah Kalam</h3>
-                                            <p className="text-xs text-gray-600 leading-snug">
-                                                A physiotherapy specialist devoted to promoting healthy, natural foods for wellness.
-                                            </p>
-                                        </div>
+                                             <h3 className="font-bold text-heritage mb-0.5 text-sm" style={{ fontFamily: "'Caveat', cursive", fontSize: '18px' }}>Dr. Abdullah Kalam</h3>
+                                             <p className="text-xs text-gray-600 leading-snug" style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 500 }}>
+                                                 A physiotherapy specialist devoted to promoting healthy, natural foods for wellness.
+                                             </p>
+                                         </div>
                                     </div>
                                 </div>
 
@@ -250,22 +250,22 @@ const About = () => {
                         className="mb-12"
                     />
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                                Bihar has been the cradle of makhana cultivation for over a millennium. The state's unique
-                                agro-climatic conditions, with its seasonal floods and fertile alluvial soil, create the
-                                perfect environment for growing the world's finest makhana.
-                            </p>
-                            <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                                Our journey began with a simple mission: to bring the authentic taste and nutritional
-                                benefits of Bihar's makhana to the world while supporting local farming communities
-                                and preserving traditional cultivation methods.
-                            </p>
-                            <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                                Today, Bihar produces over 85% of the world's makhana, making it not just a regional
-                                specialty but a global superfood that represents the agricultural prowess of our state.
-                            </p>
-                        </div>
+                         <div>
+                             <p className="text-muted-foreground text-lg mb-6 leading-relaxed" style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 500 }}>
+                                 Bihar has been the cradle of makhana cultivation for over a millennium. The state's unique
+                                 agro-climatic conditions, with its seasonal floods and fertile alluvial soil, create the
+                                 perfect environment for growing the world's finest makhana.
+                             </p>
+                             <p className="text-muted-foreground text-lg mb-6 leading-relaxed" style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 500 }}>
+                                 Our journey began with a simple mission: to bring the authentic taste and nutritional
+                                 benefits of Bihar's makhana to the world while supporting local farming communities
+                                 and preserving traditional cultivation methods.
+                             </p>
+                             <p className="text-muted-foreground text-lg mb-6 leading-relaxed" style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 500 }}>
+                                 Today, Bihar produces over 85% of the world's makhana, making it not just a regional
+                                 specialty but a global superfood that represents the agricultural prowess of our state.
+                             </p>
+                         </div>
                         <div className="relative">
                             <img
                                 src={biharFieldsImage}
@@ -346,23 +346,23 @@ const About = () => {
                 <div className="absolute inset-0 bg-white/85"></div>
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        <div>
-                            <h2 className="text-3xl font-bold mb-6 text-heritage">Our Mission</h2>
-                            <p className="text-heritage/80 text-lg leading-relaxed">
-                                To be the global ambassador of Bihar's makhana, promoting sustainable agriculture,
-                                supporting farming communities, and delivering premium quality products that showcase
-                                the rich agricultural heritage of our state to the world.
-                            </p>
-                        </div>
-                        <div>
-                            <h2 className="text-3xl font-bold mb-6 text-heritage">Our Vision</h2>
-                            <p className="text-heritage/80 text-lg leading-relaxed">
-                                To establish Bihar as the undisputed global hub for premium makhana production,
-                                while fostering innovation in traditional farming practices and creating sustainable
-                                livelihoods for thousands of farming families across the state.
-                            </p>
-                        </div>
-                    </div>
+                         <div>
+                             <h2 className="text-3xl font-bold mb-6 text-heritage" style={{ fontFamily: "'Caveat', cursive" }}>Our Mission</h2>
+                             <p className="text-heritage/80 text-lg leading-relaxed" style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 500 }}>
+                                 To be the global ambassador of Bihar's makhana, promoting sustainable agriculture,
+                                 supporting farming communities, and delivering premium quality products that showcase
+                                 the rich agricultural heritage of our state to the world.
+                             </p>
+                         </div>
+                         <div>
+                             <h2 className="text-3xl font-bold mb-6 text-heritage" style={{ fontFamily: "'Caveat', cursive" }}>Our Vision</h2>
+                             <p className="text-heritage/80 text-lg leading-relaxed" style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 500 }}>
+                                 To establish Bihar as the undisputed global hub for premium makhana production,
+                                 while fostering innovation in traditional farming practices and creating sustainable
+                                 livelihoods for thousands of farming families across the state.
+                             </p>
+                         </div>
+                     </div>
                 </div>
             </section>
 
