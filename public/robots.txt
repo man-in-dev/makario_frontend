@@ -30,7 +30,6 @@ Disallow: /src/
 Disallow: /node_modules/
 Disallow: /.git/
 Disallow: /*.log
-Disallow: /*.json
 
 # Google Image crawler
 User-agent: Googlebot-Image
@@ -82,7 +81,6 @@ Disallow: /src/
 Disallow: /node_modules/
 Disallow: /.git/
 Disallow: /*.log
-Disallow: /*.json
 
 # Block specific bots
 User-agent: AhrefsBot
