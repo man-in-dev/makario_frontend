@@ -251,25 +251,27 @@ const ComparisonSection = () => {
 
         {/* CTA Section - Premium Design */}
         <div className="mt-20">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-heritage via-heritage/80 to-golden/30 p-px">
-            {/* Background blur effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-heritage/90 via-heritage/70 to-golden/20 opacity-95"></div>
-            
+          <div className="relative overflow-hidden rounded-3xl p-px" style={{
+            backgroundImage: `url('${makariaMakhanaImage}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed'
+          }}>
             {/* Decorative elements */}
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-golden/20 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-heritage/20 rounded-full blur-2xl"></div>
 
-            <Card className="relative border-0 bg-gradient-to-br from-heritage/95 to-heritage/90 backdrop-blur-sm shadow-2xl overflow-hidden">
+            <Card className="relative border-0 bg-transparent backdrop-blur-sm shadow-2xl overflow-hidden">
               <CardContent className="p-12 md:p-16 relative z-10 text-center">
                 {/* Premium badge */}
-                <div className="inline-block mb-6 px-4 py-1.5 bg-golden/20 rounded-full border border-golden/40">
-                  <span className="text-xs font-bold text-golden tracking-widest">✨ PREMIUM QUALITY</span>
+                <div className="inline-block mb-6 px-4 py-1.5 bg-golden/40 rounded-full border border-golden/60 backdrop-blur-sm">
+                  <span className="text-xs font-bold text-white tracking-widest">✨ PREMIUM QUALITY</span>
                 </div>
 
-                <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                  Ready to Experience <span className="text-golden">Premium Quality</span>?
+                <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                  Ready to Experience <span className="text-golden drop-shadow-md">Premium Quality</span>?
                 </h3>
-                <p className="text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                <p className="text-white text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
                   Join thousands of customers enjoying the freshest, most delicious makhana straight from Bihar's heritage farms.
                 </p>
 
@@ -302,26 +304,26 @@ const ComparisonSection = () => {
 
                 {/* Trust indicators - Enhanced */}
                 <div className="grid grid-cols-3 gap-6 md:gap-8 max-w-3xl mx-auto">
-                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-golden/50 transition-all group">
-                    <div className="w-14 h-14 rounded-full bg-golden/20 flex items-center justify-center mb-3 group-hover:bg-golden/30 transition-colors">
-                      <Award className="w-7 h-7 text-golden" />
+                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/30 hover:border-golden/80 transition-all group shadow-lg">
+                    <div className="w-14 h-14 rounded-full bg-golden/40 flex items-center justify-center mb-3 group-hover:bg-golden/60 transition-colors shadow-md">
+                      <Award className="w-7 h-7 text-white" />
                     </div>
-                    <span className="text-sm font-bold text-golden">Premium Grade</span>
-                    <span className="text-xs text-white/60 mt-1">Best Quality</span>
+                    <span className="text-sm font-bold text-white">Premium Grade</span>
+                    <span className="text-xs text-white/80 mt-1">Best Quality</span>
                   </div>
-                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-golden/50 transition-all group">
-                    <div className="w-14 h-14 rounded-full bg-golden/20 flex items-center justify-center mb-3 group-hover:bg-golden/30 transition-colors">
-                      <Leaf className="w-7 h-7 text-golden" />
+                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/30 hover:border-golden/80 transition-all group shadow-lg">
+                    <div className="w-14 h-14 rounded-full bg-golden/40 flex items-center justify-center mb-3 group-hover:bg-golden/60 transition-colors shadow-md">
+                      <Leaf className="w-7 h-7 text-white" />
                     </div>
-                    <span className="text-sm font-bold text-golden">100% Organic</span>
-                    <span className="text-xs text-white/60 mt-1">Certified Pure</span>
+                    <span className="text-sm font-bold text-white">100% Organic</span>
+                    <span className="text-xs text-white/80 mt-1">Certified Pure</span>
                   </div>
-                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-golden/50 transition-all group">
-                    <div className="w-14 h-14 rounded-full bg-golden/20 flex items-center justify-center mb-3 group-hover:bg-golden/30 transition-colors">
-                      <Zap className="w-7 h-7 text-golden" />
+                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/30 hover:border-golden/80 transition-all group shadow-lg">
+                    <div className="w-14 h-14 rounded-full bg-golden/40 flex items-center justify-center mb-3 group-hover:bg-golden/60 transition-colors shadow-md">
+                      <Zap className="w-7 h-7 text-white" />
                     </div>
-                    <span className="text-sm font-bold text-golden">Farm Fresh</span>
-                    <span className="text-xs text-white/60 mt-1">Direct from Bihar</span>
+                    <span className="text-sm font-bold text-white">Farm Fresh</span>
+                    <span className="text-xs text-white/80 mt-1">Direct from Bihar</span>
                   </div>
                 </div>
               </CardContent>
