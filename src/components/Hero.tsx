@@ -3,8 +3,14 @@ import { ArrowRight, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import LazyImage from "@/components/LazyImage";
 import heroImage from "@/assets/homepage/hero banner.webp";
+import { useTypewriter } from "@/hooks/useTypewriter";
 
 const Hero = () => {
+  const { displayedText: typewriterText } = useTypewriter({
+    text: "Bihar's Pride",
+    speed: 100,
+    delay: 200
+  });
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Image */}
@@ -32,9 +38,12 @@ const Hero = () => {
             <span className="text-golden font-medium">Premium Quality</span>
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-            Bihar's Pride
-            <span className="block text-golden">Global Makhana</span>
+          <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight min-h-[80px] lg:min-h-[120px] flex flex-col justify-center">
+            <span className="flex items-center">
+              {typewriterText}
+              <span className={`ml-2 inline-block w-2 h-16 lg:h-24 bg-white ${typewriterText.length === 13 ? '' : 'animate-pulse'}`}></span>
+            </span>
+            <span className="block text-golden mt-4">Global Makhana</span>
           </h1>
 
           <p className="text-xl text-gray-100 mb-8 leading-relaxed">
