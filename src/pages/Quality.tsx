@@ -108,9 +108,9 @@ const Quality = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Quality Standards | Premium Makhana Testing & Certification | Makario"
-        description="🔬 Discover Makario's rigorous quality standards for premium fox nuts. ISO certified, FSSAI approved, lab-tested makhana. Excellence in every grain!"
-        keywords="makhana quality standards, fox nuts testing, premium lotus seeds, quality certification makhana, food safety standards india"
+        title="Makario Quality Standards – 5-Step Makhana Quality Check"
+        description="Makario ensures premium makhana through 5-step checks — sorting, roasting, grading, cleaning & freshness sealing. Lab-tested & certified."
+        keywords="makhana quality check, makario quality, premium makhana standards, best fox nuts quality"
         canonical="https://makario.in/quality"
       />
       <Header />

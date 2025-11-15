@@ -80,9 +80,9 @@ const BulkOrders = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Makario Bulk Makhana Orders | Wholesale Fox Nuts Supplier"
-        description="Wholesale makhana supplier for B2B orders. Best prices, bulk quantities, direct from Bihar. Contact Makario for wholesale enquiries."
-        keywords="makario makhana wholesale, makario bulk supply, makario b2b makhana, makhana wholesale price, bulk fox nut supplier india, b2b healthy snacks supplier, low price bulk makhana, wholesale makhana exporter, direct bulk order"
+        title="Makario Makhana Bulk Orders – Wholesale Fox Nuts Supplier"
+        description="Get wholesale makhana at best prices. Makario supplies premium, export-grade fox nuts pan-India. Custom packaging & bulk delivery available."
+        keywords="makhana wholesale, bulk makhana supplier, makario bulk orders, fox nuts wholesale"
         canonical="https://makario.in/bulk-order"
       />
       <Header />

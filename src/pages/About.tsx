@@ -63,9 +63,9 @@ const About = () => {
     return (
         <div className="min-h-screen">
             <SEO
-                title="About Makario | Premium Bihar Makhana Exporter Story"
-                description="Learn about Makario - Bihar's leading premium makhana exporter. Direct farmer partnerships, 100% organic, trusted by thousands of customers."
-                keywords="makario brand story, makario founders, makario mission vision, best makhana company india, bihar food startup, organic snacks brand india, trusted fox nut manufacturer, premium food brand india, family heritage makhana"
+                title="About Makario – Bihar's Trusted Makhana Brand"
+                description="Know Makario – founded by Raja Raj & Dr. Abdullah Kalam. A Bihar-based brand delivering premium, organic makhana sourced directly from local farmers."
+                keywords="about makario, bihar makhana brand, makhana founders, makhana company india"
                 canonical="https://makario.in/about"
                 region="india"
                 ogImage="https://makario.in/images/makario-about-bihar-heritage.jpg"

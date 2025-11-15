@@ -129,9 +129,9 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <SEO
-        title="Buy Premium Bihar Makhana Online India | #1 Fox Nuts Delivery | Makario"
+        title="Makario – Premium Makhana | Organic, Crunchy & Healthy Snacks"
         description="� India's #1 Premium Bihar Makhana! ✅ 100% Organic Fox Nuts ✅ Free Delivery Mumbai, Gujarat, South India ✅ COD Available ✅ Same Day Delivery. Order Fresh Healthy Snacks Now!"
-        keywords="buy premium makhana online india, fox nuts delivery mumbai gujarat bangalore chennai, bihar makhana online shopping, organic lotus seeds home delivery, healthy snacks online india, fresh makhana bulk order, premium fox nuts brand, makhana online store india, fox nuts ecommerce, bihar agriculture products online"
+        keywords="premium makhana, makario makhana, buy makhana online, bihar makhana wholesale, fox nuts india, healthy snacks india"
         canonical="https://makario.in/"
         region="india"
         ogImage="https://makario.in/images/makario-premium-makhana-india.jpg"

@@ -51,9 +51,9 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Contact Makario | Makhana Supplier Support & Enquiry"
-        description="Contact Makario for makhana orders, wholesale enquiries, bulk supplies. Call +91-9953240031 or email info@makario.in"
-        keywords="contact makario team, makario support, makario enquiry, makhana supplier contact, wholesale enquiry india, healthy snacks customer care, bulk order support, fox nuts phone"
+        title="Contact Makario – Bulk Orders, Support & Business Inquiry"
+        description="Reach Makario for support, distributor partnership, bulk orders & customer queries. Bihar-based premium makhana company."
+        keywords="contact makario, makhana support, makhana business inquiry"
         canonical="https://makario.in/contact"
         region="india"
         ogImage="https://makario.in/images/contact-makario-makhana.jpg"
