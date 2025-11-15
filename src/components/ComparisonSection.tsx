@@ -251,17 +251,20 @@ const ComparisonSection = () => {
 
         {/* CTA Section - Premium Design */}
         <div className="mt-20">
-          <div className="relative overflow-hidden rounded-3xl p-px" style={{
+          <div className="relative overflow-hidden rounded-3xl" style={{
             backgroundImage: `url('${makariaMakhanaImage}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed'
           }}>
-            {/* Decorative elements */}
-            <div className="absolute -top-20 -right-20 w-64 h-64 bg-golden/20 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-heritage/20 rounded-full blur-2xl"></div>
+            {/* Dark overlay for text visibility */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70 rounded-3xl"></div>
 
-            <Card className="relative border-0 bg-transparent backdrop-blur-sm shadow-2xl overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-golden/10 rounded-full blur-3xl z-0"></div>
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-heritage/10 rounded-full blur-2xl z-0"></div>
+
+            <Card className="relative border-0 bg-transparent shadow-2xl overflow-hidden z-10">
               <CardContent className="p-12 md:p-16 relative z-10 text-center">
                 {/* Premium badge */}
                 <div className="inline-block mb-6 px-4 py-1.5 bg-golden/40 rounded-full border border-golden/60 backdrop-blur-sm">
@@ -281,7 +284,7 @@ const ComparisonSection = () => {
                     variant="hero"
                     size="lg"
                     asChild
-                    className="bg-golden hover:bg-golden/90 text-heritage px-10 py-4 rounded-full font-bold text-base group shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                    className="bg-golden hover:bg-golden/95 text-heritage px-12 py-5 rounded-full font-bold text-base group shadow-2xl hover:shadow-golden/50 transition-all hover:scale-110 border-2 border-golden/80"
                   >
                     <Link to="/shop" className="flex items-center justify-center">
                       🛒 Shop Premium Makhana
@@ -292,7 +295,7 @@ const ComparisonSection = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="border-2 border-golden/50 text-golden hover:bg-golden/10 px-10 py-4 rounded-full font-bold text-base group shadow-lg transition-all hover:border-golden"
+                    className="border-2 border-golden text-white bg-white/10 hover:bg-golden/30 px-12 py-5 rounded-full font-bold text-base group shadow-2xl transition-all hover:border-golden backdrop-blur-sm"
                     asChild
                   >
                     <Link to="/quality-assurance" className="flex items-center justify-center">
