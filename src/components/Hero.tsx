@@ -32,12 +32,16 @@ const Hero = () => {
             <span className="text-golden font-medium">Premium Quality</span>
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight">
-            Bihar's Pride
-            <span className="block text-golden">Global Makhana</span>
+          <h1 className="mb-6 text-white leading-tight">
+            <span className="block text-5xl lg:text-7xl font-bold" style={{ fontFamily: "'Caveat', cursive" }}>
+              Bihar's Pride
+            </span>
+            <span className="block text-golden text-5xl lg:text-7xl font-bold" style={{ fontFamily: "'Caveat', cursive" }}>
+              Global Makhana
+            </span>
           </h1>
 
-          <p className="text-xl text-gray-100 mb-8 leading-relaxed">
+          <p className="text-xl text-gray-100 mb-8 leading-relaxed" style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 500 }}>
             From the fertile fields of Bihar to tables worldwide. Experience the finest
             quality makhana, traditionally grown and sustainably harvested.
           </p>
