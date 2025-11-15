@@ -216,6 +216,45 @@ const Index = () => {
                   "seller": {
                     "@type": "Organization",
                     "name": "Makario"
+                  },
+                  "shippingDetails": {
+                    "@type": "OfferShippingDetails",
+                    "shippingRate": {
+                      "@type": "PriceSpecification",
+                      "priceCurrency": "INR",
+                      "price": "0",
+                      "eligibleQuantity": {
+                        "@type": "PriceSpecification",
+                        "priceCurrency": "INR",
+                        "price": "1000"
+                      }
+                    },
+                    "shippingDestination": {
+                      "@type": "DeliveryTimeSettings",
+                      "areaServed": "IN",
+                      "deliveryTime": {
+                        "@type": "ShippingDeliveryTime",
+                        "handlingTime": {
+                          "@type": "QuantitativeValue",
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "unitCode": "DAY"
+                        },
+                        "transitTime": {
+                          "@type": "QuantitativeValue",
+                          "minValue": 2,
+                          "maxValue": 7,
+                          "unitCode": "DAY"
+                        }
+                      }
+                    }
+                  },
+                  "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "merchantReturnDays": 30,
+                    "applicableCountry": "IN",
+                    "returnMethod": "ReturnMailIn",
+                    "returnFees": "Free"
                   }
                 },
                 "aggregateRating": {
@@ -261,6 +300,45 @@ const Index = () => {
                   "seller": {
                     "@type": "Organization",
                     "name": "Makario"
+                  },
+                  "shippingDetails": {
+                    "@type": "OfferShippingDetails",
+                    "shippingRate": {
+                      "@type": "PriceSpecification",
+                      "priceCurrency": "INR",
+                      "price": "0",
+                      "eligibleQuantity": {
+                        "@type": "PriceSpecification",
+                        "priceCurrency": "INR",
+                        "price": "1000"
+                      }
+                    },
+                    "shippingDestination": {
+                      "@type": "DeliveryTimeSettings",
+                      "areaServed": "IN",
+                      "deliveryTime": {
+                        "@type": "ShippingDeliveryTime",
+                        "handlingTime": {
+                          "@type": "QuantitativeValue",
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "unitCode": "DAY"
+                        },
+                        "transitTime": {
+                          "@type": "QuantitativeValue",
+                          "minValue": 2,
+                          "maxValue": 7,
+                          "unitCode": "DAY"
+                        }
+                      }
+                    }
+                  },
+                  "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "merchantReturnDays": 30,
+                    "applicableCountry": "IN",
+                    "returnMethod": "ReturnMailIn",
+                    "returnFees": "Free"
                   }
                 },
                 "aggregateRating": {
@@ -306,6 +384,45 @@ const Index = () => {
                   "seller": {
                     "@type": "Organization",
                     "name": "Makario"
+                  },
+                  "shippingDetails": {
+                    "@type": "OfferShippingDetails",
+                    "shippingRate": {
+                      "@type": "PriceSpecification",
+                      "priceCurrency": "INR",
+                      "price": "0",
+                      "eligibleQuantity": {
+                        "@type": "PriceSpecification",
+                        "priceCurrency": "INR",
+                        "price": "1000"
+                      }
+                    },
+                    "shippingDestination": {
+                      "@type": "DeliveryTimeSettings",
+                      "areaServed": "IN",
+                      "deliveryTime": {
+                        "@type": "ShippingDeliveryTime",
+                        "handlingTime": {
+                          "@type": "QuantitativeValue",
+                          "minValue": 0,
+                          "maxValue": 1,
+                          "unitCode": "DAY"
+                        },
+                        "transitTime": {
+                          "@type": "QuantitativeValue",
+                          "minValue": 2,
+                          "maxValue": 7,
+                          "unitCode": "DAY"
+                        }
+                      }
+                    }
+                  },
+                  "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "merchantReturnDays": 30,
+                    "applicableCountry": "IN",
+                    "returnMethod": "ReturnMailIn",
+                    "returnFees": "Free"
                   }
                 },
                 "aggregateRating": {
