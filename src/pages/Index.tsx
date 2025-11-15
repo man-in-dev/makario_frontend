@@ -220,10 +220,10 @@ const Index = () => {
                 },
                 "aggregateRating": {
                   "@type": "AggregateRating",
-                  "ratingValue": "4.8",
-                  "ratingCount": "120",
-                  "bestRating": "5",
-                  "worstRating": "1"
+                  "ratingValue": 4.8,
+                  "ratingCount": 120,
+                  "bestRating": 5,
+                  "worstRating": 1
                 },
                 "review": [
                   {
@@ -235,9 +235,9 @@ const Index = () => {
                     "datePublished": "2025-01-15",
                     "reviewRating": {
                       "@type": "Rating",
-                      "ratingValue": "5",
-                      "bestRating": "5",
-                      "worstRating": "1"
+                      "ratingValue": 5,
+                      "bestRating": 5,
+                      "worstRating": 1
                     },
                     "reviewBody": "Outstanding quality and taste. Best makhana I've purchased online!"
                   }
@@ -265,10 +265,10 @@ const Index = () => {
                 },
                 "aggregateRating": {
                   "@type": "AggregateRating",
-                  "ratingValue": "4.9",
-                  "ratingCount": "150",
-                  "bestRating": "5",
-                  "worstRating": "1"
+                  "ratingValue": 4.9,
+                  "ratingCount": 150,
+                  "bestRating": 5,
+                  "worstRating": 1
                 },
                 "review": [
                   {
@@ -280,9 +280,9 @@ const Index = () => {
                     "datePublished": "2025-01-15",
                     "reviewRating": {
                       "@type": "Rating",
-                      "ratingValue": "5",
-                      "bestRating": "5",
-                      "worstRating": "1"
+                      "ratingValue": 5,
+                      "bestRating": 5,
+                      "worstRating": 1
                     },
                     "reviewBody": "100% organic and delicious! Perfect healthy snack option."
                   }
@@ -310,10 +310,10 @@ const Index = () => {
                 },
                 "aggregateRating": {
                   "@type": "AggregateRating",
-                  "ratingValue": "4.7",
-                  "ratingCount": "95",
-                  "bestRating": "5",
-                  "worstRating": "1"
+                  "ratingValue": 4.7,
+                  "ratingCount": 95,
+                  "bestRating": 5,
+                  "worstRating": 1
                 },
                 "review": [
                   {
@@ -325,9 +325,9 @@ const Index = () => {
                     "datePublished": "2025-01-15",
                     "reviewRating": {
                       "@type": "Rating",
-                      "ratingValue": "5",
-                      "bestRating": "5",
-                      "worstRating": "1"
+                      "ratingValue": 5,
+                      "bestRating": 5,
+                      "worstRating": 1
                     },
                     "reviewBody": "Excellent quality makhana, very crunchy and fresh. Highly recommended!"
                   }
