@@ -5,6 +5,7 @@ import SEO from "@/components/SEO";
 import SectionHeader from "@/components/SectionHeader";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Calendar, MapPin, Users, Trophy, Heart, Globe, Target, Shield, Sprout, Award, CheckCircle, Leaf } from "lucide-react";
 import { useState } from "react";
 import biharFieldsImage from "@/assets/blog/Makhana-The-Healthy-Indian-Snack.jpg";
@@ -169,25 +170,31 @@ const About = () => {
                                 </p>
 
                                 <div className="grid grid-cols-2 gap-3 pt-2">
-                                    <div className="bg-gradient-to-br from-golden/15 to-golden/5 p-3 rounded-lg border border-golden/30 shadow-sm">
-                                        <h4 className="font-bold text-heritage text-xs mb-1 flex items-center gap-1.5">
-                                            <Target className="w-3.5 h-3.5" />
-                                            Our Mission
-                                        </h4>
-                                        <p className="text-xs text-gray-600 leading-snug">
-                                            Make Bihar's makhana a symbol of purity worldwide.
-                                        </p>
-                                    </div>
-                                    <div className="bg-gradient-to-br from-golden/15 to-golden/5 p-3 rounded-lg border border-golden/30 shadow-sm">
-                                        <h4 className="font-bold text-heritage text-xs mb-1 flex items-center gap-1.5">
-                                            <Globe className="w-3.5 h-3.5" />
-                                            Our Vision
-                                        </h4>
-                                        <p className="text-xs text-gray-600 leading-snug">
-                                            Global leader in premium authentic makhana.
-                                        </p>
-                                    </div>
-                                </div>
+                                     <div className="bg-gradient-to-br from-golden/15 to-golden/5 p-3 rounded-lg border border-golden/30 shadow-sm">
+                                         <h4 className="font-bold text-heritage text-xs mb-1 flex items-center gap-1.5">
+                                             <Target className="w-3.5 h-3.5" />
+                                             Our Mission
+                                         </h4>
+                                         <p className="text-xs text-gray-600 leading-snug">
+                                             Make Bihar's makhana a symbol of purity worldwide.
+                                         </p>
+                                     </div>
+                                     <div className="bg-gradient-to-br from-golden/15 to-golden/5 p-3 rounded-lg border border-golden/30 shadow-sm">
+                                         <h4 className="font-bold text-heritage text-xs mb-1 flex items-center gap-1.5">
+                                             <Globe className="w-3.5 h-3.5" />
+                                             Our Vision
+                                         </h4>
+                                         <p className="text-xs text-gray-600 leading-snug">
+                                             Global leader in premium authentic makhana.
+                                         </p>
+                                     </div>
+                                 </div>
+
+                                 <div className="pt-4 flex gap-2">
+                                     <Button asChild size="sm" variant="outline" className="text-xs">
+                                         <Link to="/about/founders">Founders Story</Link>
+                                     </Button>
+                                 </div>
 
                                 <div className="pt-2 border-t border-gray-200">
                                     <p className="text-gray-700 text-xs leading-relaxed">
@@ -355,6 +362,42 @@ const About = () => {
                                 livelihoods for thousands of farming families across the state.
                             </p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Internal Links Section */}
+            <section className="py-16 bg-muted/30">
+                <div className="container mx-auto px-4">
+                    <h2 className="text-2xl font-bold text-center mb-8 text-heritage">Explore More</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                        <Card className="hover:shadow-lg transition-all">
+                            <CardContent className="pt-6">
+                                <h3 className="font-bold text-heritage mb-2">Quality Assurance</h3>
+                                <p className="text-sm text-gray-600 mb-4">Learn about our rigorous 5-step quality process.</p>
+                                <Button asChild size="sm" variant="outline">
+                                    <Link to="/quality-assurance">Learn More</Link>
+                                </Button>
+                            </CardContent>
+                        </Card>
+                        <Card className="hover:shadow-lg transition-all">
+                            <CardContent className="pt-6">
+                                <h3 className="font-bold text-heritage mb-2">Our Farmers</h3>
+                                <p className="text-sm text-gray-600 mb-4">Meet the farmers who power our mission.</p>
+                                <Button asChild size="sm" variant="outline">
+                                    <Link to="/farmers">Discover</Link>
+                                </Button>
+                            </CardContent>
+                        </Card>
+                        <Card className="hover:shadow-lg transition-all">
+                            <CardContent className="pt-6">
+                                <h3 className="font-bold text-heritage mb-2">Shop Now</h3>
+                                <p className="text-sm text-gray-600 mb-4">Buy premium raw makhana online.</p>
+                                <Button asChild size="sm" className="bg-heritage hover:bg-heritage/90">
+                                    <Link to="/shop">Shop</Link>
+                                </Button>
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
             </section>

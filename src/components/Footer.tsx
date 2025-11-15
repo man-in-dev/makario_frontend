@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className="bg-heritage text-white">
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="bg-black rounded-lg p-3 inline-block">
@@ -40,26 +40,39 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Main Silos */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-golden">Quick Links</h4>
-            <ul className="space-y-3">
-              <li><Link to="/about" className="text-gray-300 hover:text-golden transition-colors">About Us</Link></li>
-              <li><Link to="/blog" className="text-gray-300 hover:text-golden transition-colors">Blog</Link></li>
-              <li><Link to="/shop" className="text-gray-300 hover:text-golden transition-colors">Shop</Link></li>
-              <li><Link to="/agriculture" className="text-gray-300 hover:text-golden transition-colors">Agriculture</Link></li>
-              <li><Link to="/farmers" className="text-gray-300 hover:text-golden transition-colors">Our Farmers</Link></li>
+            <h4 className="text-lg font-semibold mb-4 text-golden">Shop & Products</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link to="/shop" className="text-gray-300 hover:text-golden transition-colors">Buy Makhana Online</Link></li>
+              <li><Link to="/product-categories" className="text-gray-300 hover:text-golden transition-colors">Raw Makhana 1kg</Link></li>
+              <li><Link to="/shop?category=100g" className="text-gray-300 hover:text-golden transition-colors">Makhana 100g Price</Link></li>
+              <li><Link to="/bulk-orders" className="text-gray-300 hover:text-golden transition-colors">Makhana Wholesale</Link></li>
+              <li><Link to="/custom-packaging" className="text-gray-300 hover:text-golden transition-colors">Private Label Makhana</Link></li>
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Quality & Trust */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-golden">Services</h4>
-            <ul className="space-y-3">
-              <li><Link to="/products" className="text-gray-300 hover:text-golden transition-colors">Bulk Orders</Link></li>
-              <li><Link to="/quality-assurance" className="text-gray-300 hover:text-golden transition-colors">Quality Assurance</Link></li>
-              <li><Link to="/custom-packaging" className="text-gray-300 hover:text-golden transition-colors">Custom Packaging</Link></li>
-              <li><Link to="/logistics" className="text-gray-300 hover:text-golden transition-colors">Logistics</Link></li>
+            <h4 className="text-lg font-semibold mb-4 text-golden">Quality & Trust</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link to="/quality-assurance" className="text-gray-300 hover:text-golden transition-colors">Makario Quality</Link></li>
+              <li><Link to="/quality-process" className="text-gray-300 hover:text-golden transition-colors">Quality Check Process</Link></li>
+              <li><Link to="/about" className="text-gray-300 hover:text-golden transition-colors">About Makario</Link></li>
+              <li><Link to="/farmers" className="text-gray-300 hover:text-golden transition-colors">Our Farmers</Link></li>
+              <li><Link to="/agriculture" className="text-gray-300 hover:text-golden transition-colors">Agriculture</Link></li>
+            </ul>
+          </div>
+
+          {/* Knowledge Hub */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4 text-golden">Knowledge Hub</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link to="/blog" className="text-gray-300 hover:text-golden transition-colors">Makhana Benefits</Link></li>
+              <li><Link to="/regional?region=katihar" className="text-gray-300 hover:text-golden transition-colors">Katihar Makhana Market</Link></li>
+              <li><Link to="/regional?region=purnea" className="text-gray-300 hover:text-golden transition-colors">Purnea Makhana Demand</Link></li>
+              <li><Link to="/regional?region=bihar" className="text-gray-300 hover:text-golden transition-colors">Bihar Makhana Industry</Link></li>
+              <li><Link to="/export-quality" className="text-gray-300 hover:text-golden transition-colors">Makhana Export India</Link></li>
             </ul>
           </div>
 
@@ -67,29 +80,25 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-golden">Contact Us</h4>
             <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-golden flex-shrink-0" />
-                <span className="text-gray-300 text-sm">
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-4 h-4 text-golden flex-shrink-0 mt-0.5" />
+                <span className="text-gray-300 text-xs">
                   Falka, Katihar<br />
-                  Bihar, India - 854114.
+                  Bihar, India
                 </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-golden flex-shrink-0" />
-                <span className="text-gray-300 text-sm">+91 9953240031</span>
+                <span className="text-gray-300 text-xs">+91 9953240031</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-golden flex-shrink-0" />
-                <span className="text-gray-300 text-sm">info@makario.in</span>
+                <span className="text-gray-300 text-xs">info@makario.in</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <Globe className="w-4 h-4 text-golden flex-shrink-0" />
-                <span className="text-gray-300 text-sm">Export Worldwide</span>
-              </div>
+              <Button variant="hero" size="sm" className="mt-4" asChild>
+                <Link to="/contact">Get In Touch</Link>
+              </Button>
             </div>
-            <Button variant="hero" size="sm" className="mt-4" asChild>
-              <Link to="/contact">Get In Touch</Link>
-            </Button>
           </div>
         </div>
       </div>

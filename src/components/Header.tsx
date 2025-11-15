@@ -46,10 +46,41 @@ const Header = () => {
 
   const navigation: NavigationItem[] = [
     { name: "Home", href: "/" },
-    { name: "Shop", href: "/shop", isHot: true },
-    { name: "About", href: "/about" },
+    { 
+      name: "Shop", 
+      href: "/shop", 
+      isHot: true,
+      isDropdown: true,
+      subItems: [
+        { name: "All Products", href: "/shop" },
+        { name: "Product Categories", href: "/product-categories" },
+        { name: "Raw Makhana 1kg", href: "/shop?category=1kg" },
+        { name: "Family Packs", href: "/shop?category=family-packs" },
+      ]
+    },
+    { 
+      name: "About", 
+      href: "/about",
+      isDropdown: true,
+      subItems: [
+        { name: "About Makario", href: "/about" },
+        { name: "Founders Story", href: "/about/founders" },
+        { name: "Our Farmers", href: "/farmers" },
+        { name: "Agriculture", href: "/agriculture" },
+      ]
+    },
     { name: "Bulk Orders", href: "/bulk-orders" },
-    { name: "Quality", href: "/quality-assurance" },
+    { 
+      name: "Quality", 
+      href: "/quality-assurance",
+      isDropdown: true,
+      subItems: [
+        { name: "Quality Assurance", href: "/quality-assurance" },
+        { name: "Our Process", href: "/quality-process" },
+        { name: "Export Quality", href: "/bulk/export-quality" },
+      ]
+    },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -119,7 +150,8 @@ const Header = () => {
                       <DropdownMenuTrigger asChild>
                         <Button 
                           variant="ghost" 
-                          className="text-sm font-medium text-heritage hover:text-golden hover:bg-golden/5 rounded-lg px-4 py-2"
+                          className="text-sm font-medium text-heritage hover:text-golden hover:bg-golden/5 rounded-lg px-4 py-2 cursor-pointer"
+                          onClick={() => navigate(item.href)}
                         >
                           {item.name}
                         </Button>
