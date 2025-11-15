@@ -249,57 +249,84 @@ const ComparisonSection = () => {
           </div>
         )}
 
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <Card className="border-0 bg-gradient-to-br from-heritage/5 to-golden/5 shadow-lg">
-            <CardContent className="p-12">
-              <h3 className="text-2xl md:text-3xl font-bold text-heritage mb-4">
-                Ready to Experience Premium Quality?
-              </h3>
-              <p className="text-muted-foreground text-lg mb-8 max-w-xl mx-auto">
-                Join thousands of customers enjoying the freshest, most delicious makhana from Bihar.
-              </p>
+        {/* CTA Section - Premium Design */}
+        <div className="mt-20">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-heritage via-heritage/80 to-golden/30 p-px">
+            {/* Background blur effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-heritage/90 via-heritage/70 to-golden/20 opacity-95"></div>
+            
+            {/* Decorative elements */}
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-golden/20 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-heritage/20 rounded-full blur-2xl"></div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  variant="hero"
-                  size="lg"
-                  asChild
-                  className="bg-heritage hover:bg-heritage/90 text-white px-8 py-3 rounded-full font-semibold text-base group"
-                >
-                  <Link to="/products">
-                    Shop Now
-                    <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                  </Link>
-                </Button>
+            <Card className="relative border-0 bg-gradient-to-br from-heritage/95 to-heritage/90 backdrop-blur-sm shadow-2xl overflow-hidden">
+              <CardContent className="p-12 md:p-16 relative z-10 text-center">
+                {/* Premium badge */}
+                <div className="inline-block mb-6 px-4 py-1.5 bg-golden/20 rounded-full border border-golden/40">
+                  <span className="text-xs font-bold text-golden tracking-widest">✨ PREMIUM QUALITY</span>
+                </div>
 
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-2 border-golden text-golden hover:bg-golden hover:text-white px-8 py-3 rounded-full font-semibold text-base group"
-                >
-                  Learn More
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                </Button>
-              </div>
+                <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                  Ready to Experience <span className="text-golden">Premium Quality</span>?
+                </h3>
+                <p className="text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                  Join thousands of customers enjoying the freshest, most delicious makhana straight from Bihar's heritage farms.
+                </p>
 
-              {/* Trust indicators */}
-              <div className="grid grid-cols-3 gap-4 mt-10 max-w-2xl mx-auto">
-                <div className="flex flex-col items-center">
-                  <Award className="w-6 h-6 text-heritage mb-2" />
-                  <span className="text-xs font-semibold text-heritage">Premium</span>
+                {/* CTA Buttons - Enhanced */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                  <Button
+                    variant="hero"
+                    size="lg"
+                    asChild
+                    className="bg-golden hover:bg-golden/90 text-heritage px-10 py-4 rounded-full font-bold text-base group shadow-lg hover:shadow-xl transition-all hover:scale-105"
+                  >
+                    <Link to="/shop" className="flex items-center justify-center">
+                      🛒 Shop Premium Makhana
+                      <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    </Link>
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-2 border-golden/50 text-golden hover:bg-golden/10 px-10 py-4 rounded-full font-bold text-base group shadow-lg transition-all hover:border-golden"
+                    asChild
+                  >
+                    <Link to="/quality-assurance" className="flex items-center justify-center">
+                      ✓ Quality Promise
+                      <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    </Link>
+                  </Button>
                 </div>
-                <div className="flex flex-col items-center">
-                  <Leaf className="w-6 h-6 text-nature mb-2" />
-                  <span className="text-xs font-semibold text-heritage">Organic</span>
+
+                {/* Trust indicators - Enhanced */}
+                <div className="grid grid-cols-3 gap-6 md:gap-8 max-w-3xl mx-auto">
+                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-golden/50 transition-all group">
+                    <div className="w-14 h-14 rounded-full bg-golden/20 flex items-center justify-center mb-3 group-hover:bg-golden/30 transition-colors">
+                      <Award className="w-7 h-7 text-golden" />
+                    </div>
+                    <span className="text-sm font-bold text-golden">Premium Grade</span>
+                    <span className="text-xs text-white/60 mt-1">Best Quality</span>
+                  </div>
+                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-golden/50 transition-all group">
+                    <div className="w-14 h-14 rounded-full bg-golden/20 flex items-center justify-center mb-3 group-hover:bg-golden/30 transition-colors">
+                      <Leaf className="w-7 h-7 text-golden" />
+                    </div>
+                    <span className="text-sm font-bold text-golden">100% Organic</span>
+                    <span className="text-xs text-white/60 mt-1">Certified Pure</span>
+                  </div>
+                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-golden/50 transition-all group">
+                    <div className="w-14 h-14 rounded-full bg-golden/20 flex items-center justify-center mb-3 group-hover:bg-golden/30 transition-colors">
+                      <Zap className="w-7 h-7 text-golden" />
+                    </div>
+                    <span className="text-sm font-bold text-golden">Farm Fresh</span>
+                    <span className="text-xs text-white/60 mt-1">Direct from Bihar</span>
+                  </div>
                 </div>
-                <div className="flex flex-col items-center">
-                  <Zap className="w-6 h-6 text-golden mb-2" />
-                  <span className="text-xs font-semibold text-heritage">Fresh</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
