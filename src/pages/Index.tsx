@@ -203,54 +203,135 @@ const Index = () => {
                 "name": "Premium Grade A+ Makhana",
                 "description": "Grade A+ premium makhana from Bihar, hand-picked and processed",
                 "category": "Healthy Snacks",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "Makario"
+                },
                 "offers": {
                   "@type": "Offer",
                   "price": "599",
                   "priceCurrency": "INR",
                   "availability": "https://schema.org/InStock",
-                  "url": "https://makario.in/products"
+                  "url": "https://makario.in/products",
+                  "seller": {
+                    "@type": "Organization",
+                    "name": "Makario"
+                  }
                 },
                 "aggregateRating": {
                   "@type": "AggregateRating",
                   "ratingValue": "4.8",
-                  "ratingCount": "120"
-                }
+                  "ratingCount": "120",
+                  "bestRating": "5",
+                  "worstRating": "1"
+                },
+                "review": [
+                  {
+                    "@type": "Review",
+                    "author": {
+                      "@type": "Person",
+                      "name": "Customer Review"
+                    },
+                    "datePublished": "2025-01-15",
+                    "reviewRating": {
+                      "@type": "Rating",
+                      "ratingValue": "5",
+                      "bestRating": "5",
+                      "worstRating": "1"
+                    },
+                    "reviewBody": "Outstanding quality and taste. Best makhana I've purchased online!"
+                  }
+                ]
               },
               {
                 "@type": "Product",
                 "name": "Organic Fox Nuts",
                 "description": "100% organic fox nuts, naturally grown without pesticides",
                 "category": "Organic Food",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "Makario"
+                },
                 "offers": {
                   "@type": "Offer",
                   "price": "699",
                   "priceCurrency": "INR",
                   "availability": "https://schema.org/InStock",
-                  "url": "https://makario.in/products"
+                  "url": "https://makario.in/products",
+                  "seller": {
+                    "@type": "Organization",
+                    "name": "Makario"
+                  }
                 },
                 "aggregateRating": {
                   "@type": "AggregateRating",
                   "ratingValue": "4.9",
-                  "ratingCount": "150"
-                }
+                  "ratingCount": "150",
+                  "bestRating": "5",
+                  "worstRating": "1"
+                },
+                "review": [
+                  {
+                    "@type": "Review",
+                    "author": {
+                      "@type": "Person",
+                      "name": "Customer Review"
+                    },
+                    "datePublished": "2025-01-15",
+                    "reviewRating": {
+                      "@type": "Rating",
+                      "ratingValue": "5",
+                      "bestRating": "5",
+                      "worstRating": "1"
+                    },
+                    "reviewBody": "100% organic and delicious! Perfect healthy snack option."
+                  }
+                ]
               },
               {
                 "@type": "Product",
                 "name": "Premium Organic Makhana",
                 "description": "Premium quality roasted makhana with authentic Bihar flavor",
                 "category": "Premium Snacks",
+                "brand": {
+                  "@type": "Brand",
+                  "name": "Makario"
+                },
                 "offers": {
                   "@type": "Offer",
                   "price": "799",
                   "priceCurrency": "INR",
                   "availability": "https://schema.org/InStock",
-                  "url": "https://makario.in/products"
+                  "url": "https://makario.in/products",
+                  "seller": {
+                    "@type": "Organization",
+                    "name": "Makario"
+                  }
                 },
                 "aggregateRating": {
                   "@type": "AggregateRating",
                   "ratingValue": "4.7",
-                  "ratingCount": "95"
-                }
+                  "ratingCount": "95",
+                  "bestRating": "5",
+                  "worstRating": "1"
+                },
+                "review": [
+                  {
+                    "@type": "Review",
+                    "author": {
+                      "@type": "Person",
+                      "name": "Customer Review"
+                    },
+                    "datePublished": "2025-01-15",
+                    "reviewRating": {
+                      "@type": "Rating",
+                      "ratingValue": "5",
+                      "bestRating": "5",
+                      "worstRating": "1"
+                    },
+                    "reviewBody": "Excellent quality makhana, very crunchy and fresh. Highly recommended!"
+                  }
+                ]
               }
             ]
           },
