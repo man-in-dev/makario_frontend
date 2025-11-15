@@ -239,21 +239,62 @@
         "seller": {
           "@type": "Organization",
           "name": "Makario"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "INR",
+            "price": "0",
+            "eligibleQuantity": {
+              "@type": "PriceSpecification",
+              "priceCurrency": "INR",
+              "price": "1000"
+            }
+          },
+          "shippingDestination": {
+            "@type": "DeliveryTimeSettings",
+            "areaServed": "IN",
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 2,
+                "maxValue": 7,
+                "unitCode": "DAY"
+              }
+            }
+          }
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "merchantReturnDays": 30,
+          "applicableCountry": "IN",
+          "returnMethod": "ReturnMailIn",
+          "returnFees": "Free"
         }
       },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingCount": "280"
+        "ratingValue": 4.9,
+        "bestRating": 5,
+        "worstRating": 1,
+        "ratingCount": 280
       },
       "review": [
         {
           "@type": "Review",
           "reviewRating": {
             "@type": "Rating",
-            "ratingValue": "5"
+            "ratingValue": 5,
+            "bestRating": 5,
+            "worstRating": 1
           },
           "author": {
             "@type": "Person",
@@ -265,7 +306,9 @@
           "@type": "Review",
           "reviewRating": {
             "@type": "Rating",
-            "ratingValue": "5"
+            "ratingValue": 5,
+            "bestRating": 5,
+            "worstRating": 1
           },
           "author": {
             "@type": "Person",
