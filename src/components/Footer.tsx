@@ -3,7 +3,7 @@ import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin, Heart, Glo
 import { Button } from "@/components/ui/button";
 import fssaiLogo from "../assets/1707841493fssai-logo-png.png";
 import makeInIndiaLogo from "../assets/Make-in-India.png";
-import makarioLogo from "../assets/Makario png Logo.png";
+import makarioLogo from "../assets/Makario png Logo.jpg";
 
 const Footer = () => {
   return (
@@ -13,11 +13,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
-            <div className="bg-black rounded-lg p-3 inline-block">
+            <div className="p-3 inline-block rounded-full">
               <img 
                 src={makarioLogo} 
                 alt="Makario" 
-                className="h-20 w-auto object-contain"
+                className="h-28 w-auto object-contain rounded-full"
               />
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -128,12 +128,12 @@ const Footer = () => {
               <img 
                 src={fssaiLogo} 
                 alt="FSSAI Certified" 
-                className="h-14 w-auto object-contain"
+                className="h-14 w-auto object-contain rounded-xl"
               />
               <img 
                 src={makeInIndiaLogo} 
                 alt="Make in India" 
-                className="h-14 w-auto object-contain"
+                className="h-14 w-auto object-contain rounded-xl"
               />
             </div>
           </div>

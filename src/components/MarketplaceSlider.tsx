@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import amazonLogo from '@/assets/partners/673510.png'; // Amazon logo
 import flipkartLogo from '@/assets/partners/logo-flipkart-png-flipkart-logo-5000.png';
 import meeshoLogo from '@/assets/partners/meesho.jpg';
-import makarioLogo from '@/assets/Makario png Logo.png';
+import makarioLogo from '@/assets/Makario png Logo.jpg';
 import blinkitLogo from '@/assets/partners/outlook-blinkit-1_6232fc15c6315.jpg';
 import zeptoLogo from '@/assets/partners/Zepto-Logo-Vector.svg-.png';
 import dmartLogo from '@/assets/partners/dmart_logo_avenue_super_markets.png';

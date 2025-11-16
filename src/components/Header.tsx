@@ -11,7 +11,7 @@ import { AuthModal } from "./auth/AuthModal";
 import { SearchModal } from "./SearchModal";
 import CartSidebar from "./CartSidebar";
 import WishlistSidebar from "./WishlistSidebar";
-import makarioLogo from "../assets/Makario png Logo.png";
+import makarioLogo from "../assets/Makario png Logo.jpg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -131,11 +131,11 @@ const Header = () => {
             {/* Logo */}
             <div className="flex-1 flex justify-center lg:justify-start lg:flex-none">
               <Link to="/" className="flex items-center">
-                <div className="bg-black rounded-lg p-1 lg:p-1.5 hover:opacity-90 transition-opacity">
+                <div className="p-1 lg:p-1.5 hover:opacity-90 transition-opacity">
                   <img 
                     src={makarioLogo} 
                     alt="Makario" 
-                    className="h-8 w-auto lg:h-12 object-contain"
+                    className="h-12 w-auto lg:h-16 object-contain opacity-80 rounded-2xl"
                   />
                 </div>
               </Link>
@@ -280,11 +280,11 @@ const Header = () => {
                   {/* Mobile Menu Header */}
                   <div className="p-4 border-b border-golden/20 flex items-center justify-between">
                     <Link to="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
-                      <div className="bg-black rounded-lg p-1">
+                      <div className="p-1">
                         <img 
                           src={makarioLogo} 
                           alt="Makario" 
-                          className="h-8 w-auto object-contain"
+                          className="h-10 w-auto object-contain opacity-80 rounded-2xl"
                         />
                       </div>
                     </Link>

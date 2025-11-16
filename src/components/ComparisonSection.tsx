@@ -250,41 +250,41 @@ const ComparisonSection = () => {
         )}
 
         {/* CTA Section - Premium Design */}
-        <div className="mt-20">
-          <div className="relative overflow-hidden rounded-3xl" style={{
+        <div className="mt-16 md:mt-20">
+          <div className="relative overflow-hidden rounded-2xl md:rounded-3xl" style={{
             backgroundImage: `url('${makariaMakhanaImage}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed'
           }}>
             {/* Dark overlay for text visibility */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70 rounded-2xl md:rounded-3xl"></div>
 
-            {/* Decorative elements */}
-            <div className="absolute -top-20 -right-20 w-64 h-64 bg-golden/10 rounded-full blur-3xl z-0"></div>
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-heritage/10 rounded-full blur-2xl z-0"></div>
+            {/* Decorative elements - hidden on mobile */}
+            <div className="hidden md:block absolute -top-20 -right-20 w-64 h-64 bg-golden/10 rounded-full blur-3xl z-0"></div>
+            <div className="hidden md:block absolute -bottom-10 -left-10 w-40 h-40 bg-heritage/10 rounded-full blur-2xl z-0"></div>
 
             <Card className="relative border-0 bg-transparent shadow-2xl overflow-hidden z-10">
-              <CardContent className="p-12 md:p-16 relative z-10 text-center">
+              <CardContent className="p-6 md:p-12 lg:p-16 relative z-10 text-center">
                 {/* Premium badge */}
-                <div className="inline-block mb-6 px-4 py-1.5 bg-golden/40 rounded-full border border-golden/60 backdrop-blur-sm">
-                  <span className="text-xs font-bold text-white tracking-widest">✨ PREMIUM QUALITY</span>
+                <div className="inline-block mb-4 md:mb-6 px-3 md:px-4 py-1 md:py-1.5 bg-golden/40 rounded-full border border-golden/60 backdrop-blur-sm">
+                  <span className="text-xs md:text-xs font-bold text-white tracking-widest">✨ PREMIUM QUALITY</span>
                 </div>
 
-                <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight drop-shadow-lg">
                   Ready to Experience <span className="text-golden drop-shadow-md">Premium Quality</span>?
                 </h3>
-                <p className="text-white text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+                <p className="text-white text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
                   Join thousands of customers enjoying the freshest, most delicious makhana straight from Bihar's heritage farms.
                 </p>
 
                 {/* CTA Buttons - Enhanced */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <div className="flex flex-col gap-3 md:gap-4 md:flex-row justify-center mb-8 md:mb-12">
                   <Button
                     variant="hero"
                     size="lg"
                     asChild
-                    className="bg-golden hover:bg-golden/95 text-heritage px-12 py-5 rounded-full font-bold text-base group shadow-2xl hover:shadow-golden/50 transition-all hover:scale-110 border-2 border-golden/80"
+                    className="bg-golden hover:bg-golden/95 text-heritage px-6 sm:px-8 md:px-12 py-3 md:py-5 rounded-full font-bold text-sm md:text-base group shadow-2xl hover:shadow-golden/50 transition-all hover:scale-105 md:hover:scale-110 border-2 border-golden/80"
                   >
                     <Link to="/shop" className="flex items-center justify-center">
                       🛒 Shop Premium Makhana
@@ -295,7 +295,7 @@ const ComparisonSection = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="border-2 border-golden text-white bg-white/10 hover:bg-golden/30 px-12 py-5 rounded-full font-bold text-base group shadow-2xl transition-all hover:border-golden backdrop-blur-sm"
+                    className="border-2 border-golden text-white bg-white/10 hover:bg-golden/30 px-6 sm:px-8 md:px-12 py-3 md:py-5 rounded-full font-bold text-sm md:text-base group shadow-2xl transition-all hover:border-golden backdrop-blur-sm"
                     asChild
                   >
                     <Link to="/quality-assurance" className="flex items-center justify-center">
@@ -306,26 +306,26 @@ const ComparisonSection = () => {
                 </div>
 
                 {/* Trust indicators - Enhanced */}
-                <div className="grid grid-cols-3 gap-6 md:gap-8 max-w-3xl mx-auto">
-                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/30 hover:border-golden/80 transition-all group shadow-lg">
-                    <div className="w-14 h-14 rounded-full bg-golden/40 flex items-center justify-center mb-3 group-hover:bg-golden/60 transition-colors shadow-md">
-                      <Award className="w-7 h-7 text-white" />
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-3xl mx-auto">
+                  <div className="flex flex-col items-center p-3 md:p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/30 hover:border-golden/80 transition-all group shadow-lg">
+                    <div className="w-12 md:w-14 h-12 md:h-14 rounded-full bg-golden/40 flex items-center justify-center mb-2 md:mb-3 group-hover:bg-golden/60 transition-colors shadow-md">
+                      <Award className="w-6 md:w-7 h-6 md:h-7 text-white" />
                     </div>
-                    <span className="text-sm font-bold text-white">Premium Grade</span>
+                    <span className="text-xs md:text-sm font-bold text-white">Premium Grade</span>
                     <span className="text-xs text-white/80 mt-1">Best Quality</span>
                   </div>
-                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/30 hover:border-golden/80 transition-all group shadow-lg">
-                    <div className="w-14 h-14 rounded-full bg-golden/40 flex items-center justify-center mb-3 group-hover:bg-golden/60 transition-colors shadow-md">
-                      <Leaf className="w-7 h-7 text-white" />
+                  <div className="flex flex-col items-center p-3 md:p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/30 hover:border-golden/80 transition-all group shadow-lg">
+                    <div className="w-12 md:w-14 h-12 md:h-14 rounded-full bg-golden/40 flex items-center justify-center mb-2 md:mb-3 group-hover:bg-golden/60 transition-colors shadow-md">
+                      <Leaf className="w-6 md:w-7 h-6 md:h-7 text-white" />
                     </div>
-                    <span className="text-sm font-bold text-white">100% Organic</span>
+                    <span className="text-xs md:text-sm font-bold text-white">100% Organic</span>
                     <span className="text-xs text-white/80 mt-1">Certified Pure</span>
                   </div>
-                  <div className="flex flex-col items-center p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/30 hover:border-golden/80 transition-all group shadow-lg">
-                    <div className="w-14 h-14 rounded-full bg-golden/40 flex items-center justify-center mb-3 group-hover:bg-golden/60 transition-colors shadow-md">
-                      <Zap className="w-7 h-7 text-white" />
+                  <div className="flex flex-col items-center p-3 md:p-4 rounded-xl bg-white/15 backdrop-blur-md border border-white/30 hover:border-golden/80 transition-all group shadow-lg">
+                    <div className="w-12 md:w-14 h-12 md:h-14 rounded-full bg-golden/40 flex items-center justify-center mb-2 md:mb-3 group-hover:bg-golden/60 transition-colors shadow-md">
+                      <Zap className="w-6 md:w-7 h-6 md:h-7 text-white" />
                     </div>
-                    <span className="text-sm font-bold text-white">Farm Fresh</span>
+                    <span className="text-xs md:text-sm font-bold text-white">Farm Fresh</span>
                     <span className="text-xs text-white/80 mt-1">Direct from Bihar</span>
                   </div>
                 </div>
