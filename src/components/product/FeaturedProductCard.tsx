@@ -70,29 +70,29 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
     : Math.round(product.price * 0.85);
 
   return (
-  <Card className={`group relative overflow-hidden bg-white hover:shadow-xl transition-all duration-500 border-0 shadow-md ${small ? 'w-[140px] min-w-[140px] max-w-[150px] p-2' : ''}`}> 
-      {/* Exclusive Badge */}
-      <div className="absolute top-3 left-3 z-20">
-        <Badge className="bg-red-500 hover:bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-sm">
-          EXCLUSIVE
-        </Badge>
-      </div>
+   <Card className={`group relative overflow-hidden bg-white hover:shadow-2xl transition-all duration-500 border border-orange-100 hover:border-orange-300 shadow-lg rounded-xl ${small ? 'w-[140px] min-w-[140px] max-w-[150px] p-2' : ''}`}> 
+       {/* Exclusive Badge - Enhanced */}
+       <div className="absolute top-3 left-3 z-20">
+         <Badge className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+           ✨ EXCLUSIVE
+         </Badge>
+       </div>
 
-      {/* Wishlist Button */}
-      <button
-        className={`absolute top-3 right-3 z-20 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-          isWishlisted 
-            ? 'bg-red-100 text-red-500 hover:bg-red-200' 
-            : 'bg-white/80 text-gray-400 hover:bg-white hover:text-red-500'
-        }`}
-        onClick={handleToggleWishlist}
-        disabled={isToggleingWishlist}
-      >
-        <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-current' : ''}`} />
-      </button>
+       {/* Wishlist Button - Enhanced */}
+       <button
+         className={`absolute top-3 right-3 z-20 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm ${
+           isWishlisted 
+             ? 'bg-red-500/90 text-white hover:bg-red-600 shadow-lg' 
+             : 'bg-white/80 text-gray-400 hover:bg-white hover:text-red-500 shadow-md'
+         }`}
+         onClick={handleToggleWishlist}
+         disabled={isToggleingWishlist}
+       >
+         <Heart className={`h-5 w-5 ${isWishlisted ? 'fill-current' : ''}`} />
+       </button>
 
       {/* Product Image */}
-      <div className={`relative ${small ? 'aspect-[4/5] h-28' : 'aspect-[4/5]'} overflow-hidden cursor-pointer`} onClick={handleProductClick}>
+      <div className={`relative ${small ? 'aspect-[4/5] h-28' : 'aspect-[4/5]'} overflow-hidden cursor-pointer bg-gradient-to-br from-orange-50 to-amber-50`} onClick={handleProductClick}>
         <LazyImage
           src={product.image}
           alt={product.name}
@@ -100,11 +100,11 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
         />
         {/* Overlay with Quick View on Hover */}
         {!small && (
-          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
             <Button
               variant="secondary"
               size="sm"
-              className="bg-white/90 hover:bg-white text-black border-0"
+              className="bg-white hover:bg-orange-50 text-black border-0 font-semibold shadow-lg hover:shadow-xl"
               onClick={(e) => {
                 e.stopPropagation();
                 handleProductClick();
@@ -119,19 +119,19 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
 
       <CardContent className="p-3 md:p-4 space-y-2 md:space-y-3">
         {/* Pricing Section */}
-        <div className="space-y-1">
+        <div className="space-y-1 bg-gradient-to-r from-orange-50 to-amber-50 p-2 rounded-lg">
           <div className={`flex items-center gap-1 flex-wrap ${small ? '' : 'md:gap-2'}`}>
-            <span className={`font-bold text-gray-900 ${small ? 'text-base' : 'text-xl md:text-2xl'}`}>₹{product.price}</span>
+            <span className={`font-bold text-orange-700 ${small ? 'text-base' : 'text-xl md:text-2xl'}`}>₹{product.price}</span>
             {product.originalPrice && (
               <>
                 <span className={`text-gray-400 line-through ${small ? 'text-xs' : 'text-base md:text-lg'}`}>₹{product.originalPrice}</span>
-                <span className={`font-semibold text-green-600 ${small ? 'text-xs' : 'text-xs md:text-sm'}`}>({discountPercentage}% OFF)</span>
+                <span className={`font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full ${small ? 'text-xs' : 'text-xs md:text-sm'}`}>Save {discountPercentage}%</span>
               </>
             )}
           </div>
           <div className={`flex items-center gap-1 ${small ? '' : 'md:gap-2'}`}>
-            <span className={`text-[10px] text-gray-600 ${small ? '' : 'md:text-sm'}`}>Best price</span>
-            <span className={`font-bold text-green-600 ${small ? 'text-xs' : 'text-base md:text-lg'}`}>₹{bestPrice}</span>
+            <span className={`text-[10px] font-semibold text-amber-600 ${small ? '' : 'md:text-sm'}`}>💰 Best Offer</span>
+            <span className={`font-bold text-orange-700 ${small ? 'text-xs' : 'text-base md:text-lg'}`}>₹{bestPrice}</span>
           </div>
         </div>
 
@@ -172,16 +172,16 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
         <Button
           onClick={handleAddToCart}
           disabled={isAddingToCart || !product.inStock}
-          className={`w-full bg-white border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 font-medium ${small ? 'text-xs py-1' : 'text-sm md:text-base py-2 md:py-3'}`}
+          className={`w-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white border-0 transition-all duration-300 font-bold shadow-md hover:shadow-lg ${small ? 'text-xs py-1' : 'text-sm md:text-base py-2 md:py-3'}`}
         >
           {isAddingToCart ? (
-            <div className={`flex items-center gap-1 ${small ? '' : 'md:gap-2'}`}>
+            <div className={`flex items-center gap-1 justify-center ${small ? '' : 'md:gap-2'}`}>
               <div className={`border-2 border-current border-t-transparent rounded-full animate-spin ${small ? 'w-2 h-2' : 'w-3 h-3 md:w-4 md:h-4'}`} />
               <span className="hidden md:inline">Adding...</span>
               <span className="md:hidden">...</span>
             </div>
           ) : (
-            <div className={`flex items-center gap-1 ${small ? '' : 'md:gap-2'}`}>
+            <div className={`flex items-center gap-1 justify-center ${small ? '' : 'md:gap-2'}`}>
               <ShoppingBag className={`${small ? 'w-2 h-2' : 'w-3 h-3 md:w-4 md:h-4'}`} />
               <span>{small ? 'Add' : 'Add to Bag'}</span>
             </div>

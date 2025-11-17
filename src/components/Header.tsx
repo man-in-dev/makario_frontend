@@ -45,7 +45,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="bg-white sticky top-0 z-50 shadow-md border-b-2 border-golden/20">
+            <header className="bg-white fixed top-0 w-full z-50 shadow-md border-b-2 border-golden/20">
                 {/* Top Bar - Desktop Only */}
                 <div className="hidden lg:block bg-gradient-to-r from-heritage/5 to-golden/5 border-b border-golden/15">
                     <div className="container mx-auto px-4">
@@ -86,11 +86,11 @@ const Header = () => {
 
                         {/* Logo */}
                         <Link to="/" className="flex-1 lg:flex-none flex justify-center lg:justify-start flex-shrink-0">
-                            <div className="hover:opacity-85 transition-all duration-300 transform hover:scale-105 rounded-2xl overflow-hidden">
+                            <div className="hover:opacity-85 transition-all duration-300 transform hover:scale-105 rounded-3xl overflow-hidden bg-white p-1">
                                 <img
                                     src={makarioLogo}
                                     alt="Makario"
-                                    className="h-14 lg:h-20 w-auto object-contain opacity-95 shadow-sm hover:shadow-md transition-shadow"
+                                    className="h-14 lg:h-20 w-auto object-contain opacity-95 shadow-sm hover:shadow-md transition-shadow rounded-2xl"
                                 />
                             </div>
                         </Link>
