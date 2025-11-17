@@ -58,19 +58,19 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="text-lg px-8 py-6 group bg-golden hover:bg-golden/90" asChild>
+            <Button size="lg" className="px-4 py-6 sm:px-8 text-lg group bg-golden hover:bg-golden/90" asChild>
               <Link to="/shop">
                 Shop Now
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 group border-white text-white hover:bg-white hover:text-heritage" asChild>
+            <Button size="lg" variant="outline" className="px-4 py-6 sm:px-8 text-lg group border-white text-white hover:bg-white hover:text-heritage" asChild>
               <Link to="/products">
                 <span className="text-golden">Explore Products</span>
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform text-golden" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-white/10 border-white text-white hover:bg-white hover:text-heritage" asChild>
+            <Button variant="outline" size="lg" className="px-4 py-6 sm:px-8 text-lg bg-white/10 border-white text-white hover:bg-white hover:text-heritage" asChild>
               <Link to="/bulk-orders">Bulk Orders</Link>
             </Button>
           </div>
