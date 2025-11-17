@@ -45,7 +45,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="bg-white fixed top-0 left-0 right-0 z-50 shadow-md border-b-2 border-golden/20">
+            <header className="bg-white fixed top-0 left-0 right-0 w-full z-50 shadow-md border-b-2 border-golden/20">
                 {/* Top Bar - Desktop Only */}
                 <div className="hidden lg:block bg-gradient-to-r from-heritage/5 to-golden/5 border-b border-golden/15">
                     <div className="container mx-auto px-4">
@@ -90,7 +90,7 @@ const Header = () => {
                                 <img
                                     src={makarioLogo}
                                     alt="Makario"
-                                    className="h-14 lg:h-20 w-auto object-contain opacity-95 shadow-sm hover:shadow-md transition-shadow rounded-3xl"
+                                    className="h-14 lg:h-20 w-auto object-contain opacity-95 shadow-sm hover:shadow-md transition-shadow rounded-2xl"
                                 />
                             </div>
                         </Link>
@@ -213,12 +213,12 @@ const Header = () => {
                             <div className="flex flex-col h-full">
 
                                 {/* Mobile Menu Header */}
-                                <div className="p-5 border-b-2 border-golden/15 flex items-center justify-between sticky top-0 bg-gradient-to-r from-white to-golden/5">
+                                <div className="p-3 border-b-2 border-golden/15 flex items-center justify-between sticky top-0 bg-gradient-to-r from-white to-golden/5">
                                     <Link to="/" onClick={() => setIsMenuOpen(false)}>
                                         <img
                                             src={makarioLogo}
                                             alt="Makario"
-                                            className="h-12 w-auto object-contain opacity-95 rounded-2xl"
+                                            className="h-10 w-auto object-contain opacity-95 rounded-lg"
                                         />
                                     </Link>
                                     <Button
@@ -232,7 +232,7 @@ const Header = () => {
                                 </div>
 
                                 {/* Mobile Menu Content */}
-                                <div className="flex-1 p-5 space-y-4">
+                                <div className="flex-1 p-3 space-y-3">
 
                                     {/* User Section */}
                                     {user ? (
@@ -305,7 +305,7 @@ const Header = () => {
 
                                 {/* Mobile Menu Footer */}
                                 {user && (
-                                    <div className="p-5 border-t-2 border-golden/15 bg-gradient-to-r from-white to-golden/5">
+                                    <div className="p-3 border-t-2 border-golden/15 bg-gradient-to-r from-white to-golden/5">
                                         <Button
                                             className="w-full text-red-600 hover:text-red-700 hover:bg-red-50/80 font-bold h-11 rounded-xl border-2 border-red-300/50 transition-all"
                                             variant="outline"

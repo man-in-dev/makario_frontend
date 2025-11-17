@@ -44,12 +44,12 @@ const Hero = () => {
             <span className="text-golden font-medium">Premium Quality</span>
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight min-h-[80px] lg:min-h-[120px] flex flex-col justify-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 text-white leading-tight min-h-[60px] sm:min-h-[80px] lg:min-h-[120px] flex flex-col justify-center">
             <span className="flex items-center">
               {typewriterText}
-              <span className="ml-2 inline-block w-2 h-16 lg:h-24 bg-white animate-pulse"></span>
+              <span className="ml-2 inline-block w-2 h-10 sm:h-12 lg:h-24 bg-white animate-pulse"></span>
             </span>
-            <span className="block text-golden mt-4">Global Makhana</span>
+            <span className="block text-golden mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Global Makhana</span>
           </h1>
 
           <p className="text-xl text-gray-100 mb-8 leading-relaxed">

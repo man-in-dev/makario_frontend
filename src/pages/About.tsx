@@ -102,7 +102,7 @@ const About = () => {
             <Header />
 
             {/* Founders Section - Replaces Hero */}
-            <section className="relative py-10 bg-gradient-to-br from-heritage/3 via-golden/5 to-white overflow-hidden">
+            <section className="relative py-10 bg-gradient-to-br from-heritage/3 via-golden/5 to-white overflow-hidden mt-[30px]">
                 {/* Background Elements */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute top-10 right-10 w-40 h-40 bg-golden/20 rounded-full blur-3xl"></div>

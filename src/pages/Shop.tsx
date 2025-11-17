@@ -172,7 +172,7 @@ const Shop: React.FC = () => {
 
 
 
-            <div className="min-h-screen bg-gradient-to-br from-white via-orange-50 to-amber-50 py-4 md:py-8">
+            <div className="min-h-screen bg-gradient-to-br from-white via-orange-50 to-amber-50 py-4 md:py-8 mt-[30px]">
                 <div className="container mx-auto px-3 md:px-4">
 
                     {/* All Products Section */}

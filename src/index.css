@@ -146,11 +146,12 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-sans;
     padding-top: 64px;
+    position: relative;
   }
   
   @media (min-width: 1024px) {
     body {
-      padding-top: 96px;
+      padding-top: 128px;
     }
   }
 
