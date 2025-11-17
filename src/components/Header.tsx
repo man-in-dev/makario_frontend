@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Menu, X, Phone, Mail, ShoppingCart, User, Heart, LogOut, Package } from "lucide-react";
 import { useCart } from "../contexts/CartContext";
 import { useWishlist } from "../contexts/WishlistContext";
@@ -14,441 +14,324 @@ import WishlistSidebar from "./WishlistSidebar";
 import makarioLogo from "../assets/Makario png Logo.jpg";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showAuthModal, setShowAuthModal] = useState(false);
-  const [showSearchModal, setShowSearchModal] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
-  
-  const { 
-    getTotalItems, 
-    isCartOpen, 
-    openCart, 
-    closeCart 
-  } = useCart();
-  
-  const { 
-    items: wishlistItems, 
-    isWishlistOpen, 
-    openWishlist, 
-    closeWishlist 
-  } = useWishlist();
-  
-  const { user, logout } = useAuth();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [showAuthModal, setShowAuthModal] = useState(false);
+    const [showSearchModal, setShowSearchModal] = useState(false);
+    const [activeHover, setActiveHover] = useState<string | null>(null);
+    const location = useLocation();
 
-  type NavigationItem = {
-    name: string;
-    href: string;
-    isHot?: boolean;
-    isDropdown?: boolean;
-    subItems?: { name: string; href: string }[];
-  };
+    const { getTotalItems, openCart } = useCart();
+    const { items: wishlistItems, openWishlist } = useWishlist();
+    const { user, logout } = useAuth();
 
-  const navigation: NavigationItem[] = [
-    { name: "Home", href: "/" },
-    { 
-      name: "Shop", 
-      href: "/shop", 
-      isHot: true,
-      isDropdown: true,
-      subItems: [
-        { name: "All Products", href: "/shop" },
-        { name: "Product Categories", href: "/product-categories" },
-        { name: "Raw Makhana 1kg", href: "/shop?category=1kg" },
-        { name: "Family Packs", href: "/shop?category=family-packs" },
-      ]
-    },
-    { 
-      name: "About", 
-      href: "/about",
-      isDropdown: true,
-      subItems: [
-        { name: "About Makario", href: "/about" },
-        { name: "Founders Story", href: "/about/founders" },
-        { name: "Our Farmers", href: "/farmers" },
-        { name: "Agriculture", href: "/agriculture" },
-      ]
-    },
-    { name: "Bulk Orders", href: "/bulk-orders" },
-    { 
-      name: "Quality", 
-      href: "/quality-assurance",
-      isDropdown: true,
-      subItems: [
-        { name: "Quality Assurance", href: "/quality-assurance" },
-        { name: "Our Process", href: "/quality-process" },
-        { name: "Export Quality", href: "/bulk/export-quality" },
-      ]
-    },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "/contact" },
-  ];
+    const isActive = (path: string) => location.pathname === path;
 
-  const isActive = (path: string) => location.pathname === path;
+    const navLinks = [
+        { name: "Home", href: "/" },
+        { name: "Shop", href: "/shop", isHot: true },
+        { name: "About", href: "/about" },
+        { name: "Bulk Orders", href: "/bulk-orders" },
+        { name: "Quality", href: "/quality-assurance" },
+        { name: "Blog", href: "/blog" },
+        { name: "Contact", href: "/contact" },
+    ];
 
-  return (
-    <>
-      {/* Main Header */}
-      <header className="bg-white sticky top-0 z-50 shadow-md">
-        <div className="border-b border-golden/20">
-          <div className="container mx-auto">
-            {/* Top Navigation Bar */}
-            <div className="hidden lg:flex items-center justify-between py-2 px-4 text-sm">
-              <div className="flex items-center space-x-6">
-                <div className="flex items-center space-x-2 text-heritage hover:text-golden transition-colors">
-                  <Phone className="w-4 h-4" />
-                  <span>+91 9953240031</span>
-                </div>
-                <div className="flex items-center space-x-2 text-heritage hover:text-golden transition-colors">
-                  <Mail className="w-4 h-4" />
-                  <span>info@makario.in</span>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Link to="/track-order" className="text-heritage hover:text-golden transition-colors">Track Order</Link>
-                <Link to="/shipping" className="text-heritage hover:text-golden transition-colors">Shipping</Link>
-                <Link to="/contact" className="text-heritage hover:text-golden transition-colors">Contact</Link>
-              </div>
-            </div>
-          </div>
-        </div>
+    const getNavButtonClass = (isActiveLink: boolean) => {
+        if (isActiveLink) {
+            return "text-golden bg-green-100 border-2 border-green-400 hover:bg-green-200 shadow-md";
+        }
+        return "text-heritage/80 border-2 border-transparent hover:text-golden hover:bg-white/50";
+    };
 
-        {/* Main Navigation */}
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Mobile Menu Button */}
-            <div className="lg:hidden">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-heritage hover:bg-heritage/5"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </Button>
-            </div>
-
-            {/* Logo */}
-            <div className="flex-1 flex justify-center lg:justify-start lg:flex-none">
-              <Link to="/" className="flex items-center">
-                <div className="p-1 lg:p-1.5 hover:opacity-90 transition-opacity">
-                  <img 
-                    src={makarioLogo} 
-                    alt="Makario" 
-                    className="h-12 w-auto lg:h-16 object-contain opacity-80 rounded-2xl"
-                  />
-                </div>
-              </Link>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center justify-center flex-1 mx-8">
-              <div className="flex items-center space-x-1">
-                {navigation.map((item) => (
-                  item.isDropdown ? (
-                    <DropdownMenu key={item.name}>
-                      <DropdownMenuTrigger asChild>
-                        <Button 
-                          variant="ghost" 
-                          className="text-sm font-medium text-heritage hover:text-golden hover:bg-golden/5 rounded-lg px-4 py-2 cursor-pointer"
-                          onClick={() => navigate(item.href)}
-                        >
-                          {item.name}
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="start" className="w-48">
-                        {item.subItems?.map((subItem) => (
-                          <DropdownMenuItem key={subItem.name} asChild>
-                            <Link to={subItem.href} className="cursor-pointer">
-                              {subItem.name}
-                            </Link>
-                          </DropdownMenuItem>
-                        ))}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  ) : (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className={`text-sm font-medium px-4 py-2 rounded-lg transition-all hover:bg-golden/5 relative
-                        ${isActive(item.href) ? "text-golden bg-golden/5" : "text-heritage hover:text-golden"}`}
-                    >
-                      {item.name}
-                      {item.isHot && (
-                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">
-                          HOT
-                        </span>
-                      )}
-                    </Link>
-                  )
-                ))}
-              </div>
-            </nav>
-
-            {/* E-commerce Actions */}
-            <div className="flex items-center gap-2 lg:gap-4">
-              {/* Wishlist */}
-              <Button 
-               variant="ghost" 
-               size="sm" 
-               onClick={() => openWishlist()} 
-              className="relative hover:bg-golden/5 text-heritage hover:text-golden transition-colors rounded-lg"
-              >
-                <Heart className="h-5 w-5" />
-                {wishlistItems.length > 0 && (
-                  <Badge variant="destructive" className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
-                    {wishlistItems.length}
-                  </Badge>
-                )}
-              </Button>
-
-              {/* Cart */}
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={() => openCart()} 
-                className="relative hover:bg-golden/5 text-heritage hover:text-golden transition-colors rounded-lg"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                {getTotalItems() > 0 && (
-                  <Badge variant="destructive" className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs">
-                    {getTotalItems()}
-                  </Badge>
-                )}
-              </Button>
-
-              {/* User Menu */}
-              {user ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      className="hover:bg-golden/5 text-heritage hover:text-golden transition-colors rounded-lg"
-                    >
-                      <User className="h-5 w-5" />
-                      <span className="hidden md:inline md:ml-2">{user.name}</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem asChild>
-                      <Link to="/profile">
-                        <User className="h-4 w-4 mr-2" />
-                        Profile
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link to="/orders">
-                        <Package className="h-4 w-4 mr-2" />
-                        Order Management
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link to="/wishlist">
-                        <Heart className="h-4 w-4 mr-2" />
-                        Wishlist
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={logout}>
-                      <LogOut className="h-4 w-4 mr-2" />
-                      Logout
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                 <Button 
-                   variant="ghost" 
-                   size="sm" 
-                   onClick={() => setShowAuthModal(true)}
-                 className="bg-golden/10 hover:bg-golden/20 transition-all duration-200 hover:scale-105"
-              >
-                   <User className="h-5 w-5 text-golden" />
-                   <span className="hidden md:inline md:ml-2 text-golden">Login</span>
-                 </Button>
-              )}
-            </div>
-
-
-          </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="lg:hidden fixed inset-0 z-50 bg-black/50">
-              <div className="absolute inset-y-0 left-0 w-4/5 max-w-sm bg-white shadow-xl">
-                <div className="flex flex-col h-full">
-                  {/* Mobile Menu Header */}
-                  <div className="p-4 border-b border-golden/20 flex items-center justify-between">
-                    <Link to="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
-                      <div className="p-1">
-                        <img 
-                          src={makarioLogo} 
-                          alt="Makario" 
-                          className="h-10 w-auto object-contain opacity-80 rounded-2xl"
-                        />
-                      </div>
-                    </Link>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="text-heritage hover:text-golden"
-                    >
-                      <X className="h-5 w-5" />
-                    </Button>
-                  </div>
-
-                  {/* Mobile Menu Content */}
-                  <div className="flex-1 overflow-y-auto py-4">
-                    <div className="px-4 py-2">
-                      {/* User Actions */}
-                      {user ? (
-                        <div className="mb-4 p-3 bg-golden/5 rounded-lg">
-                          <div className="flex items-center space-x-3 mb-2">
-                            <div className="w-10 h-10 rounded-full bg-heritage/10 flex items-center justify-center">
-                              <User className="w-5 h-5 text-heritage" />
+    return (
+        <>
+            <header className="bg-white sticky top-0 z-50 shadow-md border-b-2 border-golden/20">
+                {/* Top Bar - Desktop Only */}
+                <div className="hidden lg:block bg-gradient-to-r from-heritage/5 to-golden/5 border-b border-golden/15">
+                    <div className="container mx-auto px-4">
+                        <div className="flex items-center justify-between py-3 text-xs font-medium text-heritage/70">
+                            <div className="flex items-center gap-8">
+                                <a href="tel:+919953240031" className="flex items-center gap-2 hover:text-golden transition-colors duration-200">
+                                    <Phone className="w-4 h-4" />
+                                    <span>+91 9953240031</span>
+                                </a>
+                                <a href="mailto:info@makario.in" className="flex items-center gap-2 hover:text-golden transition-colors duration-200">
+                                    <Mail className="w-4 h-4" />
+                                    <span>info@makario.in</span>
+                                </a>
                             </div>
-                            <div>
-                              <div className="font-medium text-heritage">{user.name}</div>
-                              <div className="text-sm text-muted-foreground">{user.email}</div>
+                            <div className="flex items-center gap-6">
+                                <Link to="/track-order" className="hover:text-golden transition-colors duration-200">Track Order</Link>
+                                <Link to="/shipping" className="hover:text-golden transition-colors duration-200">Shipping</Link>
                             </div>
-                          </div>
                         </div>
-                      ) : (
-                        <div className="mb-4">
-                          <Button 
-                            variant="hero" 
-                            className="w-full mb-2"
-                            onClick={() => {
-                              setIsMenuOpen(false);
-                              setShowAuthModal(true);
-                            }}
-                          >
-                            Sign In
-                          </Button>
-                        </div>
-                      )}
+                    </div>
+                </div>
 
-                      {/* Navigation Links */}
-                      <nav className="space-y-1">
-                        {navigation.map((item) => (
-                          <Link
-                            key={item.name}
-                            to={item.href}
-                            className={`flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors relative ${
-                              isActive(item.href)
-                                ? "text-golden bg-golden/5"
-                                : "text-heritage hover:text-golden hover:bg-golden/5"
-                            }`}
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            {item.name}
-                            {item.isHot && (
-                              <span className="ml-2 bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full animate-pulse">
-                                HOT
-                              </span>
+                {/* Main Navigation Bar */}
+                <div className="container mx-auto px-4">
+                    <div className="flex items-center justify-between h-16 lg:h-24 gap-4">
+
+                        {/* Mobile Menu Toggle */}
+                        <div className="lg:hidden">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="text-heritage hover:bg-heritage/5 h-10 w-10"
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            >
+                                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                            </Button>
+                        </div>
+
+                        {/* Logo */}
+                        <Link to="/" className="flex-1 lg:flex-none flex justify-center lg:justify-start flex-shrink-0">
+                            <div className="hover:opacity-85 transition-all duration-300 transform hover:scale-105">
+                                <img
+                                    src={makarioLogo}
+                                    alt="Makario"
+                                    className="h-14 lg:h-20 w-auto object-contain opacity-95 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                                />
+                            </div>
+                        </Link>
+
+                        {/* Desktop Navigation */}
+                        <nav className="hidden lg:flex items-center justify-center flex-1 mx-8">
+                            <div className="flex items-center gap-4">
+                                {navLinks.map((link) => (
+                                    <div
+                                        key={link.href}
+                                        className="relative group"
+                                        onMouseEnter={() => setActiveHover(link.href)}
+                                        onMouseLeave={() => setActiveHover(null)}
+                                    >
+                                        <Link
+                                            to={link.href}
+                                            className={`text-sm font-bold px-4 py-2.5 rounded-xl transition-all duration-300 relative ${getNavButtonClass(isActive(link.href))}`}
+                                        >
+                                            <span className="flex items-center gap-2 whitespace-nowrap">
+                                                {link.name}
+                                                {link.isHot && (
+                                                    <span className="text-[6px] font-bold px-1.5 py-0.5 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white animate-pulse">HOT</span>
+                                                )}
+                                            </span>
+                                        </Link>
+                                    </div>
+                                ))}
+                            </div>
+                        </nav>
+
+                        {/* Right Actions */}
+                        <div className="flex items-center gap-2 lg:gap-4">
+                            {/* Wishlist */}
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => openWishlist()}
+                                className="relative h-11 w-11 rounded-xl hover:bg-golden/10 text-heritage hover:text-golden transition-all duration-300 group"
+                            >
+                                <Heart className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                                {wishlistItems.length > 0 && (
+                                    <Badge className="absolute -top-1 -right-1 h-6 w-6 p-0 flex items-center justify-center text-xs bg-gradient-to-r from-red-500 to-red-600 text-white font-bold shadow-lg">
+                                        {wishlistItems.length}
+                                    </Badge>
+                                )}
+                            </Button>
+
+                            {/* Cart */}
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => openCart()}
+                                className="relative h-11 w-11 rounded-xl hover:bg-golden/10 text-heritage hover:text-golden transition-all duration-300 group"
+                            >
+                                <ShoppingCart className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                                {getTotalItems() > 0 && (
+                                    <Badge className="absolute -top-1 -right-1 h-6 w-6 p-0 flex items-center justify-center text-xs bg-gradient-to-r from-red-500 to-red-600 text-white font-bold shadow-lg">
+                                        {getTotalItems()}
+                                    </Badge>
+                                )}
+                            </Button>
+
+                            {/* User Menu */}
+                            {user ? (
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            className="h-11 px-4 rounded-xl hover:bg-golden/10 text-heritage hover:text-golden transition-all duration-300 font-semibold group"
+                                        >
+                                            <User className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                                            <span className="hidden md:inline md:ml-2 text-sm font-bold">{user.name}</span>
+                                        </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end" className="w-52 rounded-xl shadow-xl border border-golden/20">
+                                        <DropdownMenuItem asChild>
+                                            <Link to="/profile" className="cursor-pointer">
+                                                <User className="h-4 w-4 mr-2" />
+                                                Profile
+                                            </Link>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem asChild>
+                                            <Link to="/orders" className="cursor-pointer">
+                                                <Package className="h-4 w-4 mr-2" />
+                                                Orders
+                                            </Link>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem asChild>
+                                            <Link to="/wishlist" className="cursor-pointer">
+                                                <Heart className="h-4 w-4 mr-2" />
+                                                Wishlist
+                                            </Link>
+                                        </DropdownMenuItem>
+                                        <div className="h-px bg-golden/15 my-2" />
+                                        <DropdownMenuItem onClick={logout} className="cursor-pointer text-red-600">
+                                            <LogOut className="h-4 w-4 mr-2" />
+                                            Logout
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            ) : (
+                                <Button
+                                    size="sm"
+                                    onClick={() => setShowAuthModal(true)}
+                                    className="h-11 px-6 bg-gradient-to-r from-golden to-golden/90 hover:from-golden/90 hover:to-golden/80 text-white font-bold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 group"
+                                >
+                                    <User className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                                    <span className="hidden md:inline md:ml-2">Login</span>
+                                </Button>
                             )}
-                          </Link>
-                        ))}
-                      </nav>
-
-                      {/* Quick Actions */}
-                      <div className="mt-6 space-y-2">
-                        <Button variant="outline" size="lg" className="w-full justify-start" asChild>
-                          <Link to="/track-order" onClick={() => setIsMenuOpen(false)}>
-                            <Package className="w-4 h-4 mr-2" />
-                            Track Order
-                          </Link>
-                        </Button>
-                        <Button variant="outline" size="lg" className="w-full justify-start" asChild>
-                          <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                            <Mail className="w-4 h-4 mr-2" />
-                            Contact Us
-                          </Link>
-                        </Button>
-                      </div>
-
-                      {/* CTA Buttons */}
-                      <div className="mt-6 space-y-2">
-                        <Button variant="hero" size="lg" className="w-full" asChild>
-                          <Link to="/shop" onClick={() => setIsMenuOpen(false)}>
-                            Shop Now
-                          </Link>
-                        </Button>
-                        <Button 
-                          variant="outline" 
-                          size="lg" 
-                          className="w-full border-2 border-heritage text-heritage hover:bg-heritage hover:text-white" 
-                          asChild
-                        >
-                          <Link to="/bulk-orders" onClick={() => setIsMenuOpen(false)}>
-                            Bulk Orders
-                          </Link>
-                        </Button>
-                      </div>
+                        </div>
                     </div>
-                  </div>
-
-                  {/* Mobile Menu Footer */}
-                  <div className="p-4 border-t border-golden/20">
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center space-x-2">
-                        <Phone className="w-4 h-4" />
-                        <span>+91 9953240031</span>
-                      </div>
-                      {user && (
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          onClick={() => {
-                            logout();
-                            setIsMenuOpen(false);
-                          }}
-                          className="text-red-500 hover:text-red-600"
-                        >
-                          <LogOut className="w-4 h-4 mr-2" />
-                          Logout
-                        </Button>
-                      )}
-                    </div>
-                  </div>
                 </div>
-              </div>
 
-              {/* Overlay Close Button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute top-4 right-4 text-white hover:text-white/80"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <X className="h-6 w-6" />
-              </Button>
-            </div>
-          )}
-        </div>
-      </header>
+                {/* Mobile Navigation Sidebar */}
+                {isMenuOpen && (
+                    <div className="lg:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm">
+                        <div className="absolute inset-y-0 left-0 w-4/5 max-w-sm bg-white shadow-2xl overflow-y-auto rounded-r-2xl">
+                            <div className="flex flex-col h-full">
 
-      {/* Search Modal */}
-      <SearchModal
-        isOpen={showSearchModal}
-        onClose={() => setShowSearchModal(false)}
-      />
+                                {/* Mobile Menu Header */}
+                                <div className="p-5 border-b-2 border-golden/15 flex items-center justify-between sticky top-0 bg-gradient-to-r from-white to-golden/5">
+                                    <Link to="/" onClick={() => setIsMenuOpen(false)}>
+                                        <img
+                                            src={makarioLogo}
+                                            alt="Makario"
+                                            className="h-12 w-auto object-contain opacity-95 rounded-lg"
+                                        />
+                                    </Link>
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="h-11 w-11 hover:bg-heritage/10 rounded-xl transition-all"
+                                    >
+                                        <X className="h-6 w-6" />
+                                    </Button>
+                                </div>
 
-      {/* Auth Modal */}
-      <AuthModal
-         isOpen={showAuthModal}
-         onClose={() => setShowAuthModal(false)}
-         initialView="login"
-      />
+                                {/* Mobile Menu Content */}
+                                <div className="flex-1 p-5 space-y-4">
 
-      {/* Cart Sidebar */}
-      <CartSidebar />
+                                    {/* User Section */}
+                                    {user ? (
+                                        <div className="p-4 bg-gradient-to-br from-golden/10 to-golden/5 rounded-xl border-2 border-golden/20">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-golden/20 to-golden/10 flex items-center justify-center">
+                                                    <User className="w-6 h-6 text-golden" />
+                                                </div>
+                                                <div>
+                                                    <div className="font-bold text-heritage text-sm">{user.name}</div>
+                                                    <div className="text-xs text-heritage/60">{user.email}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <Button
+                                            className="w-full bg-gradient-to-r from-golden to-golden/90 hover:from-golden/90 hover:to-golden/80 text-white font-bold h-11 rounded-xl shadow-md transition-all transform hover:scale-105"
+                                            onClick={() => {
+                                                setIsMenuOpen(false);
+                                                setShowAuthModal(true);
+                                            }}
+                                        >
+                                            <User className="h-5 w-5 mr-2" />
+                                            Sign In
+                                        </Button>
+                                    )}
 
-      {/* Wishlist Sidebar */}
-      <WishlistSidebar />
-    </>
-  );
+                                    {/* Navigation Links */}
+                                    <nav className="space-y-2">
+                                        {navLinks.map((link) => (
+                                            <Link
+                                                key={link.href}
+                                                to={link.href}
+                                                className={`block px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 border-2 ${isActive(link.href)
+                                                    ? "text-golden bg-green-100 border-green-400 hover:bg-green-200 shadow-md"
+                                                    : "text-heritage border-transparent hover:text-golden hover:bg-white/50"
+                                                    }`}
+                                                onClick={() => setIsMenuOpen(false)}
+                                            >
+                                                <span className="flex items-center gap-2">
+                                                    {link.name}
+                                                    {link.isHot && (
+                                                        <span className="text-[6px] font-bold px-1.5 py-0.5 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white animate-pulse">HOT</span>
+                                                    )}
+                                                </span>
+                                            </Link>
+                                        ))}
+                                    </nav>
+
+                                    {/* Quick Links */}
+                                    <div className="border-t-2 border-golden/15 pt-4 space-y-2">
+                                        <Link
+                                            to="/track-order"
+                                            onClick={() => setIsMenuOpen(false)}
+                                            className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-heritage hover:text-golden hover:bg-golden/5 transition-all border-2 border-golden/20 hover:border-golden/40"
+                                        >
+                                            <Package className="w-5 h-5" />
+                                            Track Order
+                                        </Link>
+                                        <Link
+                                            to="/shipping"
+                                            onClick={() => setIsMenuOpen(false)}
+                                            className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-heritage hover:text-golden hover:bg-golden/5 transition-all border-2 border-golden/20 hover:border-golden/40"
+                                        >
+                                            <Mail className="w-5 h-5" />
+                                            Shipping Info
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                {/* Mobile Menu Footer */}
+                                {user && (
+                                    <div className="p-5 border-t-2 border-golden/15 bg-gradient-to-r from-white to-golden/5">
+                                        <Button
+                                            className="w-full text-red-600 hover:text-red-700 hover:bg-red-50/80 font-bold h-11 rounded-xl border-2 border-red-300/50 transition-all"
+                                            variant="outline"
+                                            onClick={() => {
+                                                logout();
+                                                setIsMenuOpen(false);
+                                            }}
+                                        >
+                                            <LogOut className="w-5 h-5 mr-2" />
+                                            Logout
+                                        </Button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </header>
+
+            {/* Modals */}
+            <SearchModal isOpen={showSearchModal} onClose={() => setShowSearchModal(false)} />
+            <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} initialView="login" />
+            <CartSidebar />
+            <WishlistSidebar />
+        </>
+    );
 };
 
 export default Header;
