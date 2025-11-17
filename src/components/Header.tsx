@@ -86,11 +86,11 @@ const Header = () => {
 
                         {/* Logo */}
                         <Link to="/" className="flex-1 lg:flex-none flex justify-center lg:justify-start flex-shrink-0">
-                            <div className="hover:opacity-85 transition-all duration-300 transform hover:scale-105 rounded-3xl overflow-hidden bg-white p-1">
+                            <div className="hover:opacity-85 transition-all duration-300 transform hover:scale-105">
                                 <img
                                     src={makarioLogo}
                                     alt="Makario"
-                                    className="h-14 lg:h-20 w-auto object-contain opacity-95 shadow-sm hover:shadow-md transition-shadow rounded-2xl"
+                                    className="h-14 lg:h-20 w-auto object-contain opacity-95 shadow-sm hover:shadow-md transition-shadow rounded-3xl"
                                 />
                             </div>
                         </Link>
