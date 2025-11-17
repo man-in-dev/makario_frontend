@@ -38,9 +38,9 @@ const Header = () => {
 
     const getNavButtonClass = (isActiveLink: boolean) => {
         if (isActiveLink) {
-            return "text-golden bg-green-100 border-2 border-green-400 hover:bg-green-200 shadow-md";
+            return "inline-flex items-center justify-center text-golden bg-green-100 border-2 border-green-400 hover:bg-green-200 shadow-md";
         }
-        return "text-heritage/80 border-2 border-transparent hover:text-golden hover:bg-white/50";
+        return "inline-flex items-center justify-center text-heritage/80 border-2 border-transparent hover:text-golden hover:bg-white/50";
     };
 
     return (
@@ -107,7 +107,7 @@ const Header = () => {
                                     >
                                         <Link
                                             to={link.href}
-                                            className={`text-sm font-bold px-4 py-2.5 rounded-xl transition-all duration-300 relative ${getNavButtonClass(isActive(link.href))}`}
+                                            className={`text-sm font-bold px-5 py-2.5 rounded-xl transition-all duration-300 relative whitespace-nowrap ${getNavButtonClass(isActive(link.href))}`}
                                         >
                                             <span className="flex items-center gap-2 whitespace-nowrap">
                                                 {link.name}
@@ -266,7 +266,7 @@ const Header = () => {
                                             <Link
                                                 key={link.href}
                                                 to={link.href}
-                                                className={`block px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 border-2 ${isActive(link.href)
+                                                className={`flex items-center px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 border-2 ${isActive(link.href)
                                                     ? "text-golden bg-green-100 border-green-400 hover:bg-green-200 shadow-md"
                                                     : "text-heritage border-transparent hover:text-golden hover:bg-white/50"
                                                     }`}
