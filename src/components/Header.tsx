@@ -45,7 +45,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="bg-white fixed top-0 w-full z-50 shadow-md border-b-2 border-golden/20">
+            <header className="bg-white fixed top-0 left-0 right-0 z-50 shadow-md border-b-2 border-golden/20">
                 {/* Top Bar - Desktop Only */}
                 <div className="hidden lg:block bg-gradient-to-r from-heritage/5 to-golden/5 border-b border-golden/15">
                     <div className="container mx-auto px-4">

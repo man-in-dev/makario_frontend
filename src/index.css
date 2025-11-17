@@ -144,7 +144,14 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-sans pt-16 lg:pt-24;
+    @apply bg-background text-foreground font-sans;
+    padding-top: 64px;
+  }
+  
+  @media (min-width: 1024px) {
+    body {
+      padding-top: 96px;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
