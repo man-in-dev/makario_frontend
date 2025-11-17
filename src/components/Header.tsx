@@ -86,11 +86,11 @@ const Header = () => {
 
                         {/* Logo */}
                         <Link to="/" className="flex-1 lg:flex-none flex justify-center lg:justify-start flex-shrink-0">
-                            <div className="hover:opacity-85 transition-all duration-300 transform hover:scale-105">
+                            <div className="hover:opacity-85 transition-all duration-300 transform hover:scale-105 rounded-2xl overflow-hidden">
                                 <img
                                     src={makarioLogo}
                                     alt="Makario"
-                                    className="h-14 lg:h-20 w-auto object-contain opacity-95 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                                    className="h-14 lg:h-20 w-auto object-contain opacity-95 shadow-sm hover:shadow-md transition-shadow"
                                 />
                             </div>
                         </Link>
@@ -218,7 +218,7 @@ const Header = () => {
                                         <img
                                             src={makarioLogo}
                                             alt="Makario"
-                                            className="h-12 w-auto object-contain opacity-95 rounded-lg"
+                                            className="h-12 w-auto object-contain opacity-95 rounded-2xl"
                                         />
                                     </Link>
                                     <Button
