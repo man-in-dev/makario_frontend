@@ -105,21 +105,23 @@ const Contact = () => {
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button
-                  variant="hero"
-                  size="lg"
-                  className="group"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
-                  Call Now: +91 9953240031
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-2"
-                >
-                  <MessageSquare className="w-5 h-5 mr-2" />
-                  WhatsApp Us
-                </Button>
+                    variant="hero"
+                    size="lg"
+                    className="group"
+                    onClick={() => window.location.href = 'tel:+919953240031'}
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call Now: +91 9953240031
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-2"
+                    onClick={() => window.open('https://wa.me/919953240031', '_blank')}
+                  >
+                    <MessageSquare className="w-5 h-5 mr-2" />
+                    WhatsApp Us
+                  </Button>
               </div>
             </motion.div>
           </div>
@@ -316,7 +318,12 @@ const Contact = () => {
 
                     <div>
                       <h3 className="text-xl font-semibold text-heritage mb-2">Get Directions</h3>
-                      <Button variant="hero" size="lg" className="w-full">
+                      <Button 
+                        variant="hero" 
+                        size="lg" 
+                        className="w-full"
+                        onClick={() => window.open('https://www.google.com/maps/search/Makario+The+Pride+Of+Bihar+Falka+Katihar/@25.632291,87.275122', '_blank')}
+                      >
                         <MapPin className="w-5 h-5 mr-2" />
                         Open in Google Maps
                       </Button>
@@ -344,6 +351,7 @@ const Contact = () => {
                 variant="hero"
                 size="lg"
                 className="group"
+                onClick={() => window.open('https://wa.me/919953240031', '_blank')}
               >
                 <MessageSquare className="w-5 h-5 mr-2" />
                 Start Live Chat
@@ -353,6 +361,7 @@ const Contact = () => {
                 variant="outline"
                 size="lg"
                 className="border-2"
+                onClick={() => window.location.href = 'mailto:info@makario.in'}
               >
                 <Mail className="w-5 h-5 mr-2" />
                 Email Support

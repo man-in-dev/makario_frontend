@@ -1257,7 +1257,7 @@ const Index = () => {
             })}
           </div>
         </div>
-      </section> */
+      </section> */}
 
       {/* CTA Section - Enhanced */}
       <section className="py-16 bg-gradient-to-br from-heritage/10 via-golden/10 to-muted/30 relative overflow-hidden">
