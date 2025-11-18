@@ -1174,8 +1174,8 @@ const Index = () => {
 
       
 
-      {/* Customer Review Video Section */}
-      <section className="py-16 bg-gradient-to-br from-heritage/5 via-golden/5 to-muted/20">
+      {/* Customer Review Video Section - HIDDEN */}
+      {/* <section className="py-16 bg-gradient-to-br from-heritage/5 via-golden/5 to-muted/20">
         <div className="container mx-auto px-4">
           <SectionHeader
             eyebrow="CUSTOMER TESTIMONIALS"
@@ -1210,7 +1210,6 @@ const Index = () => {
                     style={{ aspectRatio: '9/16', minHeight: '400px' }}
                     onClick={!isPlaying ? handleClick : undefined}
                   >
-                    {/* Video Iframe - Google Drive */}
                     {isPlaying && (
                       <iframe
                         src={`https://drive.google.com/file/d/${video.id}/preview?autoplay=1`}
@@ -1222,7 +1221,6 @@ const Index = () => {
                       />
                     )}
                     
-                    {/* Loading Spinner */}
                     {isLoading && (
                       <div className="absolute inset-0 bg-black/80 flex items-center justify-center z-30">
                         <div className="flex flex-col items-center gap-3">
@@ -1232,7 +1230,6 @@ const Index = () => {
                       </div>
                     )}
                     
-                    {/* Thumbnail overlay with Play button */}
                     {!isPlaying && !isLoading && (
                       <div className="absolute inset-0 bg-gradient-to-br from-heritage via-golden/40 to-heritage/90 flex items-center justify-center z-20 group-hover:scale-105 transition-transform duration-500">
                         <div className="w-24 h-24 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center border-4 border-white/60 transition-all duration-500 group-hover:scale-110 group-hover:bg-white/40">
@@ -1241,12 +1238,10 @@ const Index = () => {
                       </div>
                     )}
 
-                    {/* Decorative corner badge */}
                     <div className="absolute top-3 right-3 bg-golden/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-xs font-bold z-30 shadow-lg">
                       Review #{video.num}
                     </div>
                     
-                    {/* Click instruction */}
                     {!isPlaying && !isLoading && (
                       <div className="absolute bottom-3 left-3 right-3 text-center z-25">
                         <p className="text-white text-xs font-semibold bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full group-hover:bg-golden/70 transition-colors duration-300">
@@ -1262,7 +1257,7 @@ const Index = () => {
             })}
           </div>
         </div>
-      </section>
+      </section> */
 
       {/* CTA Section - Enhanced */}
       <section className="py-16 bg-gradient-to-br from-heritage/10 via-golden/10 to-muted/30 relative overflow-hidden">
