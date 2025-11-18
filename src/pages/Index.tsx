@@ -1348,6 +1348,7 @@ const Index = () => {
           onClose={() => setShowContactForm(false)}
           title="Export Inquiry"
           formType="contact"
+          isPopup={true}
         />
       )}
       
@@ -1357,6 +1358,7 @@ const Index = () => {
           onClose={() => setShowBulkForm(false)}
           title="Bulk Order Quote"
           formType="bulk"
+          isPopup={true}
         />
       )}
 

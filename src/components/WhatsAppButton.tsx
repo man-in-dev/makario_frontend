@@ -18,7 +18,7 @@ const WhatsAppButton = () => {
   return (
     <div 
       className="fixed right-4 z-50"
-  style={{ bottom: window.innerWidth <= 768 ? '1rem' : '1rem' }} // more gap for mobile
+  style={{ bottom: window.innerWidth <= 768 ? '2rem' : '1rem' }}
       id="whatsapp-button-main"
     >
       <div className="relative">

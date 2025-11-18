@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { X, Mail, Phone, User } from "lucide-react";
 
@@ -159,18 +158,12 @@ const ContactForm = ({
             </div>
             <div>
               <Label htmlFor="productType">Product Type</Label>
-              <Select value={formData.productType} onValueChange={(value) => setFormData({...formData, productType: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select product type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="premium-roasted">Premium Roasted Makhana</SelectItem>
-                  <SelectItem value="natural-raw">Natural Raw Makhana</SelectItem>
-                  <SelectItem value="flavored">Flavored Makhana</SelectItem>
-                  <SelectItem value="organic">Organic Certified</SelectItem>
-                  <SelectItem value="mixed">Mixed Varieties</SelectItem>
-                </SelectContent>
-              </Select>
+              <Input
+                id="productType"
+                value={formData.productType}
+                onChange={(e) => setFormData({...formData, productType: e.target.value})}
+                placeholder="e.g., Premium Roasted Makhana"
+              />
             </div>
           </div>
 

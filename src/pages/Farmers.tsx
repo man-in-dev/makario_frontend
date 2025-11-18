@@ -1,4 +1,4 @@
-import { Users, Heart, HandHeart, Sprout, Award, TrendingUp } from "lucide-react";
+import { Users, Heart, HandHeart, Sprout, Award, TrendingUp, ImageIcon } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SectionHeader from "@/components/SectionHeader";
@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import biharFieldsImage from "@/assets/blog/Makhana-The-Healthy-Indian-Snack.jpg";
+import farmersWorkingImage from "@/assets/homepage/WhatsApp-Image-2025-04-07-at-08.38.17_0b1146ba-1024x683.webp";
+import cultivationProcessImage from "@/assets/homepage/makhana process.png";
+import makhanaFieldsImage from "@/assets/homepage/makhana khet farming.jpg";
 
 const Farmers = () => {
   const stories = [
@@ -143,6 +146,119 @@ const Farmers = () => {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Farmers Gallery Section */}
+      <section className="py-16 bg-gradient-to-br from-golden/5 via-nature/5 to-muted/30">
+        <div className="container mx-auto px-4">
+          <SectionHeader
+            eyebrow="FARMERS IN ACTION"
+            icon={ImageIcon}
+            title="Meet Our Farmers Gallery"
+            highlightWord="Farmers Gallery"
+            highlightColor="green"
+            description="See our dedicated farmers working in the fields, cultivating premium makhana with traditional methods and modern care."
+            className="mb-12"
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {/* Gallery Image 1 */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+              <img
+                src={farmersWorkingImage}
+                alt="Farmers Working in Makhana Fields"
+                className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <div className="text-white">
+                  <h3 className="text-xl font-semibold mb-1">Field Work</h3>
+                  <p className="text-sm text-gray-200">Harvesting premium makhana</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Gallery Image 2 */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+              <img
+                src={makhanaFieldsImage}
+                alt="Makhana Cultivation Fields in Bihar"
+                className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <div className="text-white">
+                  <h3 className="text-xl font-semibold mb-1">Cultivation Fields</h3>
+                  <p className="text-sm text-gray-200">Pristine wetlands of Bihar</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Gallery Image 3 */}
+            <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+              <img
+                src={cultivationProcessImage}
+                alt="Makhana Processing & Preparation"
+                className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <div className="text-white">
+                  <h3 className="text-xl font-semibold mb-1">Processing</h3>
+                  <p className="text-sm text-gray-200">Traditional preparation methods</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Gallery Description */}
+          <Card className="bg-white/80 backdrop-blur-sm border border-nature/20 p-8">
+            <CardContent className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h3 className="text-2xl font-bold text-heritage mb-4">Our Farmers' Excellence</h3>
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    Every image tells a story of dedication and hard work. Our farmers wake up before dawn to tend their fields, 
+                    employing generations-old wisdom combined with modern sustainable practices.
+                  </p>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    From cultivation to harvesting, each step is carefully managed to ensure the highest quality makhana reaches 
+                    tables across the globe. Their passion for excellence is reflected in every grain.
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 rounded-full bg-nature"></div>
+                      <span className="text-heritage font-medium">Sustainable farming practices</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 rounded-full bg-golden"></div>
+                      <span className="text-heritage font-medium">Generation-old cultivation expertise</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 rounded-full bg-nature"></div>
+                      <span className="text-heritage font-medium">Quality-focused harvest methods</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-br from-golden-light/30 to-nature/20 p-6 rounded-xl">
+                  <Users className="w-12 h-12 text-heritage mb-4" />
+                  <h4 className="text-lg font-semibold text-heritage mb-3">Farmer Statistics</h4>
+                  <div className="space-y-3">
+                    <div>
+                      <div className="text-2xl font-bold text-golden">5000+</div>
+                      <p className="text-sm text-muted-foreground">Family Farmers</p>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-heritage">15,000</div>
+                      <p className="text-sm text-muted-foreground">Hectares Cultivated</p>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-nature">25+</div>
+                      <p className="text-sm text-muted-foreground">Average Years Experience</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
