@@ -44,6 +44,15 @@ export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem('wishlist', JSON.stringify(items));
   }, [items]);
 
+  // Lock body scroll when wishlist is open
+  useEffect(() => {
+    if (isWishlistOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isWishlistOpen]);
+
   const addToWishlist = (product: Product) => {
     setItems(prevItems => {
       const exists = prevItems.some(item => item.id === product.id);

@@ -29,7 +29,7 @@ const Index = () => {
   const [showBulkForm, setShowBulkForm] = useState(false);
   const [showQuoteForm, setShowQuoteForm] = useState(false);
   
-  // Structured Data for Homepage
+  // Structured Data for Homepage - Kept for reference
   const homePageStructuredData = [
     {
       "@context": "https://schema.org",
@@ -102,26 +102,28 @@ const Index = () => {
       }
     }
   ];
+
+  // Features section for "Why Choose Bihar Makhana"
   const features = [
     {
       icon: Heart,
       title: "Pure & Natural",
-      description: "100% organic makhana grown in the pristine wetlands of Bihar"
+      description: "100% organic makhana without any chemicals or additives"
     },
     {
       icon: Shield,
-      title: "Premium Quality",
-      description: "Traditional methods ensuring the highest quality standards"
-    },
-    {
-      icon: Globe,
-      title: "Global Reach",
-      description: "Exporting to 50+ countries across the world"
+      title: "Quality Assured",
+      description: "Rigorous testing ensures premium export-grade quality"
     },
     {
       icon: Truck,
-      title: "Bulk Orders",
-      description: "Competitive pricing for wholesale and bulk purchases"
+      title: "Direct from Farmers",
+      description: "No middlemen - direct supply from Bihar's best farmers"
+    },
+    {
+      icon: Globe,
+      title: "Global Trusted",
+      description: "Exported to 50+ countries with excellent reviews"
     }
   ];
 
@@ -1172,94 +1174,11 @@ const Index = () => {
         </div>
       </section>
 
-      
 
-      {/* Customer Review Video Section - HIDDEN */}
-      {/* <section className="py-16 bg-gradient-to-br from-heritage/5 via-golden/5 to-muted/20">
-        <div className="container mx-auto px-4">
-          <SectionHeader
-            eyebrow="CUSTOMER TESTIMONIALS"
-            icon={Play}
-            title="What Our Customers Say"
-            highlightWord="Customers Say"
-            highlightColor="green"
-            description="Real experiences from our valued customers across the globe"
-            className="mb-12"
-          />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 max-w-7xl mx-auto">
-            {[
-              { id: '1I18rdBfV3CdmVB7-4wKzmEh9LauyKn7e', num: 1 },
-              { id: '1I18rdBfV3CdmVB7-4wKzmEh9LauyKn7e', num: 2 },
-              { id: '1I18rdBfV3CdmVB7-4wKzmEh9LauyKn7e', num: 3 },
-              { id: '1I18rdBfV3CdmVB7-4wKzmEh9LauyKn7e', num: 4 },
-              { id: '1I18rdBfV3CdmVB7-4wKzmEh9LauyKn7e', num: 5 }
-            ].map((video) => {
-              const VideoCard = () => {
-                const [isPlaying, setIsPlaying] = useState(false);
-                const [isLoading, setIsLoading] = useState(false);
 
-                const handleClick = () => {
-                  setIsLoading(true);
-                  setIsPlaying(true);
-                };
 
-                return (
-                  <div 
-                    className="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-black cursor-pointer group"
-                    style={{ aspectRatio: '9/16', minHeight: '400px' }}
-                    onClick={!isPlaying ? handleClick : undefined}
-                  >
-                    {isPlaying && (
-                      <iframe
-                        src={`https://drive.google.com/file/d/${video.id}/preview?autoplay=1`}
-                        className="absolute inset-0 w-full h-full border-0"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                        style={{ zIndex: 20 }}
-                        onLoad={() => setIsLoading(false)}
-                      />
-                    )}
-                    
-                    {isLoading && (
-                      <div className="absolute inset-0 bg-black/80 flex items-center justify-center z-30">
-                        <div className="flex flex-col items-center gap-3">
-                          <div className="w-12 h-12 border-4 border-golden border-t-transparent rounded-full animate-spin"></div>
-                          <p className="text-white text-sm">Loading video...</p>
-                        </div>
-                      </div>
-                    )}
-                    
-                    {!isPlaying && !isLoading && (
-                      <div className="absolute inset-0 bg-gradient-to-br from-heritage via-golden/40 to-heritage/90 flex items-center justify-center z-20 group-hover:scale-105 transition-transform duration-500">
-                        <div className="w-24 h-24 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center border-4 border-white/60 transition-all duration-500 group-hover:scale-110 group-hover:bg-white/40">
-                          <Play className="w-12 h-12 text-white ml-1" fill="white" />
-                        </div>
-                      </div>
-                    )}
 
-                    <div className="absolute top-3 right-3 bg-golden/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-xs font-bold z-30 shadow-lg">
-                      Review #{video.num}
-                    </div>
-                    
-                    {!isPlaying && !isLoading && (
-                      <div className="absolute bottom-3 left-3 right-3 text-center z-25">
-                        <p className="text-white text-xs font-semibold bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full group-hover:bg-golden/70 transition-colors duration-300">
-                          Click to Watch
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                );
-              };
-
-              return <VideoCard key={video.num} />;
-            })}
-          </div>
-        </div>
-      </section> */}
-
-      {/* CTA Section - Enhanced */}
+{/* CTA Section - Enhanced */}
       <section className="py-16 bg-gradient-to-br from-heritage/10 via-golden/10 to-muted/30 relative overflow-hidden">
         {/* Background Decorative Elements */}
         <div className="absolute inset-0 opacity-15">

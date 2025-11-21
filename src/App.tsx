@@ -11,7 +11,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
 import { WishlistProvider } from "./contexts/WishlistContext";
 import { LoadingProvider } from "./contexts/LoadingContext";
-import { AdminAuthProvider } from "./contexts/AdminAuthContext";
+
 
 // Components
 import RouteLoader from "./components/RouteLoader";
@@ -54,25 +54,7 @@ const QualityProcess = lazy(() => import("./pages/QualityProcess"));
 const ExportQuality = lazy(() => import("./pages/ExportQuality"));
 const RegionalPages = lazy(() => import("./pages/RegionalPages"));
 
-// Admin Components
-const AdminLogin = lazy(() => import("./components/admin/AdminLogin"));
-const AdminLayout = lazy(() => import("./components/admin/AdminLayout"));
-const AdminProtectedRoute = lazy(() => import("./components/admin/AdminProtectedRoute"));
-const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
-const AdminProducts = lazy(() => import("./pages/admin/AdminProducts"));
-const AdminAddProduct = lazy(() => import("./pages/admin/AdminAddProduct"));
-const AdminCategories = lazy(() => import("./pages/admin/AdminCategories"));
-const AdminInventory = lazy(() => import("./pages/admin/AdminInventory"));
-const AdminOrders = lazy(() => import("./pages/admin/AdminOrders"));
-const AdminCustomers = lazy(() => import("./pages/admin/AdminCustomers"));
-const AdminShipping = lazy(() => import("./pages/admin/AdminShipping"));
-const AdminPayments = lazy(() => import("./pages/admin/AdminPayments"));
-const AdminCoupons = lazy(() => import("./pages/admin/AdminCoupons"));
-const AdminAnalytics = lazy(() => import("./pages/admin/AdminAnalytics"));
-const AdminSettings = lazy(() => import("./pages/admin/AdminSettings"));
-const AdminMarketing = lazy(() => import("./components/admin/AdminMarketing"));
-const AdminPromotions = lazy(() => import("./components/admin/AdminPromotions"));
-const AdminEmailCampaigns = lazy(() => import("./components/admin/AdminEmailCampaigns"));
+
 
 const queryClient = new QueryClient();
 
@@ -97,8 +79,7 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AuthProvider>
-          <AdminAuthProvider>
-            <LoadingProvider>
+          <LoadingProvider>
             <CartProvider>
               <WishlistProvider>
                 <BrowserRouter>
@@ -108,83 +89,38 @@ const App = () => {
                   <MobileBottomMenu />
                   <RouteLoader>
                     <Routes>
-                      {/* Chatbot Popup */}
-                  <Route path="/" element={<Index />} />
-                  <Route path="/about" element={<About />} />
-                   <Route path="/about/founders" element={<FoundersStory />} />
-                   <Route path="/shop" element={<Shop />} />
-                   <Route path="/product-categories" element={<ProductCategories />} />
-                   <Route path="/product/:id" element={<ProductDetail />} />
-                   <Route path="/cart" element={<CartPage />} />
-                   <Route path="/checkout" element={<Checkout />} />
-                   <Route path="/wishlist" element={<Wishlist />} />
-                   <Route path="/bulk-orders" element={<BulkOrders />} />
-                   <Route path="/bulk/export-quality" element={<ExportQuality />} />
-                   <Route path="/contact" element={<Contact />} />
-                   <Route path="/blog" element={<Blog />} />
-                   <Route path="/blog/:id" element={<BlogPost />} />
-                   <Route path="/blog/regional/:region" element={<RegionalPages />} />
-                   <Route path="/regional" element={<RegionalPages />} />
-                   <Route path="/faq" element={<FAQ />} />
-                   <Route path="/privacy" element={<Privacy />} />
-                   <Route path="/terms" element={<Terms />} />
-                   <Route path="/shipping" element={<ShippingPolicy />} />
-                   <Route path="/refund" element={<RefundPolicy />} />
-                   <Route path="/agriculture" element={<Agriculture />} />
-                   <Route path="/farmers" element={<Farmers />} />
-                   <Route path="/quality-assurance" element={<QualityAssurance />} />
-                   <Route path="/quality/process" element={<QualityProcess />} />
-                   <Route path="/quality-process" element={<QualityProcess />} />
-                   <Route path="/login" element={<Login />} />
-                   <Route path="/profile" element={<UserProfile />} />
-                   <Route path="/orders" element={<Orders />} />
-                   <Route path="/track-order" element={<TrackOrder />} />
-                   <Route path="/custom-packaging" element={<CustomPackaging />} />
-                   <Route path="/logistics" element={<Logistics />} />
-                  <Route path="*" element={<NotFound />} />
-                  
-                  {/* Admin Routes */}
-                  <Route path="/admin/login" element={<AdminLogin />} />
-                  <Route path="/admin" element={
-                    <AdminProtectedRoute>
-                      <AdminLayout />
-                    </AdminProtectedRoute>
-                  }>
-                    <Route index element={<AdminDashboard />} />
-                    <Route path="dashboard" element={<AdminDashboard />} />
-                    <Route path="products" element={<AdminProducts />} />
-                    <Route path="products/add" element={<AdminAddProduct />} />
-                    <Route path="products/edit/:id" element={<AdminAddProduct />} />
-                    <Route path="products/categories" element={<AdminCategories />} />
-                    <Route path="products/inventory" element={<AdminInventory />} />
-                    <Route path="orders" element={<AdminOrders />} />
-                    <Route path="orders/:id" element={<AdminOrders />} />
-                    <Route path="customers" element={<AdminCustomers />} />
-                    <Route path="customers/:id" element={<AdminCustomers />} />
-                    <Route path="shipping" element={<AdminShipping />} />
-                    <Route path="shipping/config" element={<AdminShipping />} />
-                    <Route path="payments" element={<AdminPayments />} />
-                    <Route path="payments/transactions" element={<AdminPayments />} />
-                    <Route path="analytics" element={<AdminAnalytics />} />
-                    <Route path="analytics/sales" element={<AdminAnalytics />} />
-                    <Route path="analytics/customers" element={<AdminAnalytics />} />
-                    <Route path="analytics/products" element={<AdminAnalytics />} />
-                    <Route path="settings" element={<AdminSettings />} />
-                    <Route path="settings/general" element={<AdminSettings />} />
-                    <Route path="settings/shipping" element={<AdminSettings />} />
-                    <Route path="settings/payment" element={<AdminSettings />} />
-                    <Route path="settings/taxes" element={<AdminSettings />} />
-                    <Route path="marketing" element={<AdminMarketing />} />
-                    <Route path="marketing/campaigns" element={<AdminMarketing />} />
-                    <Route path="marketing/social" element={<AdminMarketing />} />
-                    <Route path="marketing/seo" element={<AdminMarketing />} />
-                    <Route path="marketing/coupons" element={<AdminCoupons />} />
-                    <Route path="marketing/promotions" element={<AdminPromotions />} />
-                    <Route path="marketing/emails" element={<AdminEmailCampaigns />} />
-                    <Route path="marketing/email-campaigns" element={<AdminEmailCampaigns />} />
-                  </Route>
-                  
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                      <Route path="/" element={<Index />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/about/founders" element={<FoundersStory />} />
+                      <Route path="/shop" element={<Shop />} />
+                      <Route path="/product-categories" element={<ProductCategories />} />
+                      <Route path="/product/:id" element={<ProductDetail />} />
+                      <Route path="/cart" element={<CartPage />} />
+                      <Route path="/checkout" element={<Checkout />} />
+                      <Route path="/wishlist" element={<Wishlist />} />
+                      <Route path="/bulk-orders" element={<BulkOrders />} />
+                      <Route path="/bulk/export-quality" element={<ExportQuality />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="/blog" element={<Blog />} />
+                      <Route path="/blog/:id" element={<BlogPost />} />
+                      <Route path="/blog/regional/:region" element={<RegionalPages />} />
+                      <Route path="/regional" element={<RegionalPages />} />
+                      <Route path="/faq" element={<FAQ />} />
+                      <Route path="/privacy" element={<Privacy />} />
+                      <Route path="/terms" element={<Terms />} />
+                      <Route path="/shipping" element={<ShippingPolicy />} />
+                      <Route path="/refund" element={<RefundPolicy />} />
+                      <Route path="/agriculture" element={<Agriculture />} />
+                      <Route path="/farmers" element={<Farmers />} />
+                      <Route path="/quality-assurance" element={<QualityAssurance />} />
+                      <Route path="/quality/process" element={<QualityProcess />} />
+                      <Route path="/quality-process" element={<QualityProcess />} />
+                      <Route path="/login" element={<Login />} />
+                      <Route path="/profile" element={<UserProfile />} />
+                      <Route path="/orders" element={<Orders />} />
+                      <Route path="/track-order" element={<TrackOrder />} />
+                      <Route path="/custom-packaging" element={<CustomPackaging />} />
+                      <Route path="/logistics" element={<Logistics />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </RouteLoader>
@@ -192,10 +128,9 @@ const App = () => {
               </WishlistProvider>
             </CartProvider>
           </LoadingProvider>
-          </AdminAuthProvider>
         </AuthProvider>
       </TooltipProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
   </HelmetProvider>
   );
 };

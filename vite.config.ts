@@ -30,12 +30,6 @@ export default defineConfig(({ mode }) => ({
     },
     // Reduce bundle size
     minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: mode === 'production',
-        drop_debugger: mode === 'production',
-      },
-    },
     // Enable CSS code splitting
     cssCodeSplit: true,
     // Set chunk size warning limit

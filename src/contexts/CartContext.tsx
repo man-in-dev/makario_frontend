@@ -52,6 +52,15 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.setItem('cart', JSON.stringify(items));
   }, [items]);
 
+  // Lock body scroll when cart is open
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isCartOpen]);
+
   const addToCart = (product: Product, quantity = 1) => {
     setItems(prevItems => {
       const existingItem = prevItems.find(item => item.product.id === product.id);
