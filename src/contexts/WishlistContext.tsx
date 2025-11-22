@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product } from '../data/products';
+import { lockScroll, unlockScroll } from '../utils/scrollManager';
 
 interface WishlistContextType {
   items: Product[];
@@ -47,9 +48,9 @@ export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // Lock body scroll when wishlist is open
   useEffect(() => {
     if (isWishlistOpen) {
-      document.body.style.overflow = 'hidden';
+      lockScroll();
     } else {
-      document.body.style.overflow = 'unset';
+      unlockScroll();
     }
   }, [isWishlistOpen]);
 

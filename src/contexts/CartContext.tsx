@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product } from '../data/products';
+import { lockScroll, unlockScroll } from '../utils/scrollManager';
 
 interface CartItem {
   product: Product;
@@ -55,9 +56,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Lock body scroll when cart is open
   useEffect(() => {
     if (isCartOpen) {
-      document.body.style.overflow = 'hidden';
+      lockScroll();
     } else {
-      document.body.style.overflow = 'unset';
+      unlockScroll();
     }
   }, [isCartOpen]);
 

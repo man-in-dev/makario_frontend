@@ -233,7 +233,7 @@ export const Checkout: React.FC = () => {
         <Card className="max-w-md mx-auto text-center">
           <CardContent className="pt-6">
             <h2 className="text-2xl font-semibold mb-4">No items to checkout</h2>
-            <Button onClick={() => navigate('/products')}>
+            <Button onClick={() => navigate('/shop')}>
               Continue Shopping
             </Button>
           </CardContent>
@@ -253,7 +253,7 @@ export const Checkout: React.FC = () => {
               Thank you for your order. You will receive a confirmation email shortly.
             </p>
             <div className="flex gap-4 justify-center">
-              <Button onClick={() => navigate('/products')}>
+              <Button onClick={() => navigate('/shop')}>
                 Continue Shopping
               </Button>
               <Button variant="outline" onClick={() => navigate('/')}>

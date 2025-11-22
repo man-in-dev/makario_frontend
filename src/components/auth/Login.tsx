@@ -31,11 +31,11 @@ export const Login: React.FC<LoginProps> = ({ onSwitchToSignup, onClose }) => {
       return;
     }
 
-    const success = await login(email, password);
-    if (success) {
+    const result = await login(email, password);
+    if (result.success) {
       onClose();
     } else {
-      setError('Invalid email or password');
+      setError(result.message || 'Invalid email or password');
     }
     setIsLoading(false);
   };

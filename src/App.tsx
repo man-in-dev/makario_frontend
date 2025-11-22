@@ -11,6 +11,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
 import { WishlistProvider } from "./contexts/WishlistContext";
 import { LoadingProvider } from "./contexts/LoadingContext";
+import { ScrollLockProvider } from "./contexts/ScrollLockContext";
 
 
 // Components
@@ -44,8 +45,9 @@ const Logistics = lazy(() => import("./pages/Logistics"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const FAQ = lazy(() => import("./pages/FAQ"));
-const Login = lazy(() => import("./pages/Login"));
-const UserProfile = lazy(() => import("./pages/UserProfile"));
+const Login = lazy(() => import("./pages/Login").then(m => ({ default: m.LoginPage })));
+const Signup = lazy(() => import("./pages/Signup").then(m => ({ default: m.SignupPage })));
+const UserProfile = lazy(() => import("./pages/UserProfile").then(m => ({ default: m.UserProfilePage })));
 const Orders = lazy(() => import("./pages/Orders"));
 const TrackOrder = lazy(() => import("./pages/TrackOrder"));
 const ProductCategories = lazy(() => import("./pages/ProductCategories"));
@@ -80,9 +82,10 @@ const App = () => {
       <TooltipProvider>
         <AuthProvider>
           <LoadingProvider>
-            <CartProvider>
-              <WishlistProvider>
-                <BrowserRouter>
+            <ScrollLockProvider>
+              <CartProvider>
+                <WishlistProvider>
+                  <BrowserRouter>
                   <ScrollToTop />
                   <Toaster />
                   <OfferPopup />
@@ -116,6 +119,7 @@ const App = () => {
                       <Route path="/quality/process" element={<QualityProcess />} />
                       <Route path="/quality-process" element={<QualityProcess />} />
                       <Route path="/login" element={<Login />} />
+                      <Route path="/signup" element={<Signup />} />
                       <Route path="/profile" element={<UserProfile />} />
                       <Route path="/orders" element={<Orders />} />
                       <Route path="/track-order" element={<TrackOrder />} />
@@ -127,6 +131,7 @@ const App = () => {
                 </BrowserRouter>
               </WishlistProvider>
             </CartProvider>
+            </ScrollLockProvider>
           </LoadingProvider>
         </AuthProvider>
       </TooltipProvider>
