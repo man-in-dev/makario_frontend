@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User, ArrowRight, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import makhanaHealthBlog from '../assets/blog/Makhana-The-Healthy-Indian-Snack.jpg';
 import makhanaHeritageBlog from '../assets/blog/makhana-feature.jpg';
 import makhanaProcessBlog from '../assets/blog/Roasted-Makhana-Recipe.webp';
@@ -13,6 +14,9 @@ import makhanaRecipesBlog from '../assets/blog/recipie.webp';
 import heroBg from '../assets/blog/Makhana-The-Healthy-Indian-Snack.jpg';
 
 const Blog = () => {
+    const [selectedCategory, setSelectedCategory] = React.useState<string>("All");
+    const [displayedPosts, setDisplayedPosts] = React.useState(22);
+
     const blogPosts = [
         // Katihar Region Posts
         {
@@ -352,9 +356,10 @@ const Blog = () => {
                         {categories.map((category) => (
                             <Button
                                 key={category}
-                                variant={category === "All" ? "default" : "outline"}
+                                variant={category === selectedCategory ? "default" : "outline"}
                                 size="sm"
                                 className="rounded-full"
+                                onClick={() => setSelectedCategory(category)}
                             >
                                 {category}
                             </Button>
@@ -367,57 +372,66 @@ const Blog = () => {
             <section className="py-16">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {blogPosts.map((post) => (
-                            <Card key={post.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
-                                <div className="aspect-video overflow-hidden">
-                                    <img
-                                        src={post.image}
-                                        alt={post.title}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                    />
-                                </div>
-                                <CardHeader className="pb-3">
-                                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
-                                        <div className="flex items-center gap-1">
-                                            <Calendar className="w-4 h-4" />
-                                            {new Date(post.date).toLocaleDateString()}
-                                        </div>
-                                        <div className="flex items-center gap-1">
-                                            <User className="w-4 h-4" />
-                                            {post.author}
-                                        </div>
+                        {blogPosts
+                            .filter(post => selectedCategory === "All" || post.category === selectedCategory)
+                            .slice(0, displayedPosts)
+                            .map((post) => (
+                                <Card key={post.id} className="group hover:shadow-xl transition-all duration-300 overflow-hidden">
+                                    <div className="aspect-video overflow-hidden">
+                                        <img
+                                            src={post.image}
+                                            alt={post.title}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        />
                                     </div>
-                                    <Badge variant="secondary" className="w-fit mb-2">{post.category}</Badge>
-                                    <CardTitle className="text-xl group-hover:text-heritage transition-colors line-clamp-2">
-                                        {post.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent className="pt-0">
-                                    <p className="text-muted-foreground mb-4 line-clamp-3">{post.excerpt}</p>
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {post.tags.slice(0, 3).map((tag) => (
-                                            <Badge key={tag} variant="outline" className="text-xs">
-                                                <Tag className="w-3 h-3 mr-1" />
-                                                {tag}
-                                            </Badge>
-                                        ))}
-                                    </div>
-                                    <Link to={`/blog/${post.slug}`}>
-                                        <Button variant="outline" size="sm" className="group/btn">
-                                            Read More
-                                            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                                        </Button>
-                                    </Link>
-                                </CardContent>
-                            </Card>
-                        ))}
+                                    <CardHeader className="pb-3">
+                                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-3">
+                                            <div className="flex items-center gap-1">
+                                                <Calendar className="w-4 h-4" />
+                                                {new Date(post.date).toLocaleDateString()}
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <User className="w-4 h-4" />
+                                                {post.author}
+                                            </div>
+                                        </div>
+                                        <Badge variant="secondary" className="w-fit mb-2">{post.category}</Badge>
+                                        <CardTitle className="text-xl group-hover:text-heritage transition-colors line-clamp-2">
+                                            {post.title}
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardContent className="pt-0">
+                                        <p className="text-muted-foreground mb-4 line-clamp-3">{post.excerpt}</p>
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            {post.tags.slice(0, 3).map((tag) => (
+                                                <Badge key={tag} variant="outline" className="text-xs">
+                                                    <Tag className="w-3 h-3 mr-1" />
+                                                    {tag}
+                                                </Badge>
+                                            ))}
+                                        </div>
+                                        <Link to={`/blog/${post.slug}`}>
+                                            <Button variant="outline" size="sm" className="group/btn">
+                                                Read More
+                                                <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                                            </Button>
+                                        </Link>
+                                    </CardContent>
+                                </Card>
+                            ))}
                     </div>
 
                     {/* Load More Button */}
                     <div className="text-center mt-12">
-                        <Button size="lg" variant="outline">
-                            Load More Articles
-                        </Button>
+                        {displayedPosts < blogPosts.filter(p => selectedCategory === "All" || p.category === selectedCategory).length && (
+                            <Button
+                                size="lg"
+                                variant="outline"
+                                onClick={() => setDisplayedPosts(displayedPosts + 6)}
+                            >
+                                Load More Articles
+                            </Button>
+                        )}
                     </div>
                 </div>
             </section>

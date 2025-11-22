@@ -145,14 +145,8 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans;
-    padding-top: 64px;
+    padding-top: 0px;
     position: relative;
-  }
-  
-  @media (min-width: 1024px) {
-    body {
-      padding-top: 128px;
-    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -172,4 +166,22 @@ All colors MUST be HSL.
   .gradient-earth {
     background: var(--gradient-earth);
   }
+}
+
+/* All pages - Top padding */
+/* Mobile - 30px */
+#root > div {
+  padding-top: 30px;
+}
+
+/* Desktop/Tablet - 6rem */
+@media (min-width: 768px) {
+  #root > div {
+    padding-top: 3rem;
+  }
+}
+
+/* Ensure body scroll is not hidden by dropdown menus */
+body {
+  overflow-y: scroll !important;
 }

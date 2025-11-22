@@ -22,6 +22,9 @@ import MobileBottomMenu from "./components/MobileBottomMenu";
 import OfferPopup from "./components/OfferPopup";
 import MarketplaceSlider from "./components/MarketplaceSlider";
 
+// Admin Routes
+import AdminRoutes from "./admin/AdminRoutes";
+
 // Lazy load all page components for better performance
 const Index = lazy(() => import("./pages/Index"));
 const About = lazy(() => import("./pages/About"));
@@ -55,6 +58,7 @@ const FoundersStory = lazy(() => import("./pages/FoundersStory"));
 const QualityProcess = lazy(() => import("./pages/QualityProcess"));
 const ExportQuality = lazy(() => import("./pages/ExportQuality"));
 const RegionalPages = lazy(() => import("./pages/RegionalPages"));
+const Settings = lazy(() => import("./pages/Settings"));
 
 
 
@@ -92,6 +96,10 @@ const App = () => {
                   <MobileBottomMenu />
                   <RouteLoader>
                     <Routes>
+                      {/* Admin Panel Routes */}
+                      <Route path="/admin/*" element={<AdminRoutes />} />
+                      
+                      {/* Main App Routes */}
                       <Route path="/" element={<Index />} />
                       <Route path="/about" element={<About />} />
                       <Route path="/about/founders" element={<FoundersStory />} />
@@ -125,6 +133,7 @@ const App = () => {
                       <Route path="/track-order" element={<TrackOrder />} />
                       <Route path="/custom-packaging" element={<CustomPackaging />} />
                       <Route path="/logistics" element={<Logistics />} />
+                      <Route path="/settings" element={<Settings />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
                   </RouteLoader>

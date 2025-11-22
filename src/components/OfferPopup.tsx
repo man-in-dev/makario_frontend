@@ -1,18 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { X, ShoppingBag, Gift, Clock3 } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const OfferPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const { pathname } = useLocation();
+
+  // Hide popup on admin pages
+  const isAdminPage = pathname.startsWith('/admin');
 
   useEffect(() => {
+    // Don't show popup on admin pages
+    if (isAdminPage) {
+      setIsOpen(false);
+      return;
+    }
+
     // Show popup after a small delay
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [isAdminPage]);
 
   const handleClose = () => {
     setIsClosing(true);

@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 import { FeaturedProductCard } from '../components/product/FeaturedProductCard';
 import { products, getFeaturedProducts } from '../data/products';
 import { Input } from '../components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
+import CustomSelect from '../components/ui/custom-select';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Search, Grid3X3, List, X } from 'lucide-react';
@@ -172,11 +172,11 @@ const Shop: React.FC = () => {
 
 
 
-            <div className="min-h-screen bg-gradient-to-br from-white via-orange-50 to-amber-50 py-4 md:py-8 mt-[30px]">
-                <div className="container mx-auto px-3 md:px-4">
+            <div className="min-h-screen bg-gradient-to-br from-white via-orange-50 to-amber-50 py-4 md:py-8 mt-[30px] overflow-visible">
+                <div className="container mx-auto px-3 md:px-4 overflow-visible">
 
                     {/* All Products Section */}
-                    <div id="all-products-section" className="py-4 md:py-8">
+                    <div id="all-products-section" className="py-4 md:py-8 overflow-visible">
                         {/* Section Title */}
                         <div className="text-center mb-6 md:mb-8">
                             <h2 className="text-xl md:text-2xl font-bold mb-2 text-gray-900">All Products</h2>
@@ -188,29 +188,83 @@ const Shop: React.FC = () => {
 
 
                         {/* Top Controls */}
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                            <div className="text-sm text-muted-foreground">
-                                Showing {filteredProducts.length} of {products.length} products
-                            </div>
-                            <div className="flex gap-2">
-                                <Button
-                                    variant={viewMode === 'grid' ? 'default' : 'outline'}
-                                    size="sm"
-                                    onClick={() => setViewMode('grid')}
-                                    className="flex items-center gap-2"
-                                >
-                                    <Grid3X3 className="h-4 w-4" />
-                                    <span className="hidden sm:inline">Grid</span>
-                                </Button>
-                                <Button
-                                    variant={viewMode === 'list' ? 'default' : 'outline'}
-                                    size="sm"
-                                    onClick={() => setViewMode('list')}
-                                    className="flex items-center gap-2"
-                                >
-                                    <List className="h-4 w-4" />
-                                    <span className="hidden sm:inline">List</span>
-                                </Button>
+                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 relative z-40 overflow-visible">
+                             <div className="text-sm text-muted-foreground">
+                                 Showing {filteredProducts.length} of {products.length} products
+                             </div>
+                             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto overflow-visible">
+                                <div className="flex gap-2 flex-1 sm:flex-initial">
+                                    <label className="text-sm font-medium flex items-center gap-2">Category:</label>
+                                    <CustomSelect
+                                        value={selectedCategory}
+                                        onValueChange={setSelectedCategory}
+                                        options={categories.map(cat => ({
+                                            value: cat,
+                                            label: cat.charAt(0).toUpperCase() + cat.slice(1)
+                                        }))}
+                                        className="w-40"
+                                    />
+                                </div>
+                                <div className="flex gap-2 flex-1 sm:flex-initial">
+                                    <label className="text-sm font-medium flex items-center gap-2">Price:</label>
+                                    <CustomSelect
+                                        value={priceRange}
+                                        onValueChange={setPriceRange}
+                                        options={[
+                                            { value: 'all', label: 'All Prices' },
+                                            { value: 'under-200', label: 'Under ₹200' },
+                                            { value: '200-500', label: '₹200 - ₹500' },
+                                            { value: '500-1000', label: '₹500 - ₹1000' },
+                                            { value: 'above-1000', label: 'Above ₹1000' }
+                                        ]}
+                                        className="w-40"
+                                    />
+                                </div>
+                                <div className="flex gap-2 flex-1 sm:flex-initial">
+                                    <label className="text-sm font-medium flex items-center gap-2">Sort:</label>
+                                    <CustomSelect
+                                        value={sortBy}
+                                        onValueChange={setSortBy}
+                                        options={[
+                                            { value: 'name', label: 'Name' },
+                                            { value: 'price-low', label: 'Price: Low to High' },
+                                            { value: 'price-high', label: 'Price: High to Low' },
+                                            { value: 'rating', label: 'Rating' }
+                                        ]}
+                                        className="w-40"
+                                    />
+                                </div>
+                                <div className="flex gap-2">
+                                    <Button
+                                        variant={viewMode === 'grid' ? 'default' : 'outline'}
+                                        size="sm"
+                                        onClick={() => setViewMode('grid')}
+                                        className="flex items-center gap-2"
+                                    >
+                                        <Grid3X3 className="h-4 w-4" />
+                                        <span className="hidden sm:inline">Grid</span>
+                                    </Button>
+                                    <Button
+                                        variant={viewMode === 'list' ? 'default' : 'outline'}
+                                        size="sm"
+                                        onClick={() => setViewMode('list')}
+                                        className="flex items-center gap-2"
+                                    >
+                                        <List className="h-4 w-4" />
+                                        <span className="hidden sm:inline">List</span>
+                                    </Button>
+                                </div>
+                                {hasActiveFilters && (
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={handleClearFilters}
+                                        className="flex items-center gap-2"
+                                    >
+                                        <X className="h-4 w-4" />
+                                        Clear Filters
+                                    </Button>
+                                )}
                             </div>
                         </div>
 
