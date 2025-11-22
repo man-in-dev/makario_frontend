@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -167,9 +167,7 @@ export const UserProfilePage: React.FC = () => {
     setLoading(false);
   };
 
-  const cancelAddressForm = () => {
-    setShowAddAddress(false);
-    setEditingAddressId(null);
+  const resetAddressForm = () => {
     setAddressForm({
       street: '',
       city: '',
@@ -181,7 +179,21 @@ export const UserProfilePage: React.FC = () => {
     });
   };
 
+  const cancelAddressForm = () => {
+    setShowAddAddress(false);
+    setEditingAddressId(null);
+    resetAddressForm();
+  };
+
   const addresses = user.addresses || [];
+
+  // Auto-clear success message after 3 seconds
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => setSuccess(''), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
 
   return (
     <>
@@ -336,8 +348,9 @@ export const UserProfilePage: React.FC = () => {
               {!showAddAddress && (
                 <Button
                   onClick={() => {
+                    resetAddressForm();
+                    setEditingAddressId(null);
                     setShowAddAddress(true);
-                    cancelAddressForm();
                   }}
                   className="bg-golden hover:bg-golden/90 text-white font-bold h-11 rounded-lg"
                 >
