@@ -6,6 +6,7 @@ import { Label } from '../ui/label';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../ui/card';
 import { Alert, AlertDescription } from '../ui/alert';
 import { Eye, EyeOff } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface LoginProps {
   onSwitchToSignup: () => void;
@@ -31,13 +32,29 @@ export const Login: React.FC<LoginProps> = ({ onSwitchToSignup, onClose }) => {
       return;
     }
 
-    const result = await login(email, password);
-    if (result.success) {
-      onClose();
-    } else {
-      setError(result.message || 'Invalid email or password');
+    try {
+      const result = await login(email, password);
+      if (result.success) {
+        toast.success('Login successful!', {
+          description: 'Welcome back!',
+        });
+        onClose();
+      } else {
+        const errorMsg = result.message || 'Invalid email or password';
+        setError(errorMsg);
+        toast.error('Login failed', {
+          description: errorMsg,
+        });
+      }
+    } catch (error: any) {
+      const errorMsg = 'An unexpected error occurred. Please try again.';
+      setError(errorMsg);
+      toast.error('Login failed', {
+        description: errorMsg,
+      });
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (

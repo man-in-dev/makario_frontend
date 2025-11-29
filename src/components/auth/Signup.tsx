@@ -6,6 +6,7 @@ import { Label } from '../ui/label';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../ui/card';
 import { Alert, AlertDescription } from '../ui/alert';
 import { Eye, EyeOff } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface SignupProps {
   onSwitchToLogin: () => void;
@@ -55,19 +56,39 @@ export const Signup: React.FC<SignupProps> = ({ onSwitchToLogin, onClose }) => {
       return;
     }
 
-    const success = await signup({
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-      phone: formData.phone || undefined,
-    });
+    try {
+      const result = await signup({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        phone: formData.phone || '',
+        address: '',
+        city: '',
+        state: '',
+        pincode: '',
+      });
 
-    if (success) {
-      onClose();
-    } else {
-      setError('User with this email already exists');
+      if (result.success) {
+        toast.success('Account created successfully!', {
+          description: 'Welcome to Makario!',
+        });
+        onClose();
+      } else {
+        const errorMsg = result.message || 'An error occurred during signup';
+        setError(errorMsg);
+        toast.error('Signup failed', {
+          description: errorMsg,
+        });
+      }
+    } catch (error: any) {
+      const errorMsg = 'An unexpected error occurred. Please try again.';
+      setError(errorMsg);
+      toast.error('Signup failed', {
+        description: errorMsg,
+      });
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (

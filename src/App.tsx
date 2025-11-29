@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
+import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useRemoveGoogleText } from "./hooks/useRemoveGoogleText";
 
@@ -92,6 +93,7 @@ const App = () => {
                   <BrowserRouter>
                   <ScrollToTop />
                   <Toaster />
+                  <SonnerToaster />
                   <OfferPopup />
                   <MobileBottomMenu />
                   <RouteLoader>

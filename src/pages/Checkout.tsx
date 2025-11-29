@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthModal } from '../components/auth/AuthModal';
 import LazyImage from '../components/LazyImage';
 import { toast } from 'sonner';
+import api from '../utils/api';
 
 export const Checkout: React.FC = () => {
   const { items, getTotalPrice, clearCart } = useCart();
@@ -65,26 +66,28 @@ export const Checkout: React.FC = () => {
       return;
     }
 
-    // If online payment and user is already logged in, proceed to payment
-    if (paymentMethod === 'online' && user) {
-      await handlePlaceOrder();
-      return;
-    }
+    // Online payment temporarily disabled
+    // // If online payment and user is already logged in, proceed to payment
+    // if (paymentMethod === 'online' && user) {
+    //   await handlePlaceOrder();
+    //   return;
+    // }
 
-    // If online payment and not logged in, show modal to choose between guest checkout and login
-    if (paymentMethod === 'online' && !user) {
-      setShowCheckoutModal(true);
-      return;
-    }
+    // // If online payment and not logged in, show modal to choose between guest checkout and login
+    // if (paymentMethod === 'online' && !user) {
+    //   setShowCheckoutModal(true);
+    //   return;
+    // }
   };
 
   const handlePlaceOrder = async (isGuest: boolean = isGuestCheckout) => {
     // For COD, allow without login (guest checkout)
-    // For online payment, if not logged in and not guest checkout, show auth modal
-    if (paymentMethod === 'online' && !user && !isGuest) {
-      setShowAuthModal(true);
-      return;
-    }
+    // Online payment temporarily disabled
+    // // For online payment, if not logged in and not guest checkout, show auth modal
+    // if (paymentMethod === 'online' && !user && !isGuest) {
+    //   setShowAuthModal(true);
+    //   return;
+    // }
 
     setIsProcessing(true);
 
@@ -92,135 +95,196 @@ export const Checkout: React.FC = () => {
       const totalAmount = getTotalPrice() + 50 - discount;
       const orderId = `ORD-${Date.now()}`;
 
-      // If COD, save order directly and show confirmation (no login required)
+      // If COD, create order in backend
       if (paymentMethod === 'cod') {
-        const order = {
-          id: orderId,
-          items: items,
+        const orderData = {
+          items: items.map(item => ({
+            productId: item.product.id,
+            name: item.product.name,
+            price: item.product.price,
+            quantity: item.quantity,
+            image: item.product.image,
+          })),
           shippingInfo,
-          paymentMethod,
-          total: totalAmount,
-          orderDate: new Date().toISOString(),
-          status: 'confirmed',
-          coupon: couponApplied ? coupon : null,
+          paymentMethod: 'cod',
+          subtotal: getTotalPrice(),
+          shippingCharge: 50,
           discount,
-          userId: user?.id || null, // Optional: link to user if logged in
-          userEmail: user?.email || shippingInfo.email // Track email for both logged-in and guest
+          coupon: couponApplied ? coupon : null,
+          total: totalAmount,
         };
-        const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
-        existingOrders.push(order);
-        localStorage.setItem('orders', JSON.stringify(existingOrders));
-        clearCart();
-        setOrderPlaced(true);
-        setIsProcessing(false);
-        toast.success('Order placed successfully!');
+
+        try {
+          const response = await api.post('/orders', orderData);
+          
+          if (response.data.success) {
+            clearCart();
+            setOrderPlaced(true);
+            setIsProcessing(false);
+            toast.success('Order placed successfully!', {
+              description: `Order ID: ${response.data.data.order.orderId}`,
+            });
+            
+            // Navigate to order confirmation after a delay
+            setTimeout(() => {
+              navigate(`/orders/${response.data.data.order.orderId}`);
+            }, 2000);
+          } else {
+            throw new Error(response.data.message || 'Failed to create order');
+          }
+        } catch (error: any) {
+          console.error('Order creation error:', error);
+          toast.error('Failed to place order', {
+            description: error.response?.data?.message || 'Please try again',
+          });
+          setIsProcessing(false);
+        }
         return;
       }
 
-      // For online payment, create Razorpay order
-      if (paymentMethod === 'online') {
-        const response = await fetch('http://localhost:5000/api/create-order', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            amount: totalAmount,
-            currency: 'INR',
-            receipt: orderId
-          })
-        });
+      // Online payment temporarily disabled
+      // // For online payment, create order in backend first, then Razorpay
+      // if (paymentMethod === 'online') {
+      //   // First, create order in our backend
+      //   const orderData = {
+      //     items: items.map(item => ({
+      //       productId: item.product.id,
+      //       name: item.product.name,
+      //       price: item.product.price,
+      //       quantity: item.quantity,
+      //       image: item.product.image,
+      //     })),
+      //     shippingInfo,
+      //     paymentMethod: 'online',
+      //     subtotal: getTotalPrice(),
+      //     shippingCharge: 50,
+      //     discount,
+      //     coupon: couponApplied ? coupon : null,
+      //     total: totalAmount,
+      //     paymentDetails: {
+      //       paymentStatus: 'pending',
+      //     },
+      //   };
 
-        const data = await response.json();
-        if (!data.success) {
-          throw new Error('Failed to create order');
-        }
+      //   let backendOrder;
+      //   try {
+      //     const orderResponse = await api.post('/orders', orderData);
+      //     if (!orderResponse.data.success) {
+      //       throw new Error('Failed to create order');
+      //     }
+      //     backendOrder = orderResponse.data.data.order;
+      //   } catch (error: any) {
+      //     console.error('Order creation error:', error);
+      //     toast.error('Failed to create order', {
+      //       description: error.response?.data?.message || 'Please try again',
+      //     });
+      //     setIsProcessing(false);
+      //     return;
+      //   }
 
-        // Open Razorpay checkout
-        const options = {
-          key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_xxxxxxxxxxxxxxxx',
-          amount: data.order.amount,
-          currency: 'INR',
-          name: 'Makario',
-          description: 'Premium Makhana Order',
-          order_id: data.order.id,
-          handler: async function (response: any) {
-            try {
-              // Verify payment on backend
-              const verifyResponse = await fetch('http://localhost:5000/api/verify-payment', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  razorpay_order_id: response.razorpay_order_id,
-                  razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_signature: response.razorpay_signature,
-                  orderDetails: {
-                    orderId,
-                    amount: totalAmount,
-                    products: items.map(item => ({
-                      id: item.product.id,
-                      name: item.product.name,
-                      sku: item.product.id,
-                      quantity: item.quantity,
-                      price: item.product.price
-                    })),
-                    customer: {
-                      name: shippingInfo.fullName,
-                      email: shippingInfo.email,
-                      phone: shippingInfo.phone,
-                      address: shippingInfo.address,
-                      city: shippingInfo.city,
-                      state: shippingInfo.state,
-                      pincode: shippingInfo.pincode
-                    }
-                  }
-                })
-              });
+      //   // Create Razorpay order
+      //   const razorpayResponse = await fetch('http://localhost:5000/api/create-order', {
+      //     method: 'POST',
+      //     headers: { 'Content-Type': 'application/json' },
+      //     body: JSON.stringify({
+      //       amount: totalAmount * 100, // Razorpay expects amount in paise
+      //       currency: 'INR',
+      //       receipt: backendOrder.orderId
+      //     })
+      //   });
 
-              const verifyData = await verifyResponse.json();
-              if (verifyData.success) {
-                // Save order to localStorage
-                const order = {
-                  id: orderId,
-                  items: items,
-                  shippingInfo,
-                  paymentMethod,
-                  total: totalAmount,
-                  orderDate: new Date().toISOString(),
-                  status: 'confirmed',
-                  coupon: couponApplied ? coupon : null,
-                  discount,
-                  paymentId: response.razorpay_payment_id,
-                  shipmentData: verifyData.shipment,
-                  userId: user?.id || null,
-                  userEmail: user?.email || shippingInfo.email
-                };
-                const existingOrders = JSON.parse(localStorage.getItem('orders') || '[]');
-                existingOrders.push(order);
-                localStorage.setItem('orders', JSON.stringify(existingOrders));
-                clearCart();
-                setOrderPlaced(true);
-                toast.success('Payment successful! Shipment created on iThink Logistics.');
-              } else {
-                throw new Error(verifyData.message || 'Payment verification failed');
-              }
-            } catch (error) {
-              toast.error(`Error: ${error instanceof Error ? error.message : 'Payment verification failed'}`);
-            } finally {
-              setIsProcessing(false);
-            }
-          },
-          prefill: {
-            name: shippingInfo.fullName,
-            email: shippingInfo.email,
-            contact: shippingInfo.phone
-          },
-          theme: {
-            color: '#D4A574'
-          }
-        };
+      //   const razorpayData = await razorpayResponse.json();
+      //   if (!razorpayData.success) {
+      //     throw new Error('Failed to create Razorpay order');
+      //   }
 
-        const razorpay = new (window as any).Razorpay(options);
-        razorpay.open();
-      }
+      //   // Open Razorpay checkout
+      //   const options = {
+      //     key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_xxxxxxxxxxxxxxxx',
+      //     amount: razorpayData.order.amount,
+      //     currency: 'INR',
+      //     name: 'Makario',
+      //     description: 'Premium Makhana Order',
+      //     order_id: razorpayData.order.id,
+      //     handler: async function (response: any) {
+      //       try {
+      //         // Verify payment on Razorpay backend
+      //         const verifyResponse = await fetch('http://localhost:5000/api/verify-payment', {
+      //           method: 'POST',
+      //           headers: { 'Content-Type': 'application/json' },
+      //           body: JSON.stringify({
+      //             razorpay_order_id: response.razorpay_order_id,
+      //             razorpay_payment_id: response.razorpay_payment_id,
+      //             razorpay_signature: response.razorpay_signature,
+      //             orderDetails: {
+      //               orderId: backendOrder.orderId,
+      //               amount: totalAmount,
+      //               products: items.map(item => ({
+      //                 id: item.product.id,
+      //                 name: item.product.name,
+      //                 sku: item.product.id,
+      //                 quantity: item.quantity,
+      //                 price: item.product.price
+      //               })),
+      //               customer: {
+      //                 name: shippingInfo.fullName,
+      //                 email: shippingInfo.email,
+      //                 phone: shippingInfo.phone,
+      //                 address: shippingInfo.address,
+      //                 city: shippingInfo.city,
+      //                 state: shippingInfo.state,
+      //                 pincode: shippingInfo.pincode
+      //               }
+      //             }
+      //           })
+      //         });
+
+      //         const verifyData = await verifyResponse.json();
+      //         if (verifyData.success) {
+      //           // Update order in our backend with payment details
+      //           try {
+      //             await api.put(`/orders/${backendOrder.orderId}/payment`, {
+      //               razorpayOrderId: response.razorpay_order_id,
+      //               razorpayPaymentId: response.razorpay_payment_id,
+      //               razorpaySignature: response.razorpay_signature,
+      //               paymentStatus: 'completed',
+      //             });
+      //           } catch (error: any) {
+      //             console.error('Failed to update order payment details:', error);
+      //             // Don't fail the whole flow if payment update fails
+      //           }
+
+      //           clearCart();
+      //           setOrderPlaced(true);
+      //           setIsProcessing(false);
+      //           toast.success('Payment successful! Shipment created on iThink Logistics.');
+                
+      //           // Navigate to order confirmation
+      //           setTimeout(() => {
+      //             navigate(`/orders/${backendOrder.orderId}`);
+      //           }, 2000);
+      //         } else {
+      //           throw new Error(verifyData.message || 'Payment verification failed');
+      //         }
+      //       } catch (error) {
+      //         toast.error(`Error: ${error instanceof Error ? error.message : 'Payment verification failed'}`);
+      //       } finally {
+      //         setIsProcessing(false);
+      //       }
+      //     },
+      //     prefill: {
+      //       name: shippingInfo.fullName,
+      //       email: shippingInfo.email,
+      //       contact: shippingInfo.phone
+      //     },
+      //     theme: {
+      //       color: '#D4A574'
+      //     }
+      //   };
+
+      //   const razorpay = new (window as any).Razorpay(options);
+      //   razorpay.open();
+      // }
     } catch (error) {
       toast.error(`Error: ${error instanceof Error ? error.message : 'Something went wrong'}`);
       setIsProcessing(false);
@@ -374,19 +438,21 @@ export const Checkout: React.FC = () => {
                     <RadioGroupItem value="cod" id="cod" />
                     <Label htmlFor="cod">Cash on Delivery</Label>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  {/* Online payment temporarily disabled */}
+                  {/* <div className="flex items-center space-x-2">
                     <RadioGroupItem value="online" id="online" />
                     <Label htmlFor="online">Online Payment (Razorpay - UPI, Card, NetBanking)</Label>
-                  </div>
+                  </div> */}
                 </RadioGroup>
 
-                {paymentMethod === 'online' && (
+                {/* Online payment alert temporarily disabled */}
+                {/* {paymentMethod === 'online' && (
                   <Alert className="mt-4 bg-blue-50 border-blue-200">
                     <AlertDescription className="text-blue-800">
                       ✅ Razorpay integration active! Pay securely via UPI, Credit/Debit Card, or Net Banking.
                     </AlertDescription>
                   </Alert>
-                )}
+                )} */}
               </CardContent>
             </Card>
 
