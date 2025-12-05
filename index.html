@@ -1,54 +1,68 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Preload critical resources -->
     <link rel="preload" href="/src/index.css" as="style" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
+
     <!-- Google Tag Manager - Deferred -->
     <script>
       // Defer GTM loading to improve initial page load
-      window.addEventListener('load', function() {
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-MVLVTV94');
+      window.addEventListener("load", function () {
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != "dataLayer" ? "&l=" + l : "";
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-MVLVTV94");
       });
     </script>
-    
+
     <!-- Google Analytics - Deferred -->
     <script>
-      window.addEventListener('load', function() {
-        const script = document.createElement('script');
+      window.addEventListener("load", function () {
+        const script = document.createElement("script");
         script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-E0JJNGLLXE';
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-E0JJNGLLXE";
         document.head.appendChild(script);
-        
+
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-E0JJNGLLXE');
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-E0JJNGLLXE");
       });
     </script>
-    
 
-    
     <!-- Primary SEO Meta Tags -->
     <title>Makario | Premium Makhana & Foxnuts Online | Bihar</title>
-    <meta name="description" content="Buy premium organic makhana & foxnuts from Bihar. Direct from farmers, 100% organic, free delivery in India. Order now!" />
-    <meta name="keywords" content="makario, makhana online, buy makhana, foxnuts price, lotus seeds online, makhana exporter bihar, organic foxnuts india, premium makhana bulk order, makhana wholesale price, foxnuts supplier, lotus seeds export, makhana direct from farmers, bihar makhana best quality, foxnuts manufacturer, organic lotus seeds buy online, makhana export company india, premium foxnuts wholesale, makhana business, lotus seeds dealer, foxnuts online shopping" />
+    <meta
+      name="description"
+      content="Buy premium organic makhana & foxnuts from Bihar. Direct from farmers, 100% organic, free delivery in India. Order now!"
+    />
+    <meta
+      name="keywords"
+      content="makario, makhana online, buy makhana, foxnuts price, lotus seeds online, makhana exporter bihar, organic foxnuts india, premium makhana bulk order, makhana wholesale price, foxnuts supplier, lotus seeds export, makhana direct from farmers, bihar makhana best quality, foxnuts manufacturer, organic lotus seeds buy online, makhana export company india, premium foxnuts wholesale, makhana business, lotus seeds dealer, foxnuts online shopping"
+    />
     <meta name="author" content="Makario - Premium Makhana Exporters" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
     <meta name="googlebot" content="index, follow" />
     <meta name="bingbot" content="index, follow" />
     <!-- Allow rendering for dynamic SPA content -->
     <meta name="googlebot-news" content="nosnippet" />
-    
+
     <!-- Advanced SEO Meta Tags -->
     <meta name="rating" content="general" />
     <meta name="revisit-after" content="1 day" />
@@ -59,372 +73,405 @@
     <meta name="target" content="all" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
-    
+
     <!-- E-commerce SEO -->
     <meta property="product:brand" content="Makario" />
     <meta property="product:availability" content="in stock" />
     <meta property="product:condition" content="new" />
     <meta property="product:price:amount" content="750" />
     <meta property="product:price:currency" content="INR" />
-    
+
     <!-- Geographic and Local SEO -->
     <meta name="geo.region" content="IN-BR" />
     <meta name="geo.placename" content="Bihar, India" />
     <meta name="geo.position" content="25.0961;85.3131" />
     <meta name="ICBM" content="25.0961, 85.3131" />
     <meta name="DC.title" content="Bihar Makhana - Premium Foxnuts Exporter" />
-    
+
     <!-- Language and Content -->
     <meta http-equiv="content-language" content="en" />
     <meta name="language" content="English" />
     <link rel="alternate" hreflang="en" href="https://www.makario.in/" />
     <link rel="alternate" hreflang="hi" href="https://www.makario.in/hi/" />
     <link rel="alternate" hreflang="x-default" href="https://www.makario.in/" />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.makario.in/" />
     <meta property="og:site_name" content="Makario" />
     <meta property="og:title" content="Makario - Premium Makhana & Foxnuts" />
-    <meta property="og:description" content="Buy premium organic makhana & foxnuts from Bihar. Direct from farmers, 100% organic, free delivery." />
-    <meta property="og:image" content="https://www.makario.in/images/makario-makhana-og.jpg" />
+    <meta
+      property="og:description"
+      content="Buy premium organic makhana & foxnuts from Bihar. Direct from farmers, 100% organic, free delivery."
+    />
+    <meta
+      property="og:image"
+      content="https://www.makario.in/images/makario-makhana-og.jpg"
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Makario Premium Makhana Foxnuts - Direct from Bihar Farmers" />
+    <meta
+      property="og:image:alt"
+      content="Makario Premium Makhana Foxnuts - Direct from Bihar Farmers"
+    />
     <meta property="og:locale" content="en_IN" />
     <meta property="og:locale:alternate" content="hi_IN" />
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.makario.in/" />
     <meta name="twitter:title" content="Makario - Premium Makhana & Foxnuts" />
-    <meta name="twitter:description" content="Buy premium organic makhana & foxnuts from Bihar. Direct from farmers, 100% organic, free delivery." />
-    <meta name="twitter:image" content="https://www.makario.in/images/makario-makhana-twitter.jpg" />
-    <meta name="twitter:image:alt" content="Makario Premium Makhana Foxnuts - Bihar Export Quality" />
+    <meta
+      name="twitter:description"
+      content="Buy premium organic makhana & foxnuts from Bihar. Direct from farmers, 100% organic, free delivery."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.makario.in/images/makario-makhana-twitter.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Makario Premium Makhana Foxnuts - Bihar Export Quality"
+    />
     <meta name="twitter:site" content="@makario_in" />
     <meta name="twitter:creator" content="@makario_in" />
-    
+
     <!-- Business/Local SEO -->
     <meta name="business:contact_data:locality" content="Bihar" />
     <meta name="business:contact_data:region" content="India" />
     <meta name="business:contact_data:country_name" content="India" />
     <meta name="business:contact_data:phone_number" content="+91-9953240031" />
     <meta name="business:contact_data:email" content="info@makario.in" />
-    <meta name="business:contact_data:website" content="https://www.makario.in" />
-    
+    <meta
+      name="business:contact_data:website"
+      content="https://www.makario.in"
+    />
+
     <!-- Local Business Schema -->
     <meta name="local-business-type" content="Food Exporter" />
     <meta name="local-business-name" content="Makario" />
     <meta name="local-business-address" content="Darbhanga, Bihar, India" />
     <meta name="local-business-phone" content="+91-9953240031" />
-    
+
     <!-- Canonical URL - www version only -->
     <link rel="canonical" href="https://www.makario.in/" />
     <meta property="og:url" content="https://www.makario.in/" />
-    
+
     <!-- Favicon and Icons - Makario Brand -->
     <link rel="icon" type="image/png" href="/src/assets/fav.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/src/assets/fav.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/fav.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/src/assets/fav.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/src/assets/fav.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/src/assets/fav.png"
+    />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#D4A574" />
     <meta name="msapplication-TileColor" content="#D4A574" />
-    
+
     <!-- Force favicon refresh -->
     <meta http-equiv="cache-control" content="no-cache" />
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="pragma" content="no-cache" />
-    
+
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
+
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Makario",
-      "alternateName": "Makario Makhana Exporters",
-      "description": "Leading Premium Makhana (Foxnuts) Exporter from Bihar, India. 100% Organic Lotus Seeds, Direct from Farmers, Bulk & Retail Orders, Worldwide Export.",
-      "url": "https://www.makario.in",
-      "logo": "https://www.makario.in/logo.png",
-      "image": "https://www.makario.in/images/makario-makhana-hero.jpg",
-      "telephone": "+91-9953240031",
-      "email": "info@makario.in",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Makario Export Center, Makhana Hub",
-        "addressLocality": "Darbhanga",
-        "addressRegion": "Bihar",
-        "postalCode": "846004",
-        "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 26.1542,
-        "longitude": 85.8918
-      },
-      "sameAs": [
-        "https://www.facebook.com/makario.in",
-        "https://www.instagram.com/makario.in",
-        "https://twitter.com/makario_in",
-        "https://www.linkedin.com/company/makario"
-      ],
-      "founder": {
-        "@type": "Person",
-        "name": "Makario Founder"
-      },
-      "foundingDate": "2018",
-      "areaServed": [
-        {
-          "@type": "Country",
-          "name": "India"
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Makario",
+        "alternateName": "Makario Makhana Exporters",
+        "description": "Leading Premium Makhana (Foxnuts) Exporter from Bihar, India. 100% Organic Lotus Seeds, Direct from Farmers, Bulk & Retail Orders, Worldwide Export.",
+        "url": "https://www.makario.in",
+        "logo": "https://www.makario.in/logo.png",
+        "image": "https://www.makario.in/images/makario-makhana-hero.jpg",
+        "telephone": "+91-9953240031",
+        "email": "info@makario.in",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Makario Export Center, Makhana Hub",
+          "addressLocality": "Darbhanga",
+          "addressRegion": "Bihar",
+          "postalCode": "846004",
+          "addressCountry": "IN"
         },
-        {
-          "@type": "Country", 
-          "name": "United States"
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 26.1542,
+          "longitude": 85.8918
         },
-        {
-          "@type": "Country",
-          "name": "United Kingdom"
+        "sameAs": [
+          "https://www.facebook.com/makario.in",
+          "https://www.instagram.com/makario.in",
+          "https://twitter.com/makario_in",
+          "https://www.linkedin.com/company/makario"
+        ],
+        "founder": {
+          "@type": "Person",
+          "name": "Makario Founder"
         },
-        {
-          "@type": "Country",
-          "name": "Canada"
-        },
-        {
-          "@type": "Country",
-          "name": "Australia"
-        }
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Makhana Products",
-        "itemListElement": [
+        "foundingDate": "2018",
+        "areaServed": [
           {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Product",
-              "name": "Premium Organic Makhana",
-              "description": "100% Organic Foxnuts from Bihar"
+            "@type": "Country",
+            "name": "India"
+          },
+          {
+            "@type": "Country",
+            "name": "United States"
+          },
+          {
+            "@type": "Country",
+            "name": "United Kingdom"
+          },
+          {
+            "@type": "Country",
+            "name": "Canada"
+          },
+          {
+            "@type": "Country",
+            "name": "Australia"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Makhana Products",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "Premium Organic Makhana",
+                "description": "100% Organic Foxnuts from Bihar"
+              }
+            }
+          ]
+        }
+      }
+    </script>
+
+    <!-- Product Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Makario Premium Makhana (Foxnuts)",
+        "description": "Premium quality organic makhana (foxnuts/lotus seeds) directly from Bihar farmers. 100% natural, sustainably grown, export quality. Best makhana in India.",
+        "image": "https://www.makario.in/images/makario-premium-makhana.jpg",
+        "brand": {
+          "@type": "Brand",
+          "name": "Makario"
+        },
+        "category": "Food & Beverages > Snacks > Nuts & Seeds",
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.makario.in/products",
+          "priceCurrency": "INR",
+          "price": "750",
+          "priceValidUntil": "2026-12-31",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "Makario"
+          },
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "PriceSpecification",
+              "priceCurrency": "INR",
+              "price": "0",
+              "eligibleQuantity": {
+                "@type": "PriceSpecification",
+                "priceCurrency": "INR",
+                "price": "1000"
+              }
+            },
+            "shippingDestination": {
+              "@type": "DeliveryTimeSettings",
+              "areaServed": "IN",
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 0,
+                  "maxValue": 1,
+                  "unitCode": "DAY"
+                },
+                "transitTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 2,
+                  "maxValue": 7,
+                  "unitCode": "DAY"
+                }
+              }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "merchantReturnDays": 30,
+            "applicableCountry": "IN",
+            "returnMethod": "ReturnMailIn",
+            "returnFees": "Free"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 4.9,
+          "bestRating": 5,
+          "worstRating": 1,
+          "ratingCount": 280
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": 5,
+              "bestRating": 5,
+              "worstRating": 1
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Priya Sharma"
+            },
+            "reviewBody": "Makario ki makhana quality sabse best hai! Fresh aur crunchy, bilkul export quality."
+          },
+          {
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": 5,
+              "bestRating": 5,
+              "worstRating": 1
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Amit Gupta"
+            },
+            "reviewBody": "Best makhana supplier in Bihar. Direct from farmers, premium quality guaranteed."
+          }
+        ]
+      }
+    </script>
+
+    <!-- FAQ Schema for Rich Snippets -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Makario se makhana kaise order kare?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Makario se makhana order karne ke liye www.makario.in par visit kare ya +91-9953240031 par call kare. Hum bulk aur retail dono orders accept karte hai."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Makario makhana ki quality kaisi hai?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Makario 100% organic premium quality makhana provide karta hai jo directly Bihar ke farmers se aata hai. Export quality guarantee ke saath."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Makhana ki price kya hai?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Makario makhana ki price ₹750 per kg se start hoti hai. Bulk orders par special discount available hai. Best price guarantee."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Makario makhana export karta hai?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Haan, Makario worldwide makhana export karta hai. USA, UK, Canada, Australia aur 50+ countries me supply karte hai."
             }
           }
         ]
       }
-    }
-    </script>
-    
-    <!-- Product Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": "Makario Premium Makhana (Foxnuts)",
-      "description": "Premium quality organic makhana (foxnuts/lotus seeds) directly from Bihar farmers. 100% natural, sustainably grown, export quality. Best makhana in India.",
-      "image": "https://www.makario.in/images/makario-premium-makhana.jpg",
-      "brand": {
-        "@type": "Brand",
-        "name": "Makario"
-      },
-      "category": "Food & Beverages > Snacks > Nuts & Seeds",
-      "offers": {
-        "@type": "Offer",
-        "url": "https://www.makario.in/products",
-        "priceCurrency": "INR",
-        "price": "750",
-        "priceValidUntil": "2026-12-31",
-        "availability": "https://schema.org/InStock",
-        "seller": {
-          "@type": "Organization",
-          "name": "Makario"
-        },
-        "shippingDetails": {
-          "@type": "OfferShippingDetails",
-          "shippingRate": {
-            "@type": "PriceSpecification",
-            "priceCurrency": "INR",
-            "price": "0",
-            "eligibleQuantity": {
-              "@type": "PriceSpecification",
-              "priceCurrency": "INR",
-              "price": "1000"
-            }
-          },
-          "shippingDestination": {
-            "@type": "DeliveryTimeSettings",
-            "areaServed": "IN",
-            "deliveryTime": {
-              "@type": "ShippingDeliveryTime",
-              "handlingTime": {
-                "@type": "QuantitativeValue",
-                "minValue": 0,
-                "maxValue": 1,
-                "unitCode": "DAY"
-              },
-              "transitTime": {
-                "@type": "QuantitativeValue",
-                "minValue": 2,
-                "maxValue": 7,
-                "unitCode": "DAY"
-              }
-            }
-          }
-        },
-        "hasMerchantReturnPolicy": {
-          "@type": "MerchantReturnPolicy",
-          "merchantReturnDays": 30,
-          "applicableCountry": "IN",
-          "returnMethod": "ReturnMailIn",
-          "returnFees": "Free"
-        }
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": 4.9,
-        "bestRating": 5,
-        "worstRating": 1,
-        "ratingCount": 280
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": 5,
-            "bestRating": 5,
-            "worstRating": 1
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Priya Sharma"
-          },
-          "reviewBody": "Makario ki makhana quality sabse best hai! Fresh aur crunchy, bilkul export quality."
-        },
-        {
-          "@type": "Review",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": 5,
-            "bestRating": 5,
-            "worstRating": 1
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Amit Gupta"
-          },
-          "reviewBody": "Best makhana supplier in Bihar. Direct from farmers, premium quality guaranteed."
-        }
-      ]
-    }
-    </script>
-    
-    <!-- FAQ Schema for Rich Snippets -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Makario se makhana kaise order kare?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Makario se makhana order karne ke liye www.makario.in par visit kare ya +91-9953240031 par call kare. Hum bulk aur retail dono orders accept karte hai."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Makario makhana ki quality kaisi hai?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Makario 100% organic premium quality makhana provide karta hai jo directly Bihar ke farmers se aata hai. Export quality guarantee ke saath."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Makhana ki price kya hai?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Makario makhana ki price ₹750 per kg se start hoti hai. Bulk orders par special discount available hai. Best price guarantee."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Makario makhana export karta hai?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Haan, Makario worldwide makhana export karta hai. USA, UK, Canada, Australia aur 50+ countries me supply karte hai."
-          }
-        }
-      ]
-    }
-    </script>
-    
-    <!-- Breadcrumb Schema -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://www.makario.in/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Makhana",
-          "item": "https://www.makario.in/products"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Premium Foxnuts",
-          "item": "https://www.makario.in/premium-foxnuts"
-        }
-      ]
-    }
     </script>
 
-    <!-- Razorpay Payment Gateway -->
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.makario.in/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Makhana",
+            "item": "https://www.makario.in/products"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Premium Foxnuts",
+            "item": "https://www.makario.in/premium-foxnuts"
+          }
+        ]
+      }
+    </script>
+
   </head>
 
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    
+
     <!-- Service Worker Registration -->
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-              console.log('Service Worker registered successfully:', registration);
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then(function (registration) {
+              console.log(
+                "Service Worker registered successfully:",
+                registration
+              );
             })
-            .catch(function(registrationError) {
-              console.log('SW registration failed: ', registrationError);
+            .catch(function (registrationError) {
+              console.log("SW registration failed: ", registrationError);
             });
         });
       }
     </script>
-    
+
     <!-- Handle loading spinner -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-          const spinner = document.getElementById('loading');
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+          const spinner = document.getElementById("loading");
           if (spinner) {
-            spinner.style.display = 'none';
+            spinner.style.display = "none";
           }
         }, 1000);
       });
     </script>
-    
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

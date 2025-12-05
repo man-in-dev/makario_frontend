@@ -34,6 +34,7 @@ const ShippingPolicy = lazy(() => import("./pages/ShippingPolicy"));
 const RefundPolicy = lazy(() => import("./pages/RefundPolicy"));
 const Shop = lazy(() => import("./pages/Shop").then(m => ({ default: m.Shop || m.default })));
 const Checkout = lazy(() => import("./pages/Checkout").then(module => ({ default: module.Checkout })));
+const PaymentCallback = lazy(() => import("./pages/PaymentCallback").then(module => ({ default: module.PaymentCallback })));
 const Wishlist = lazy(() => import("./pages/Wishlist").then(module => ({ default: module.default })));
 const CartPage = lazy(() => import("./pages/CartPage"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
@@ -110,6 +111,7 @@ const App = () => {
                       <Route path="/product/:id" element={<ProductDetail />} />
                       <Route path="/cart" element={<CartPage />} />
                       <Route path="/checkout" element={<Checkout />} />
+                      <Route path="/payment/callback" element={<PaymentCallback />} />
                       <Route path="/wishlist" element={<Wishlist />} />
                       <Route path="/bulk-orders" element={<BulkOrders />} />
                       <Route path="/bulk/export-quality" element={<ExportQuality />} />

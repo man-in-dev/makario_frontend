@@ -1,7 +1,26 @@
-import React, { useState } from 'react';
-import { Search, Filter, Download, Plus, X, Edit2, Trash2 } from 'lucide-react';
-import { Check, Clock, Truck, AlertCircle, RefreshCw } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, Filter, Download, Plus, X, Edit2, Trash2, Loader2, Check, Clock, Truck, AlertCircle, RefreshCw } from 'lucide-react';
 import OrderForm from './OrderForm';
+import api from '../../utils/api';
+import { toast } from 'sonner';
+
+interface BackendOrder {
+  id: string;
+  orderId: string;
+  shippingInfo: {
+    fullName: string;
+    email: string;
+    phone: string;
+  };
+  status: 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  paymentMethod: 'cod' | 'online';
+  paymentDetails?: {
+    paymentStatus: 'pending' | 'completed' | 'failed';
+  };
+  total: number;
+  createdAt: string;
+  updatedAt: string;
+}
 
 interface Order {
   id: string;
@@ -16,41 +35,9 @@ interface Order {
 }
 
 export default function Orders() {
-  const [orders, setOrders] = useState<Order[]>([
-    {
-      id: '#12485',
-      date: 'Nov 22, 2024',
-      customer: 'Priya Sharma',
-      email: 'priya@example.com',
-      phone: '+91 98765 43210',
-      status: 'delivered',
-      paymentStatus: 'paid',
-      amount: '₹4,850',
-      channel: 'Website',
-    },
-    {
-      id: '#12484',
-      date: 'Nov 21, 2024',
-      customer: 'Amit Kumar',
-      email: 'amit@example.com',
-      phone: '+91 96123 45678',
-      status: 'shipped',
-      paymentStatus: 'paid',
-      amount: '₹8,500',
-      channel: 'B2B',
-    },
-    {
-      id: '#12483',
-      date: 'Nov 21, 2024',
-      customer: 'Neha Singh',
-      email: 'neha@example.com',
-      phone: '+91 97654 32109',
-      status: 'processing',
-      paymentStatus: 'paid',
-      amount: '₹2,350',
-      channel: 'Website',
-    },
-  ]);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const [filters, setFilters] = useState({
     status: '',
@@ -65,6 +52,75 @@ export default function Orders() {
   const [showModal, setShowModal] = useState(false);
   const [showOrderForm, setShowOrderForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+
+  // Transform backend order to admin order format
+  const transformOrder = (backendOrder: BackendOrder): Order => {
+    // Map status: 'confirmed' -> 'processing'
+    let status: Order['status'] = backendOrder.status === 'confirmed' ? 'processing' : backendOrder.status as Order['status'];
+    
+    // Map payment status
+    let paymentStatus: Order['paymentStatus'] = 'paid';
+    if (backendOrder.paymentMethod === 'cod') {
+      paymentStatus = 'cod';
+    } else if (backendOrder.paymentDetails?.paymentStatus === 'failed') {
+      paymentStatus = 'failed';
+    } else if (backendOrder.paymentDetails?.paymentStatus === 'completed') {
+      paymentStatus = 'paid';
+    } else if (backendOrder.paymentDetails?.paymentStatus === 'pending') {
+      paymentStatus = 'failed'; // Treat pending online payments as failed for admin view
+    }
+
+    // Format date
+    const date = new Date(backendOrder.createdAt).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+
+    // Format amount
+    const amount = `₹${backendOrder.total.toLocaleString('en-IN')}`;
+
+    return {
+      id: backendOrder.orderId,
+      date,
+      customer: backendOrder.shippingInfo.fullName,
+      email: backendOrder.shippingInfo.email,
+      phone: backendOrder.shippingInfo.phone,
+      status,
+      paymentStatus,
+      amount,
+      channel: 'Website', // Default channel, can be enhanced later
+    };
+  };
+
+  // Fetch orders from API
+  const fetchOrders = async () => {
+    try {
+      setIsRefreshing(true);
+      const response = await api.get('/orders?all=true');
+      
+      if (response.data.success) {
+        const backendOrders: BackendOrder[] = response.data.data.orders || [];
+        const transformedOrders = backendOrders.map(transformOrder);
+        setOrders(transformedOrders);
+      } else {
+        toast.error('Failed to load orders');
+        setOrders([]);
+      }
+    } catch (error: any) {
+      console.error('Error fetching orders:', error);
+      const errorMessage = error.response?.data?.message || 'Failed to load orders';
+      toast.error(errorMessage);
+      setOrders([]);
+    } finally {
+      setIsLoading(false);
+      setIsRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
   const [formData, setFormData] = useState<Order>({
     id: '',
@@ -207,13 +263,24 @@ export default function Orders() {
           <h1 className="text-3xl font-bold text-gray-900">Orders</h1>
           <p className="text-gray-600 text-sm mt-1">Manage all customer orders and track shipments.</p>
         </div>
-        <button
-          onClick={() => setShowOrderForm(true)}
-          className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-[#f4d03f] text-gray-800 rounded-lg font-medium hover:shadow-lg transition-shadow flex items-center gap-2"
-        >
-          <Plus size={18} />
-          Create Order
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={fetchOrders}
+            disabled={isRefreshing}
+            className="px-4 py-2 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Refresh orders"
+          >
+            <RefreshCw size={18} className={isRefreshing ? 'animate-spin' : ''} />
+            Refresh
+          </button>
+          <button
+            onClick={() => setShowOrderForm(true)}
+            className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-[#f4d03f] text-gray-800 rounded-lg font-medium hover:shadow-lg transition-shadow flex items-center gap-2"
+          >
+            <Plus size={18} />
+            Create Order
+          </button>
+        </div>
       </div>
 
       {/* Search & Filters */}
@@ -284,99 +351,108 @@ export default function Orders() {
 
       {/* Orders Table */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 bg-gray-50">
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Order ID
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Customer
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Date
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Status
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Payment
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Amount
-                </th>
-                <th className="px-6 py-3 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredOrders.length > 0 ? (
-                filteredOrders.map((order) => (
-                  <tr key={order.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4">
-                      <span 
-                        onClick={() => viewOrderDetails(order)}
-                        className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-[#d4af37] transition-colors"
-                        title="Click to view details"
-                      >
-                        {order.id}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div>
-                        <p className="text-sm font-medium text-gray-900">{order.customer}</p>
-                        <p className="text-xs text-gray-500">{order.email}</p>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className="text-sm text-gray-600">{order.date}</span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-semibold capitalize ${getStatusColor(order.status)}`}>
-                        {getStatusIcon(order.status)}
-                        {order.status}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className="text-xs font-semibold px-2 py-1 rounded bg-blue-100 text-blue-700 capitalize">
-                        {order.paymentStatus}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <span className="text-sm font-semibold text-gray-900">{order.amount}</span>
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      <div className="flex justify-center gap-2">
-                        <button
-                          onClick={() => openEditModal(order)}
-                          className="text-[#d4af37] hover:text-[#f4d03f] transition-colors"
-                          title="Edit"
+        {isLoading ? (
+          <div className="flex items-center justify-center py-12">
+            <Loader2 className="animate-spin text-[#d4af37]" size={32} />
+            <span className="ml-3 text-gray-600">Loading orders...</span>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-gray-200 bg-gray-50">
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Order ID
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Customer
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Date
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Payment
+                  </th>
+                  <th className="px-6 py-3 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Amount
+                  </th>
+                  <th className="px-6 py-3 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredOrders.length > 0 ? (
+                  filteredOrders.map((order) => (
+                    <tr key={order.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-4">
+                        <span 
+                          onClick={() => viewOrderDetails(order)}
+                          className="text-sm font-semibold text-gray-900 cursor-pointer hover:text-[#d4af37] transition-colors"
+                          title="Click to view details"
                         >
-                          <Edit2 size={16} />
-                        </button>
-                        <button
-                          onClick={() => handleDelete(order.id)}
-                          className="text-red-600 hover:text-red-700 transition-colors"
-                          title="Delete"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
+                          {order.id}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">{order.customer}</p>
+                          <p className="text-xs text-gray-500">{order.email}</p>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className="text-sm text-gray-600">{order.date}</span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-semibold capitalize ${getStatusColor(order.status)}`}>
+                          {getStatusIcon(order.status)}
+                          {order.status}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className="text-xs font-semibold px-2 py-1 rounded bg-blue-100 text-blue-700 capitalize">
+                          {order.paymentStatus}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <span className="text-sm font-semibold text-gray-900">{order.amount}</span>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <div className="flex justify-center gap-2">
+                          <button
+                            onClick={() => openEditModal(order)}
+                            className="text-[#d4af37] hover:text-[#f4d03f] transition-colors"
+                            title="Edit"
+                          >
+                            <Edit2 size={16} />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(order.id)}
+                            className="text-red-600 hover:text-red-700 transition-colors"
+                            title="Delete"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
+                      {searchQuery || filters.status || filters.paymentStatus 
+                        ? 'No orders match your filters' 
+                        : 'No orders found'}
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
-                    No orders found
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         {/* Pagination */}
         <div className="px-6 py-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
