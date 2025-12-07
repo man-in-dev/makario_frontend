@@ -25,7 +25,7 @@ export const Checkout: React.FC = () => {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<'cod' | 'online'>('cod');
+  const [paymentMethod, setPaymentMethod] = useState<'cod' | 'online'>('online');
 
   const [shippingInfo, setShippingInfo] = useState({
     fullName: user?.name || '',
@@ -57,61 +57,61 @@ export const Checkout: React.FC = () => {
     }
 
     // Process order based on payment method
-    if (paymentMethod === 'cod') {
-      await handlePlaceOrder();
-    } else {
+    // if (paymentMethod === 'cod') {
+    //   await handlePlaceOrder();
+    // } else {
       await handleOnlinePayment();
-    }
+    // }
   };
 
-  const handlePlaceOrder = async () => {
-    setIsProcessing(true);
+  // const handlePlaceOrder = async () => {
+  //   setIsProcessing(true);
 
-    try {
-      const totalAmount = getTotalPrice() + 50 - discount;
+  //   try {
+  //     const totalAmount = getTotalPrice() + 50 - discount;
 
-      const orderData = {
-        items: items.map(item => ({
-          productId: item.product.id,
-          name: item.product.name,
-          price: item.product.price,
-          quantity: item.quantity,
-          image: item.product.image,
-        })),
-        shippingInfo,
-        paymentMethod: 'cod',
-        subtotal: getTotalPrice(),
-        shippingCharge: 50,
-        discount,
-        coupon: couponApplied ? coupon : null,
-        total: totalAmount,
-      };
+  //     const orderData = {
+  //       items: items.map(item => ({
+  //         productId: item.product.id,
+  //         name: item.product.name,
+  //         price: item.product.price,
+  //         quantity: item.quantity,
+  //         image: item.product.image,
+  //       })),
+  //       shippingInfo,
+  //       paymentMethod: 'cod',
+  //       subtotal: getTotalPrice(),
+  //       shippingCharge: 50,
+  //       discount,
+  //       coupon: couponApplied ? coupon : null,
+  //       total: totalAmount,
+  //     };
 
-      const response = await api.post('/orders', orderData);
+  //     const response = await api.post('/orders', orderData);
       
-      if (response.data.success) {
-        clearCart();
-        setOrderPlaced(true);
-        setIsProcessing(false);
-        toast.success('Order placed successfully!', {
-          description: `Order ID: ${response.data.data.order.orderId}`,
-        });
-        
-        // Navigate to order confirmation after a delay
-        setTimeout(() => {
-          navigate(`/orders/${response.data.data.order.orderId}`);
-        }, 2000);
-      } else {
-        throw new Error(response.data.message || 'Failed to create order');
-      }
-    } catch (error: any) {
-      console.error('Order creation error:', error);
-      toast.error('Failed to place order', {
-        description: error.response?.data?.message || 'Please try again',
-      });
-      setIsProcessing(false);
-    }
-  };
+  //     if (response.data.success) {
+  //       clearCart();
+  //       setOrderPlaced(true);
+  //       setIsProcessing(false);
+  //       toast.success('Order placed successfully!', {
+  //         description: `Order ID: ${response.data.data.order.orderId}`,
+  //       });
+      
+  //       // Navigate to order confirmation after a delay
+  //       setTimeout(() => {
+  //         navigate(`/orders/${response.data.data.order.orderId}`);
+  //       }, 2000);
+  //     } else {
+  //       throw new Error(response.data.message || 'Failed to create order');
+  //     }
+  //   } catch (error: any) {
+  //     console.error('Order creation error:', error);
+  //     toast.error('Failed to place order', {
+  //       description: error.response?.data?.message || 'Please try again',
+  //     });
+  //     setIsProcessing(false);
+  //   }
+  // };
 
   const handleOnlinePayment = async () => {
     setIsProcessing(true);
@@ -350,13 +350,13 @@ export const Checkout: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <RadioGroup value={paymentMethod} onValueChange={(value: 'cod' | 'online') => setPaymentMethod(value)}>
-                  <div className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
+                  {/* <div className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer">
                     <RadioGroupItem value="cod" id="cod" />
                     <Label htmlFor="cod" className="cursor-pointer flex-1">
                       <div className="font-medium">Cash on Delivery (COD)</div>
                       <p className="text-sm text-gray-500">Pay when you receive your order</p>
                     </Label>
-                  </div>
+                  </div> */}
                   <div className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer mt-2">
                     <RadioGroupItem value="online" id="online" />
                     <Label htmlFor="online" className="cursor-pointer flex-1">

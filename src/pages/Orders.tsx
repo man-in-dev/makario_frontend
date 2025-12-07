@@ -218,7 +218,7 @@ const Orders: React.FC = () => {
                         <p className="text-xl font-bold text-golden">₹{order.total}</p>
                       </div>
                     </div>
-                    <div className="pt-2 flex gap-2">
+                    {/* <div className="pt-2 flex gap-2">
                       <Button
                         variant="outline"
                         size="sm"
@@ -226,7 +226,7 @@ const Orders: React.FC = () => {
                       >
                         View Details
                       </Button>
-                    </div>
+                    </div> */}
                   </div>
                 </CardContent>
               </Card>
