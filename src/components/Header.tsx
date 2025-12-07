@@ -70,7 +70,7 @@ const Header = () => {
                                 </a>
                             </div>
                             <div className="flex items-center gap-6">
-                                <Link to="/track-order" className="hover:text-golden transition-colors duration-200">Track Order</Link>
+                                <a href="https://makario.shipway.com/track" target="_blank" rel="noopener noreferrer" className="hover:text-golden transition-colors duration-200">Track Order</a>
                                 <Link to="/shipping" className="hover:text-golden transition-colors duration-200">Shipping</Link>
                             </div>
                         </div>
@@ -254,14 +254,16 @@ const Header = () => {
 
                                     {/* Quick Links */}
                                     <div className="border-t-2 border-golden/15 pt-4 space-y-2">
-                                        <Link
-                                            to="/track-order"
+                                        <a
+                                            href="https://makario.shipway.com/track"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
                                             onClick={() => setIsMenuOpen(false)}
                                             className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-heritage hover:text-golden hover:bg-golden/5 transition-all border-2 border-golden/20 hover:border-golden/40"
                                         >
                                             <Package className="w-5 h-5" />
                                             Track Order
-                                        </Link>
+                                        </a>
                                         <Link
                                             to="/shipping"
                                             onClick={() => setIsMenuOpen(false)}
