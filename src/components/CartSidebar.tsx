@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
 import { Minus, Plus, Trash2, ShoppingBag, X } from 'lucide-react';
 import LazyImage from './LazyImage';
 import { useNavigate } from 'react-router-dom';
+import { AuthModal } from './auth/AuthModal';
 
 export const CartSidebar: React.FC = () => {
   const { 
@@ -20,8 +22,14 @@ export const CartSidebar: React.FC = () => {
   } = useCart();
   
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const handleCheckout = () => {
+    if (!user) {
+      setShowAuthModal(true);
+      return;
+    }
     closeCart();
     navigate('/checkout');
   };
@@ -172,6 +180,13 @@ export const CartSidebar: React.FC = () => {
             </div>
           </>
         )}
+
+        {/* Login Modal */}
+        <AuthModal 
+          isOpen={showAuthModal} 
+          onClose={() => setShowAuthModal(false)}
+          initialView="login"
+        />
       </div>
     </>
   );

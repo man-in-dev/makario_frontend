@@ -6,10 +6,12 @@ import { Badge } from '../ui/badge';
 import { useCart } from '../../contexts/CartContext';
 import { useWishlist } from '../../contexts/WishlistContext';
 import { useLoading } from '../../contexts/LoadingContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { Heart, ShoppingCart, Star, Zap } from 'lucide-react';
 import LazyImage from '../LazyImage';
 import LoadingSpinner from '../LoadingSpinner';
 import { useNavigate } from 'react-router-dom';
+import { AuthModal } from '../auth/AuthModal';
 
 interface ProductCardProps {
   product: Product;
@@ -21,9 +23,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails
   const { addToCart, isInCart, getItemQuantity, openCart } = useCart();
   const { toggleWishlist, isInWishlist, openWishlist } = useWishlist();
   const { setLoading } = useLoading();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isTogglingWishlist, setIsTogglingWishlist] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   // Safety check for product
   if (!product) {
@@ -63,6 +67,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails
 
   const handleBuyNow = (e: React.MouseEvent) => {
     e.stopPropagation();
+    console.log('Buy Now clicked - user:', user);
+    if (!user) {
+      console.log('Setting showAuthModal to true');
+      setShowAuthModal(true);
+      return;
+    }
     console.log('Buy now clicked for product:', product.id);
     if (!isInCart(product.id)) {
       addToCart(product);
@@ -92,6 +102,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails
   const isWishlisted = isInWishlist(product.id);
 
   return (
+    <>
     <Card className={`group hover:shadow-lg transition-all duration-300 overflow-hidden hover:scale-105 ${
       viewMode === 'list' ? 'flex flex-row' : ''
     }`}>
@@ -193,7 +204,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails
         </div>
       </CardContent>
 
-      <CardFooter className={`${viewMode === 'list' ? 'flex-col gap-2 p-2 md:p-4' : 'p-2 md:p-4 pt-0'} flex gap-2`}>
+      <CardFooter className={`${viewMode === 'list' ? 'flex-col gap-1.5 p-2 md:p-4' : 'p-2 md:p-4 pt-0'} flex gap-1.5`}>
+        <Button
+          onClick={handleBuyNow}
+          disabled={!product.inStock}
+          className={`${viewMode === 'list' ? 'w-full' : 'flex-1'} bg-golden hover:bg-golden/90`}
+          size="sm"
+        >
+          <span className="text-xs md:text-sm font-medium truncate">Buy</span>
+        </Button>
+        
         <Button
           onClick={handleAddToCart}
           variant={cartQuantity > 0 ? "outline" : "default"}
@@ -202,15 +222,28 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails
           size="sm"
         >
           {isAddingToCart ? (
-            <LoadingSpinner size="sm" text="" className="mr-1 md:mr-2" />
+            <LoadingSpinner size="sm" text="" className="mr-0.5 md:mr-1" />
           ) : (
-            <ShoppingCart className="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" />
+            <ShoppingCart className="h-3 w-3 md:h-4 md:w-4 mr-0.5 md:mr-1" />
           )}
-          <span className="text-xs md:text-sm">
-            {isAddingToCart ? 'Adding...' : cartQuantity > 0 ? `In Cart (${cartQuantity})` : 'Add to Cart'}
+          <span className="text-xs md:text-sm truncate">
+            {isAddingToCart ? '...' : cartQuantity > 0 ? `Cart (${cartQuantity})` : 'Add'}
           </span>
         </Button>
       </CardFooter>
     </Card>
+
+    {/* Login Modal - Outside Card to avoid z-index issues */}
+    {showAuthModal && (
+      <AuthModal 
+        isOpen={true} 
+        onClose={() => {
+          console.log('Closing AuthModal');
+          setShowAuthModal(false);
+        }}
+        initialView="login"
+      />
+    )}
+  </>
   );
 };

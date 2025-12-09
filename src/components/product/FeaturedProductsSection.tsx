@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Product } from '../../data/products';
 import { FeaturedProductCard } from './FeaturedProductCard';
 import { Button } from '../ui/button';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SectionHeader from '../SectionHeader';
 
 interface FeaturedProductsSectionProps {
   products: Product[];
@@ -53,9 +54,16 @@ export const FeaturedProductsSection: React.FC<FeaturedProductsSectionProps> = (
   return (
     <section className={`py-16 bg-gray-50 ${className}`}>
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 text-gray-900 tracking-wide">{title}</h2>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+        <SectionHeader
+          eyebrow="FEATURED COLLECTION"
+          icon={Award}
+          title="Season's Top Picks"
+          highlightWord="Top Picks"
+          highlightColor="green"
+          className="mb-8"
+        />
+        <div className="text-center mb-8">
+          <p className="text-gray-600 text-sm md:text-base max-w-3xl mx-auto">
             Discover our premium collection of Bihar makhana products. Fresh, organic, and healthy fox nuts directly from Bihar's finest cultivation areas.
           </p>
         </div>
@@ -76,7 +84,7 @@ export const FeaturedProductsSection: React.FC<FeaturedProductsSectionProps> = (
             </div>
           </div>
 
-          {/* Mobile View - Single Row Carousel */}
+          {/* Mobile View - 2 Products per Slide Carousel */}
           <div className="block md:hidden relative">
             <div className="overflow-hidden">
               <div 
@@ -85,10 +93,10 @@ export const FeaturedProductsSection: React.FC<FeaturedProductsSectionProps> = (
               >
                 {/* Show 2 products per slide */}
                 {Array.from({ length: Math.ceil(products.length / 2) }).map((_, groupIndex) => (
-                  <div key={groupIndex} className="w-full flex-shrink-0 px-2">
-                    <div className="grid grid-cols-2 gap-4">
+                  <div key={groupIndex} className="w-full flex-shrink-0 px-0">
+                    <div className="grid grid-cols-2 gap-1">
                       {products.slice(groupIndex * 2, (groupIndex + 1) * 2).map((product) => (
-                        <div key={product.id} className="mb-3">
+                        <div key={product.id} className="mb-2">
                           <FeaturedProductCard product={product} />
                         </div>
                       ))}

@@ -4,7 +4,7 @@ import { Home, ShoppingCart, Heart, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useAuth } from "@/contexts/AuthContext";
-import { AuthModal } from "./auth/AuthModal";
+
 import "@/styles/mobile-menu.css";
 
 const menuItems = [
@@ -20,7 +20,6 @@ const MobileBottomMenu: React.FC = () => {
   const isMobile = useIsMobile();
   const { user } = useAuth();
   const [showLabels, setShowLabels] = React.useState(true);
-  const [showAuthModal, setShowAuthModal] = useState(false);
 
   // Only show the menu on mobile devices
   if (!isMobile) return null;
@@ -31,7 +30,7 @@ const MobileBottomMenu: React.FC = () => {
   const handleProfileClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!user) {
-      setShowAuthModal(true);
+      navigate('/login');
     } else {
       navigate('/profile');
     }
@@ -79,14 +78,9 @@ const MobileBottomMenu: React.FC = () => {
             </Link>
           );
         })}
-      </nav>
-
-      <AuthModal 
-        isOpen={showAuthModal} 
-        onClose={() => setShowAuthModal(false)} 
-      />
-    </>
-  );
-};
+        </nav>
+        </>
+        );
+        };
 
 export default MobileBottomMenu;

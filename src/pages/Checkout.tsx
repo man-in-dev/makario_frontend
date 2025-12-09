@@ -207,6 +207,28 @@ export const Checkout: React.FC = () => {
     }
   };
 
+  // Redirect to login if user is not authenticated
+  if (!user) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Card className="max-w-md mx-auto text-center">
+          <CardContent className="pt-6">
+            <h2 className="text-2xl font-semibold mb-4">Login Required</h2>
+            <p className="text-gray-600 mb-6">You must login to proceed with checkout.</p>
+            <div className="flex gap-4 justify-center">
+              <Button onClick={() => navigate('/login')}>
+                Login
+              </Button>
+              <Button variant="outline" onClick={() => navigate('/signup')}>
+                Sign Up
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   if (items.length === 0 && !orderPlaced) {
     return (
       <div className="container mx-auto px-4 py-8">

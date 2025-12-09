@@ -54,7 +54,7 @@ export const LoginPage: React.FC = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gradient-to-br from-golden/5 via-white to-golden/10 pt-32 pb-16 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-golden/5 via-white to-golden/10 pt-6 md:pt-32 pb-16 px-4">
         <div className="max-w-md mx-auto">
           <Card className="border-2 border-golden/20 shadow-xl">
             <CardHeader className="bg-gradient-to-r from-golden/10 to-golden/5 border-b border-golden/20">
@@ -163,12 +163,7 @@ export const LoginPage: React.FC = () => {
                 </Button>
               </form>
 
-              {/* Test Credentials */}
-              <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <p className="text-xs text-blue-900 font-semibold mb-2">Demo Credentials:</p>
-                <p className="text-xs text-blue-800">Email: demo@makario.com</p>
-                <p className="text-xs text-blue-800">Password: demo123</p>
-              </div>
+
             </CardContent>
           </Card>
 
