@@ -9,6 +9,7 @@ import { useRemoveGoogleText } from "./hooks/useRemoveGoogleText";
 
 // Providers
 import { AuthProvider } from "./contexts/AuthContext";
+import { AdminAuthProvider } from "./contexts/AdminAuthContext";
 import { CartProvider } from "./contexts/CartContext";
 import { WishlistProvider } from "./contexts/WishlistContext";
 import { LoadingProvider } from "./contexts/LoadingContext";
@@ -20,7 +21,7 @@ import RouteLoader from "./components/RouteLoader";
 import GlobalMeta from "./components/GlobalMeta";
 
 import MobileBottomMenu from "./components/MobileBottomMenu";
-import OfferPopup from "./components/OfferPopup";
+
 import MarketplaceSlider from "./components/MarketplaceSlider";
 
 // Admin Routes
@@ -87,15 +88,15 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AuthProvider>
-          <LoadingProvider>
-            <ScrollLockProvider>
-              <CartProvider>
-                <WishlistProvider>
+          <AdminAuthProvider>
+            <LoadingProvider>
+              <ScrollLockProvider>
+                <CartProvider>
+                  <WishlistProvider>
                   <BrowserRouter>
                   <ScrollToTop />
                   <Toaster />
                   <SonnerToaster />
-                  <OfferPopup />
                   <MobileBottomMenu />
                   <RouteLoader>
                     <Routes>
@@ -142,10 +143,11 @@ const App = () => {
                     </Routes>
                   </RouteLoader>
                 </BrowserRouter>
-              </WishlistProvider>
-            </CartProvider>
-            </ScrollLockProvider>
-          </LoadingProvider>
+                </WishlistProvider>
+              </CartProvider>
+              </ScrollLockProvider>
+            </LoadingProvider>
+          </AdminAuthProvider>
         </AuthProvider>
       </TooltipProvider>
       </QueryClientProvider>

@@ -7,7 +7,7 @@ export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="admin-page flex h-screen bg-gray-50">
       {/* Sidebar - Fixed Position */}
       <div className={`fixed left-0 top-0 h-screen ${sidebarOpen ? 'w-64' : 'w-20'} transition-all duration-300 z-40`}>
         <AdminSidebar isOpen={sidebarOpen} />

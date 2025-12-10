@@ -8,12 +8,16 @@ interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialView?: 'login' | 'signup';
+  title?: string;
+  subtitle?: string;
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({ 
   isOpen, 
   onClose, 
-  initialView = 'login' 
+  initialView = 'login',
+  title,
+  subtitle
 }) => {
   const [view, setView] = useState<'login' | 'signup'>(initialView);
 
@@ -44,6 +48,22 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           >
             <X className="h-5 w-5" />
           </Button>
+
+          {/* Custom Header */}
+          {(title || subtitle) && (
+            <div className="pt-6 px-6 pb-2 border-b border-gray-100">
+              {title && (
+                <h2 className="text-xl font-bold text-gray-900 mb-1">
+                  {title}
+                </h2>
+              )}
+              {subtitle && (
+                <p className="text-sm text-gray-600">
+                  {subtitle}
+                </p>
+              )}
+            </div>
+          )}
           
           {view === 'login' ? (
             <Login
