@@ -3,8 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { useWishlist } from '../contexts/WishlistContext';
 import { useAuth } from '../contexts/AuthContext';
+import { AuthModal } from '../components/auth/AuthModal';
 import fssaiLogo from "../assets/1707841493fssai-logo-png.png";
 import makeInIndiaLogo from "../assets/Make-in-India.png";
+import amazonIcon from "../assets/amazon icon.png";
 import { products } from '../data/products';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
@@ -35,6 +37,8 @@ import { StockAlert } from '../components/product/StockAlert';
 import { toast } from 'sonner';
 import api from '../utils/api';
 import { loadCashfreeScript, initializeCashfree } from '../utils/loadCashfree';
+import RetailersWholesalersSection from '../components/RetailersWholesalersSection';
+import ContactForm from '../components/ContactForm';
 
 const ProductDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -73,6 +77,8 @@ const ProductDetail: React.FC = () => {
             });
         }
     }, [user]);
+    const [showBulkForm, setShowBulkForm] = useState(false);
+    const [showAuthModal, setShowAuthModal] = useState(false);
 
     // Find the product by ID (ensuring both are strings for comparison)
     const product = products.find(p => p.id === id);
@@ -308,6 +314,13 @@ const ProductDetail: React.FC = () => {
             });
             setIsProcessing(false);
         }
+    const handleBuyNow = () => {
+        if (!user) {
+            setShowAuthModal(true);
+            return;
+        }
+        addToCart(displayProduct, quantity);
+        navigate('/checkout');
     };
 
     const handleToggleWishlist = () => {
@@ -342,7 +355,7 @@ const ProductDetail: React.FC = () => {
             "name": "Makario"
         },
         "sku": `MKR-${displayProduct.id.padStart(4, '0')}`,
-        "category": "Flavoured Makhana",
+        "category": "Raw Makhana",
         "offers": {
             "@type": "Offer",
             "@id": `https://makario.in/product/${displayProduct.id}#offer`,
@@ -456,7 +469,7 @@ const ProductDetail: React.FC = () => {
                         onClick={() => navigate('/products')}
                         className="hover:text-primary transition-colors"
                     >
-                        Flavoured Makhana
+                        Raw Makhana
                     </button>
                     <ChevronRight className="h-4 w-4" />
                     <span className="text-gray-900 font-medium">{displayProduct.name}</span>
@@ -509,8 +522,8 @@ const ProductDetail: React.FC = () => {
                                     key={index}
                                     onClick={() => setSelectedImage(index)}
                                     className={`aspect-square border-2 rounded-lg overflow-hidden transition-all hover:scale-105 ${selectedImage === index
-                                            ? 'border-orange-500 shadow-md'
-                                            : 'border-gray-200 hover:border-orange-300'
+                                        ? 'border-orange-500 shadow-md'
+                                        : 'border-gray-200 hover:border-orange-300'
                                         }`}
                                 >
                                     <LazyImage
@@ -543,8 +556,8 @@ const ProductDetail: React.FC = () => {
                                         <Star
                                             key={i}
                                             className={`h-5 w-5 ${i < Math.floor(displayProduct.rating)
-                                                    ? 'text-yellow-400 fill-current'
-                                                    : 'text-gray-300'
+                                                ? 'text-yellow-400 fill-current'
+                                                : 'text-gray-300'
                                                 }`}
                                         />
                                     ))}
@@ -582,14 +595,6 @@ const ProductDetail: React.FC = () => {
 
                             {/* Product Features */}
                             <div className="space-y-3 text-sm">
-                                <div className="flex items-start gap-3">
-                                    <div className="w-1 h-1 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                                    <span>Quick Delivery (Delhi NCR Sat before 2:00 PM for same-day dispatch)</span>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <div className="w-1 h-1 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                                    <span>Free Shipping across India on orders above ₹1000</span>
-                                </div>
                                 <div className="flex items-start gap-3">
                                     <div className="w-1 h-1 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                                     <span>WhatsApp and phone customer service support</span>
@@ -633,7 +638,7 @@ const ProductDetail: React.FC = () => {
                         {/* SKU and Category */}
                         <div className="text-sm text-gray-600 space-y-1">
                             <div><span className="font-medium">SKU:</span> MKR-{displayProduct.id.padStart(4, '0')}</div>
-                            <div><span className="font-medium">Category:</span> <span className="text-blue-600">Flavoured Makhana</span></div>
+                            <div><span className="font-medium">Category:</span> <span className="text-blue-600">Raw Makhana</span></div>
                             <div className="mt-3">
                                 <span className="text-gray-500">Brand: </span>
                                 <span className="font-semibold text-gray-900">Makario</span>
@@ -690,12 +695,29 @@ const ProductDetail: React.FC = () => {
                                     variant="outline"
                                     size="icon"
                                     className={`h-12 w-12 border-2 ${isWishlisted
-                                            ? 'text-red-500 border-red-200 bg-red-50'
-                                            : 'text-gray-400 border-gray-300 hover:text-red-500 hover:border-red-300'
+                                        ? 'text-red-500 border-red-200 bg-red-50'
+                                        : 'text-gray-400 border-gray-300 hover:text-red-500 hover:border-red-300'
                                         }`}
                                 >
                                     <Heart className={`h-5 w-5 ${isWishlisted ? 'fill-current' : ''}`} />
                                 </Button>
+                            </div>
+
+                            {/* Amazon Link */}
+                            <div className="mt-4">
+                                <a
+                                    href="https://www.amazon.in/Makario-Premium-Makhana-Natural-Gluten-Free/dp/B0G5FBSCP2/ref=sr_1_5?crid=267ON49LR59CH&dib=eyJ2IjoiMSJ9.G5Pb2eS-BlHB_lrGw5rX4q9NxTyqfcwRvpFey4OICVsCXWxuzG_b6eUsubMBcEjfvCpa1cHcN4MZH6avIYn8XyvwMnwlClad76c8xdr_fxbbplMENzP7W72AnuUNvtyLyrGo7aYL1uNCJKuStMD9IUq0ogeK8iZXbwPbuuVVz2tO3Bket46JrWbObzzevLraYnKRKqHrxqhb_7Ek0Ux-aOxYjYffX7qkTKf9UQf7FAjFDntHUgW8n10Hia8K4HYGJeS-7cHsLsACVBmmni5yX6mjflW0SLUrenUqwgUdg3I.fsYbwgjuW9TOutTqZQJr-mU5vCnN3rPvflcaY22xcH0&dib_tag=se&keywords=makario+makhana&nsdOptOutParam=true&qid=1765284240&sprefix=makario+makhana%2Caps%2C230&sr=8-5"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-block w-full"
+                                >
+                                    <Button
+                                        className="w-full bg-[#FF9900] hover:bg-[#E67E00] text-white px-8 py-3 h-12 text-base font-semibold"
+                                    >
+                                        <img src={amazonIcon} alt="Amazon" className="h-5 w-5 mr-2 object-contain" />
+                                        Also available on Amazon.in
+                                    </Button>
+                                </a>
                             </div>
                         </div>
 
@@ -752,42 +774,41 @@ const ProductDetail: React.FC = () => {
                                 <CardContent className="pt-8 pb-8">
                                     <div className="prose prose-gray max-w-none">
                                         <p className="text-gray-700 leading-relaxed mb-6 text-base">
-                                            Get ready to turn up the heat with Heeva Roasted Makhana – Peri-Peri Flavour!
-                                            Carefully crafted from the finest quality foxnuts, this crunchy delight is seasoned
-                                            with spicy Peri Peri flavour for those who crave bold taste and wholesome snacking.
+                                            Makario Premium Raw Phool Makhana brings you the finest Grade A fox nuts sourced directly from Bihar, renowned for producing the highest quality lotus seeds in India. These crispy, all-natural makhanas are carefully selected and cleaned to ensure you receive only the best for your snacking pleasure. Packed with protein and naturally gluten-free, phool makhana makes an excellent healthy snack choice for fitness enthusiasts and health-conscious individuals alike.
                                         </p>
 
                                         <h4 className="text-lg font-semibold mb-4 text-gray-900">Key Features & Benefits:</h4>
                                         <ul className="space-y-3 text-gray-700">
                                             <li className="flex items-start gap-3">
                                                 <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                                                <div><span className="font-medium">Fiery Peri Peri Flavour:</span> Experience the bold and spicy taste of our Peri Peri Makhana, a perfect blend of heat and flavor.</div>
+                                                <div><span className="font-medium">Premium Quality:</span> Grade A Phool Makhana sourced from Bihar, ensuring fresh, premium quality fox nuts that are crispy, clean, and naturally processed</div>
                                             </li>
                                             <li className="flex items-start gap-3">
                                                 <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                                                <div><span className="font-medium">Premium Foxnuts:</span> Premium quality lotus seeds sourced from trusted suppliers.</div>
+                                                <div><span className="font-medium">Nutritious Snack:</span> Rich in protein and naturally gluten-free, these lotus seeds make a healthy snacking option for fitness enthusiasts and health-conscious individuals</div>
                                             </li>
                                             <li className="flex items-start gap-3">
                                                 <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                                                <div><span className="font-medium">Carefully Roasted:</span> Our makhana is expertly roasted to ensure a crispy texture and enhance the Peri Peri flavor.</div>
+                                                <div><span className="font-medium">Versatile Use:</span> Perfect for roasting, snacking, cooking traditional recipes, or consuming during fasting (Vrat) occasions with family and friends</div>
                                             </li>
                                             <li className="flex items-start gap-3">
                                                 <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                                                <div><span className="font-medium">Healthy Snacking:</span> Packed with essential nutrients and low in calories.</div>
+                                                <div><span className="font-medium">Natural & Wholesome:</span> Raw fox nuts with no artificial additives, providing you with pure, natural goodness in every bite</div>
                                             </li>
                                             <li className="flex items-start gap-3">
                                                 <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                                                <div><span className="font-medium">Protein and Fiber-Rich:</span> A wholesome source of plant-based protein and dietary fiber, supporting a healthy lifestyle.</div>
+                                                <div><span className="font-medium">Convenient Packaging:</span> Comes in a 100 gramme pack that maintains freshness and quality, ideal for portion control and easy storage</div>
                                             </li>
                                             <li className="flex items-start gap-3">
                                                 <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                                                <div><span className="font-medium">No Artificial Additives:</span> No artificial colors, flavors, or preservatives, or MSG.</div>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                                                <div><span className="font-medium">Vegan and Gluten-Free:</span> Suitable for vegans and those with gluten sensitivities, making it an inclusive snack.</div>
+                                                <div><span className="font-medium">Low Calorie:</span> Rich in essential nutrients and low in calories, making guilt-free snacking easy and enjoyable</div>
                                             </li>
                                         </ul>
+
+                                        <h4 className="text-lg font-semibold mb-4 text-gray-900 mt-6">Why Choose Makario Makhana?</h4>
+                                        <p className="text-gray-700 leading-relaxed mb-6">
+                                            These versatile lotus seeds are perfect for roasting with your favourite spices, enjoying as a light snack, or incorporating into your vrat and fasting meals. Whether you prefer them roasted with a sprinkle of salt and pepper, cooked in ghee for a traditional preparation, or added to curries and desserts, these makhanas deliver exceptional taste and nutrition. Experience the authentic taste and superior quality of Bihar's finest makhana with Makario.
+                                        </p>
                                     </div>
                                 </CardContent>
                             </Card>
@@ -801,7 +822,7 @@ const ProductDetail: React.FC = () => {
                                         <div className="space-y-4">
                                             <div className="flex justify-between py-2 border-b border-gray-100">
                                                 <span className="font-medium text-gray-700">Weight:</span>
-                                                <span className="text-gray-900">100g</span>
+                                                <span className="text-gray-900">100 Grams</span>
                                             </div>
                                             <div className="flex justify-between py-2 border-b border-gray-100">
                                                 <span className="font-medium text-gray-700">Brand:</span>
@@ -809,21 +830,57 @@ const ProductDetail: React.FC = () => {
                                             </div>
                                             <div className="flex justify-between py-2 border-b border-gray-100">
                                                 <span className="font-medium text-gray-700">Flavor:</span>
-                                                <span className="text-gray-900">Peri-Peri</span>
+                                                <span className="text-gray-900">Unflavoured</span>
+                                            </div>
+                                            <div className="flex justify-between py-2 border-b border-gray-100">
+                                                <span className="font-medium text-gray-700">Type:</span>
+                                                <span className="text-gray-900">Raw Makhana (Fox Nuts)</span>
                                             </div>
                                         </div>
                                         <div className="space-y-4">
                                             <div className="flex justify-between py-2 border-b border-gray-100">
-                                                <span className="font-medium text-gray-700">Type:</span>
-                                                <span className="text-gray-900">Roasted Makhana</span>
+                                                <span className="font-medium text-gray-700">Speciality:</span>
+                                                <span className="text-gray-900">Gluten-free, Natural, Premium, Protein-rich, Raw</span>
                                             </div>
                                             <div className="flex justify-between py-2 border-b border-gray-100">
-                                                <span className="font-medium text-gray-700">Shelf Life:</span>
-                                                <span className="text-gray-900">12 months</span>
+                                                <span className="font-medium text-gray-700">Country of Origin:</span>
+                                                <span className="text-gray-900">India (Bihar)</span>
                                             </div>
                                             <div className="flex justify-between py-2 border-b border-gray-100">
                                                 <span className="font-medium text-gray-700">Storage:</span>
                                                 <span className="text-gray-900">Cool, dry place</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h4 className="text-lg font-semibold mb-4 text-gray-900 mt-8">Nutritional Information (Per 6g serving)</h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-4">
+                                            <div className="flex justify-between py-2 border-b border-gray-100">
+                                                <span className="font-medium text-gray-700">Calories:</span>
+                                                <span className="text-gray-900">Approx. 127 kcal</span>
+                                            </div>
+                                            <div className="flex justify-between py-2 border-b border-gray-100">
+                                                <span className="font-medium text-gray-700">Protein:</span>
+                                                <span className="text-gray-900">4.5g</span>
+                                            </div>
+                                            <div className="flex justify-between py-2 border-b border-gray-100">
+                                                <span className="font-medium text-gray-700">Carbohydrates:</span>
+                                                <span className="text-gray-900">76.9g</span>
+                                            </div>
+                                        </div>
+                                        <div className="space-y-4">
+                                            <div className="flex justify-between py-2 border-b border-gray-100">
+                                                <span className="font-medium text-gray-700">Fat:</span>
+                                                <span className="text-gray-900">0.1g</span>
+                                            </div>
+                                            <div className="flex justify-between py-2 border-b border-gray-100">
+                                                <span className="font-medium text-gray-700">Sugars:</span>
+                                                <span className="text-gray-900">76.9g</span>
+                                            </div>
+                                            <div className="flex justify-between py-2 border-b border-gray-100">
+                                                <span className="font-medium text-gray-700">Ingredients:</span>
+                                                <span className="text-gray-900">Raw Makhana</span>
                                             </div>
                                         </div>
                                     </div>
@@ -945,6 +1002,20 @@ const ProductDetail: React.FC = () => {
                 </div>
             </div>
 
+            {/* Retailers & Wholesalers Section */}
+            <RetailersWholesalersSection onShowBulkForm={() => setShowBulkForm(true)} />
+
+            {/* Bulk Form Popup */}
+            {showBulkForm && (
+                <ContactForm
+                    isOpen={showBulkForm}
+                    onClose={() => setShowBulkForm(false)}
+                    title="Bulk Order Quote"
+                    formType="bulk"
+                    isPopup={true}
+                />
+            )}
+
             <Footer />
 
             {/* Shipping Info Modal */}
@@ -1053,8 +1124,16 @@ const ProductDetail: React.FC = () => {
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
+            {/* Login Modal */}
+            <AuthModal 
+                isOpen={showAuthModal} 
+                onClose={() => setShowAuthModal(false)}
+                initialView="login"
+                title="Login to Continue"
+                subtitle="Please sign in to your account to proceed with checkout"
+            />
         </>
-    );
+        )}
 };
 
 export default ProductDetail;

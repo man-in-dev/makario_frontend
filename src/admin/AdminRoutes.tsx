@@ -18,11 +18,23 @@ import BlogCreate from './pages/BlogCreate';
 import BlogEdit from './pages/BlogEdit';
 import PageCreate from './pages/PageCreate';
 import PageEdit from './pages/PageEdit';
+import AdminLogin from './pages/AdminLogin';
+import ProtectedAdminRoute from './ProtectedAdminRoute';
 
 export default function AdminRoutes() {
   return (
     <Routes>
-      <Route element={<AdminLayout />}>
+      {/* Login Route - No protection needed */}
+      <Route path="login" element={<AdminLogin />} />
+
+      {/* Protected Routes */}
+      <Route
+        element={
+          <ProtectedAdminRoute>
+            <AdminLayout />
+          </ProtectedAdminRoute>
+        }
+      >
         <Route index element={<Dashboard />} />
         <Route path="orders" element={<Orders />} />
         <Route path="products" element={<Products />} />
@@ -37,14 +49,42 @@ export default function AdminRoutes() {
         <Route path="settings" element={<Settings />} />
         <Route path="support" element={<Support />} />
       </Route>
-      
+
       {/* Blog Create/Edit Pages */}
-      <Route path="blog/create" element={<BlogCreate />} />
-      <Route path="blog/edit/:id" element={<BlogEdit />} />
-      
+      <Route
+        path="blog/create"
+        element={
+          <ProtectedAdminRoute>
+            <BlogCreate />
+          </ProtectedAdminRoute>
+        }
+      />
+      <Route
+        path="blog/edit/:id"
+        element={
+          <ProtectedAdminRoute>
+            <BlogEdit />
+          </ProtectedAdminRoute>
+        }
+      />
+
       {/* Page Create/Edit Pages */}
-      <Route path="content/create" element={<PageCreate />} />
-      <Route path="content/edit/:id" element={<PageEdit />} />
+      <Route
+        path="content/create"
+        element={
+          <ProtectedAdminRoute>
+            <PageCreate />
+          </ProtectedAdminRoute>
+        }
+      />
+      <Route
+        path="content/edit/:id"
+        element={
+          <ProtectedAdminRoute>
+            <PageEdit />
+          </ProtectedAdminRoute>
+        }
+      />
     </Routes>
   );
 }

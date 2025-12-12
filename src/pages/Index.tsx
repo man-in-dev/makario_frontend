@@ -4,13 +4,14 @@ import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 import QuoteForm from "@/components/QuoteForm";
 import SEO from "@/components/SEO";
-import WhatsAppButton from "@/components/WhatsAppButton";
+
 import SectionHeader from "@/components/SectionHeader";
 import MarketplaceSlider from "@/components/MarketplaceSlider";
 import ComparisonSection from "@/components/ComparisonSection";
 import { ProductList } from "../components/product/ProductList";
 import { FeaturedProductsSection } from "../components/product/FeaturedProductsSection";
 import BlogSection from "@/components/BlogSection";
+import RetailersWholesalersSection from "@/components/RetailersWholesalersSection";
 import { getFeaturedProducts } from "../data/products";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -464,24 +465,9 @@ const Index = () => {
       <Hero />
       
       {/* Featured Products Section - Season's Top Picks */}
-      <section className="py-6">
-        <div className="container mx-auto px-4">
-          <SectionHeader
-            eyebrow="FEATURED COLLECTION"
-            icon={Award}
-            title="Season's Top Picks"
-            highlightWord="Top Picks"
-            highlightColor="green"
-            className="mb-0"
-          />
-          <div className="mt-0">
-            <FeaturedProductsSection 
-              products={getFeaturedProducts()}
-              title=""
-            />
-          </div>
-        </div>
-      </section>
+      <FeaturedProductsSection 
+        products={getFeaturedProducts()}
+      />
 
       {/* Comparison Section - Mere Makhana Ka Pack */}
       <ComparisonSection />
@@ -1082,6 +1068,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Retailers & Wholesalers Section */}
+      <RetailersWholesalersSection onShowBulkForm={() => setShowBulkForm(true)} />
+
       {/* Global Presence & SEO Section - Enhanced */}
       <section className="py-16 bg-gradient-to-br from-heritage/5 via-golden/5 to-muted/30 relative overflow-hidden">
         {/* Background Pattern */}
@@ -1288,8 +1277,6 @@ const Index = () => {
           onClose={() => setShowQuoteForm(false)}
         />
       )}
-
-      <WhatsAppButton />
 
       <MarketplaceSlider />
       <Footer />
