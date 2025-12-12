@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
@@ -12,8 +12,14 @@ export const PaymentCallback: React.FC = () => {
   const { clearCart } = useCart();
   const [status, setStatus] = useState<'loading' | 'success' | 'failed'>('loading');
   const [orderId, setOrderId] = useState<string | null>(null);
+  const hasVerified = useRef(false);
 
   useEffect(() => {
+    // Prevent multiple verifications
+    if (hasVerified.current) {
+      return;
+    }
+
     const verifyPayment = async () => {
       const orderIdParam = searchParams.get('orderId');
       
@@ -23,6 +29,8 @@ export const PaymentCallback: React.FC = () => {
         return;
       }
 
+      // Mark as verified to prevent re-running
+      hasVerified.current = true;
       setOrderId(orderIdParam);
 
       try {
@@ -57,7 +65,8 @@ export const PaymentCallback: React.FC = () => {
     };
 
     verifyPayment();
-  }, [searchParams, clearCart]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   if (status === 'loading') {
     return (

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { useWishlist } from '../contexts/WishlistContext';
+import { useAuth } from '../contexts/AuthContext';
 import fssaiLogo from "../assets/1707841493fssai-logo-png.png";
 import makeInIndiaLogo from "../assets/Make-in-India.png";
 import { products } from '../data/products';
@@ -9,6 +10,9 @@ import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { Card, CardContent } from '../components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../components/ui/dialog';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
 import {
     Heart,
     ShoppingCart,
@@ -28,16 +32,47 @@ import Footer from '../components/Footer';
 import LazyImage from '../components/LazyImage';
 import SEO from '../components/SEO';
 import { StockAlert } from '../components/product/StockAlert';
+import { toast } from 'sonner';
+import api from '../utils/api';
+import { loadCashfreeScript, initializeCashfree } from '../utils/loadCashfree';
 
 const ProductDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const { addToCart, isInCart, getItemQuantity } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
+    const { user } = useAuth();
 
     const [selectedImage, setSelectedImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [zoomOpen, setZoomOpen] = useState(false);
+    const [showShippingModal, setShowShippingModal] = useState(false);
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [shippingInfo, setShippingInfo] = useState({
+        fullName: user?.name || '',
+        email: user?.email || '',
+        phone: user?.phone || '',
+        address: user?.address || '',
+        city: user?.city || '',
+        state: user?.state || '',
+        pincode: user?.pincode || '',
+    });
+
+    // Update shipping info when user changes
+    useEffect(() => {
+        if (user) {
+            const defaultAddress = user.addresses?.find(addr => addr.isDefault) || user.addresses?.[0];
+            setShippingInfo({
+                fullName: user.name || '',
+                email: user.email || '',
+                phone: defaultAddress?.phone || user.phone || '',
+                address: defaultAddress?.street || user.address || '',
+                city: defaultAddress?.city || user.city || '',
+                state: defaultAddress?.state || user.state || '',
+                pincode: defaultAddress?.pincode || user.pincode || '',
+            });
+        }
+    }, [user]);
 
     // Find the product by ID (ensuring both are strings for comparison)
     const product = products.find(p => p.id === id);
@@ -92,9 +127,187 @@ const ProductDetail: React.FC = () => {
         addToCart(displayProduct, quantity);
     };
 
-    const handleBuyNow = () => {
-        addToCart(displayProduct, quantity);
-        navigate('/checkout');
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setShippingInfo(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const getShippingInfo = () => {
+        // Check if user has a default address
+        if (user?.addresses && user.addresses.length > 0) {
+            const defaultAddress = user.addresses.find(addr => addr.isDefault) || user.addresses[0];
+            if (defaultAddress) {
+                return {
+                    fullName: user.name || '',
+                    email: user.email || '',
+                    phone: defaultAddress.phone || user.phone || '',
+                    address: defaultAddress.street || user.address || '',
+                    city: defaultAddress.city || user.city || '',
+                    state: defaultAddress.state || user.state || '',
+                    pincode: defaultAddress.pincode || user.pincode || '',
+                };
+            }
+        }
+        
+        // Fallback to user profile info
+        if (user) {
+            return {
+                fullName: user.name || '',
+                email: user.email || '',
+                phone: user.phone || '',
+                address: user.address || '',
+                city: user.city || '',
+                state: user.state || '',
+                pincode: user.pincode || '',
+            };
+        }
+        
+        return shippingInfo;
+    };
+
+    const validateShippingInfo = (info: typeof shippingInfo) => {
+        return info.fullName && info.email && info.phone && 
+               info.address && info.city && info.state && info.pincode;
+    };
+
+    const handleBuyNow = async () => {
+        // Check if user is logged in
+        if (!user) {
+            toast.error('Please login to continue', {
+                description: 'You need to be logged in to place an order',
+            });
+            navigate('/login', { state: { returnUrl: `/product/${id}` } });
+            return;
+        }
+
+        // Get shipping info from user profile or saved addresses
+        let currentShippingInfo = getShippingInfo();
+        
+        // If shipping info is incomplete, show modal
+        if (!validateShippingInfo(currentShippingInfo)) {
+            setShippingInfo({
+                fullName: user.name || '',
+                email: user.email || '',
+                phone: user.phone || '',
+                address: user.address || '',
+                city: user.city || '',
+                state: user.state || '',
+                pincode: user.pincode || '',
+            });
+            setShowShippingModal(true);
+            return;
+        }
+
+        // Proceed with payment
+        await proceedToCashfreeCheckout(currentShippingInfo);
+    };
+
+    const handleShippingSubmit = async () => {
+        // Validate shipping info
+        if (!validateShippingInfo(shippingInfo)) {
+            toast.error('Please fill all shipping details');
+            return;
+        }
+
+        setShowShippingModal(false);
+        await proceedToCashfreeCheckout(shippingInfo);
+    };
+
+    const proceedToCashfreeCheckout = async (shippingData: typeof shippingInfo) => {
+        setIsProcessing(true);
+
+        try {
+            const totalAmount = (displayProduct.price * quantity) + 50; // Product price + shipping
+
+            // Create order in database
+            const orderData = {
+                items: [{
+                    productId: displayProduct.id,
+                    name: displayProduct.name,
+                    price: displayProduct.price,
+                    quantity: quantity,
+                    image: displayProduct.images[0],
+                }],
+                shippingInfo: shippingData,
+                paymentMethod: 'online',
+                paymentDetails: {
+                    paymentStatus: 'pending',
+                },
+                subtotal: displayProduct.price * quantity,
+                shippingCharge: 50,
+                discount: 0,
+                coupon: null,
+                total: totalAmount,
+            };
+
+            const orderResponse = await api.post('/orders', orderData);
+            
+            if (!orderResponse.data.success) {
+                throw new Error(orderResponse.data.message || 'Failed to create order');
+            }
+
+            const order = orderResponse.data.data.order;
+            const orderId = order.orderId;
+
+            // Create payment session with Cashfree
+            const paymentSessionResponse = await api.post('/payments/create-session', {
+                orderId,
+                amount: totalAmount,
+                customerDetails: {
+                    customerId: user?.id || shippingData.email,
+                    customerEmail: shippingData.email,
+                    customerPhone: shippingData.phone,
+                    customerName: shippingData.fullName,
+                },
+                orderNote: `Order ${orderId} - ${displayProduct.name} (Qty: ${quantity})`,
+            });
+
+            if (!paymentSessionResponse.data.success) {
+                throw new Error(paymentSessionResponse.data.message || 'Failed to create payment session');
+            }
+
+            const paymentSessionId = paymentSessionResponse.data.data.paymentSessionId;
+
+            // Load Cashfree script and initialize
+            await loadCashfreeScript();
+            
+            const cashfreeMode = import.meta.env.VITE_CASHFREE_ENV === 'production' ? 'production' : 'sandbox';
+            const cashfree = initializeCashfree(cashfreeMode);
+
+            // Get return URL
+            const returnUrl = `${window.location.origin}/payment/callback?orderId=${orderId}`;
+
+            // Open Cashfree checkout
+            cashfree.checkout({
+                paymentSessionId,
+                returnUrl,
+            }).then((result: any) => {
+                // Payment successful or redirected
+                console.log('Payment result:', result);
+                if (result.error) {
+                    toast.error('Payment failed', {
+                        description: result.error.message || 'Please try again',
+                    });
+                    setIsProcessing(false);
+                }
+            }).catch((error: any) => {
+                console.error('Cashfree checkout error:', error);
+                toast.error('Payment initialization failed', {
+                    description: error.message || 'Please try again',
+                });
+                setIsProcessing(false);
+            });
+
+        } catch (error: any) {
+            console.error('Buy now error:', error);
+            toast.error('Failed to initiate payment', {
+                description: error.response?.data?.message || error.message || 'Please try again',
+            });
+            setIsProcessing(false);
+        }
     };
 
     const handleToggleWishlist = () => {
@@ -457,9 +670,9 @@ const ProductDetail: React.FC = () => {
                                 <Button
                                     onClick={handleBuyNow}
                                     className="bg-[#FFD700] hover:bg-[#FFC300] text-white px-8 py-3 h-12 text-base font-semibold flex-1"
-                                    disabled={!displayProduct.inStock}
+                                    disabled={!displayProduct.inStock || isProcessing}
                                 >
-                                    Buy Now
+                                    {isProcessing ? 'Processing...' : 'Buy Now'}
                                 </Button>
 
                                 <Button
@@ -733,6 +946,113 @@ const ProductDetail: React.FC = () => {
             </div>
 
             <Footer />
+
+            {/* Shipping Info Modal */}
+            <Dialog open={showShippingModal} onOpenChange={setShowShippingModal}>
+                <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle>Shipping Information</DialogTitle>
+                        <DialogDescription>
+                            Please provide your shipping details to proceed with the order.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+                        <div className="md:col-span-2">
+                            <Label htmlFor="modal-fullName">Full Name *</Label>
+                            <Input
+                                id="modal-fullName"
+                                name="fullName"
+                                value={shippingInfo.fullName}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        
+                        <div>
+                            <Label htmlFor="modal-email">Email *</Label>
+                            <Input
+                                id="modal-email"
+                                name="email"
+                                type="email"
+                                value={shippingInfo.email}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        
+                        <div>
+                            <Label htmlFor="modal-phone">Phone Number *</Label>
+                            <Input
+                                id="modal-phone"
+                                name="phone"
+                                type="tel"
+                                value={shippingInfo.phone}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        
+                        <div className="md:col-span-2">
+                            <Label htmlFor="modal-address">Address *</Label>
+                            <Input
+                                id="modal-address"
+                                name="address"
+                                value={shippingInfo.address}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        
+                        <div>
+                            <Label htmlFor="modal-city">City *</Label>
+                            <Input
+                                id="modal-city"
+                                name="city"
+                                value={shippingInfo.city}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        
+                        <div>
+                            <Label htmlFor="modal-state">State *</Label>
+                            <Input
+                                id="modal-state"
+                                name="state"
+                                value={shippingInfo.state}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                        
+                        <div>
+                            <Label htmlFor="modal-pincode">Pincode *</Label>
+                            <Input
+                                id="modal-pincode"
+                                name="pincode"
+                                value={shippingInfo.pincode}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button
+                            variant="outline"
+                            onClick={() => setShowShippingModal(false)}
+                            disabled={isProcessing}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            onClick={handleShippingSubmit}
+                            disabled={isProcessing}
+                        >
+                            {isProcessing ? 'Processing...' : 'Proceed to Payment'}
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </>
     );
 };

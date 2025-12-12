@@ -152,7 +152,7 @@ export const Checkout: React.FC = () => {
       // Create payment session with Cashfree
       const paymentSessionResponse = await api.post('/payments/create-session', {
         orderId,
-        amount: 1,
+        amount: totalAmount,
         customerDetails: {
           customerId: user?.id || shippingInfo.email,
           customerEmail: shippingInfo.email,
