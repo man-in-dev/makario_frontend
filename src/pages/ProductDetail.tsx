@@ -182,10 +182,7 @@ const ProductDetail: React.FC = () => {
     const handleBuyNow = async () => {
         // Check if user is logged in
         if (!user) {
-            toast.error('Please login to continue', {
-                description: 'You need to be logged in to place an order',
-            });
-            navigate('/login', { state: { returnUrl: `/product/${id}` } });
+            setShowAuthModal(true);
             return;
         }
 
@@ -314,13 +311,6 @@ const ProductDetail: React.FC = () => {
             });
             setIsProcessing(false);
         }
-    const handleBuyNow = () => {
-        if (!user) {
-            setShowAuthModal(true);
-            return;
-        }
-        addToCart(displayProduct, quantity);
-        navigate('/checkout');
     };
 
     const handleToggleWishlist = () => {
@@ -1133,7 +1123,7 @@ const ProductDetail: React.FC = () => {
                 subtitle="Please sign in to your account to proceed with checkout"
             />
         </>
-        )}
+    );
 };
 
 export default ProductDetail;
