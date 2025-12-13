@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star, MessageCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import LazyImage from "@/components/LazyImage";
 import heroImage from "@/assets/homepage/hero banner.webp";
 import { useTypewriterCycle } from "@/hooks/useTypewriterCycle";
 
 const Hero = () => {
+  const PHONE = "+91 9953240031";
+  const WHATSAPP_BULK = "https://wa.me/919953240031?text=Hi%20Makario!%20I%20am%20interested%20in%20bulk%20makhana%20orders.%20Can%20you%20provide%20me%20with%20a%20quote?";
   const { displayedText: typewriterText } = useTypewriterCycle({
     texts: [
       "Bihar's Pride",
@@ -65,14 +67,17 @@ const Hero = () => {
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="px-4 py-6 sm:px-8 text-lg group border-white text-white hover:bg-white hover:text-heritage" asChild>
-              <Link to="/products">
+              <Link to="/shop">
                 <span className="text-golden">Explore Products</span>
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform text-golden" />
               </Link>
             </Button>
-            <Button variant="outline" size="lg" className="px-4 py-6 sm:px-8 text-lg bg-white/10 border-white text-white hover:bg-white hover:text-heritage" asChild>
-              <Link to="/bulk-orders">Bulk Orders</Link>
-            </Button>
+            <a href={WHATSAPP_BULK} target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" className="px-4 py-6 sm:px-8 text-lg bg-white/10 border-white text-white hover:bg-white hover:text-heritage">
+                <MessageCircle className="mr-2 w-5 h-5" />
+                Bulk Orders
+              </Button>
+            </a>
           </div>
 
           {/* Stats */}
