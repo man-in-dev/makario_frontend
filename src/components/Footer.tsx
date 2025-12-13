@@ -45,6 +45,7 @@ const Footer = () => {
               <li><Link to="/product-categories" className="text-gray-300 hover:text-golden transition-colors">Raw Makhana 1kg</Link></li>
               <li><Link to="/shop?category=100g" className="text-gray-300 hover:text-golden transition-colors">Makhana 100g Price</Link></li>
               <li><Link to="/bulk-orders" className="text-gray-300 hover:text-golden transition-colors">Makhana Wholesale</Link></li>
+              <li><Link to="/retailers-wholesalers" className="text-gray-300 hover:text-golden transition-colors">Become a Partner</Link></li>
               <li><Link to="/custom-packaging" className="text-gray-300 hover:text-golden transition-colors">Private Label Makhana</Link></li>
             </ul>
           </div>

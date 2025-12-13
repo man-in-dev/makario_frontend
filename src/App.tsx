@@ -62,6 +62,7 @@ const QualityProcess = lazy(() => import("./pages/QualityProcess"));
 const ExportQuality = lazy(() => import("./pages/ExportQuality"));
 const RegionalPages = lazy(() => import("./pages/RegionalPages"));
 const Settings = lazy(() => import("./pages/Settings"));
+const RetailersWholesalers = lazy(() => import("./pages/RetailersWholesalers"));
 
 
 
@@ -138,6 +139,7 @@ const App = () => {
                       <Route path="/track-order" element={<TrackOrder />} />
                       <Route path="/custom-packaging" element={<CustomPackaging />} />
                       <Route path="/logistics" element={<Logistics />} />
+                      <Route path="/retailers-wholesalers" element={<RetailersWholesalers />} />
                       <Route path="/settings" element={<Settings />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
