@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin, Heart, Globe } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Phone, Mail, MapPin, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import fssaiLogo from "../assets/1707841493fssai-logo-png.png";
 import makeInIndiaLogo from "../assets/Make-in-India.png";
@@ -25,16 +25,13 @@ const Footer = () => {
               with modern excellence to tables worldwide.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-golden transition-colors">
+              <a href="https://www.facebook.com/makariofoods" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-golden transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-golden transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-golden transition-colors">
+              <a href="https://www.instagram.com/makariofoods/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-golden transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-golden transition-colors">
+              <a href="https://www.linkedin.com/company/makario-foods/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-golden transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
