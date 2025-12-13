@@ -1,16 +1,19 @@
-import { Users, Heart, HandHeart, Sprout, Award, TrendingUp, ImageIcon } from "lucide-react";
+import { Users, Heart, HandHeart, Sprout, Award, TrendingUp, ImageIcon, MessageCircle, Phone, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
 import biharFieldsImage from "@/assets/blog/Makhana-The-Healthy-Indian-Snack.jpg";
 import farmersWorkingImage from "@/assets/homepage/WhatsApp-Image-2025-04-07-at-08.38.17_0b1146ba-1024x683.webp";
 import cultivationProcessImage from "@/assets/homepage/makhana process.png";
 import makhanaFieldsImage from "@/assets/homepage/makhana khet farming.jpg";
 
 const Farmers = () => {
+  const PHONE = "+91 9953240031";
+  const EMAIL = "info@makario.in";
+  const WHATSAPP_URL = "https://wa.me/919953240031?text=Hi%20Makario!%20I%20am%20interested%20in%20becoming%20a%20farmer%20partner.%20Can%20you%20provide%20me%20with%20more%20details?";
+
   const stories = [
     {
       name: "Ramesh Kumar",
@@ -107,9 +110,21 @@ const Farmers = () => {
               Meet the dedicated farmers who are the heart of our success. Their traditional 
               wisdom and hard work bring you the finest makhana from Bihar.
             </p>
-            <Button variant="outline" size="lg" className="border-heritage text-heritage hover:bg-heritage hover:text-white">
-              Join Our Farmer Network
-            </Button>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                <Button variant="hero" size="lg" className="group">
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Join Our Network
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
+                </Button>
+              </a>
+              <a href={`tel:${PHONE}`}>
+                <Button variant="outline" size="lg" className="border-heritage text-heritage hover:bg-heritage hover:text-white">
+                  <Phone className="w-5 h-5 mr-2" />
+                  Call Us
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -375,9 +390,20 @@ const Farmers = () => {
                   <p className="text-muted-foreground mb-6">
                     Become part of our growing network of successful farmers.
                   </p>
-                  <Button variant="hero" size="lg" className="w-full">
-                    Register as Farmer
-                  </Button>
+                  <div className="space-y-3">
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="block">
+                      <Button variant="hero" size="lg" className="w-full">
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        Register as Farmer
+                      </Button>
+                    </a>
+                    <a href={`tel:${PHONE}`} className="block">
+                      <Button variant="outline" size="lg" className="w-full border-heritage text-heritage">
+                        <Phone className="w-4 h-4 mr-2" />
+                        Call for Info
+                      </Button>
+                    </a>
+                  </div>
                 </CardContent>
               </Card>
             </div>

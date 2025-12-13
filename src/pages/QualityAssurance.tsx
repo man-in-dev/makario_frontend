@@ -1,13 +1,16 @@
-import { Shield, Award, Microscope, CheckCircle, FileText, Users } from "lucide-react";
+import { Shield, Award, Microscope, CheckCircle, FileText, Users, MessageCircle, Phone, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SectionHeader from "@/components/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
 import biharAgricultureImage from "@/assets/blog/Makhana-The-Healthy-Indian-Snack.jpg";
 
 const QualityAssurance = () => {
+  const PHONE = "+91 9953240031";
+  const EMAIL = "info@makario.in";
+  const WHATSAPP_URL = "https://wa.me/919953240031?text=Hi%20Makario!%20I%20would%20like%20to%20know%20more%20about%20your%20quality%20standards%20and%20certifications.";
+
   const standards = [
     {
       icon: Shield,
@@ -89,9 +92,20 @@ const QualityAssurance = () => {
               Our unwavering commitment to quality ensures that every batch of makhana 
               meets the highest international standards.
             </p>
-            <Button variant="outline" size="lg" className="border-heritage text-heritage hover:bg-heritage hover:text-white">
-              View Certificates
-            </Button>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                <Button variant="hero" size="lg" className="group">
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  View Certificates
+                </Button>
+              </a>
+              <a href={`tel:${PHONE}`}>
+                <Button variant="outline" size="lg" className="border-heritage text-heritage hover:bg-heritage hover:text-white">
+                  <Phone className="w-5 h-5 mr-2" />
+                  Call Us
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </section>

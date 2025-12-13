@@ -5,9 +5,13 @@ import SectionHeader from "@/components/SectionHeader";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle, Beaker, Users, Leaf } from "lucide-react";
+import { CheckCircle, Beaker, Users, Leaf, MessageCircle, Phone, Mail } from "lucide-react";
 
 const QualityProcess = () => {
+    const PHONE = "+91 9953240031";
+    const EMAIL = "info@makario.in";
+    const WHATSAPP_URL = "https://wa.me/919953240031?text=Hi%20Makario!%20I%20would%20like%20to%20know%20more%20about%20your%20quality%20process.";
+
     const steps = [
         {
             number: 1,
@@ -174,9 +178,23 @@ const QualityProcess = () => {
                     <p className="text-white/90 mb-8 max-w-2xl mx-auto">
                         Try Makario's meticulously tested, handpicked makhana today and taste the difference quality makes.
                     </p>
-                    <Button asChild size="lg" className="bg-golden hover:bg-golden/90">
-                        <Link to="/shop">Shop Quality Makhana</Link>
-                    </Button>
+                    <div className="flex flex-wrap gap-4 justify-center">
+                        <Button asChild size="lg" className="bg-golden hover:bg-golden/90">
+                            <Link to="/shop">Shop Quality Makhana</Link>
+                        </Button>
+                        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                            <Button size="lg" className="bg-white text-heritage hover:bg-white/90">
+                                <MessageCircle className="w-5 h-5 mr-2" />
+                                Learn More
+                            </Button>
+                        </a>
+                        <a href={`tel:${PHONE}`}>
+                            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                                <Phone className="w-5 h-5 mr-2" />
+                                Call Us
+                            </Button>
+                        </a>
+                    </div>
                 </div>
             </section>
 
