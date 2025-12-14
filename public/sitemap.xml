@@ -8,7 +8,7 @@
     <!-- Homepage - Bihar Makhana Makario Brand -->
     <url>
         <loc>https://www.makario.in/</loc>
-        <lastmod>2025-11-10</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>always</changefreq>
         <priority>1.0</priority>
         <image:image>
@@ -21,7 +21,7 @@
     <!-- About Us - Makario Brand Story -->
     <url>
         <loc>https://www.makario.in/about</loc>
-        <lastmod>2025-11-09</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -31,12 +31,20 @@
         </image:image>
     </url>
 
-    <!-- Products - Makhana Varieties -->
+    <!-- Founders Story -->
     <url>
-        <loc>https://www.makario.in/products</loc>
-        <lastmod>2025-11-08</lastmod>
+        <loc>https://www.makario.in/about/founders</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Shop - Makhana Products -->
+    <url>
+        <loc>https://www.makario.in/shop</loc>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>daily</changefreq>
-        <priority>0.9</priority>
+        <priority>0.95</priority>
         <image:image>
             <image:loc>https://www.makario.in/lovable-uploads/be26238e-2161-40dd-afd9-e69df2853b49.png</image:loc>
             <image:title>Makario Makhana Product Range - Premium Grade A</image:title>
@@ -44,18 +52,58 @@
         </image:image>
     </url>
 
+    <!-- Product Categories -->
+    <url>
+        <loc>https://www.makario.in/product-categories</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
     <!-- Bulk Orders - Wholesale Makhana -->
     <url>
-        <loc>https://www.makario.in/bulk-order</loc>
-        <lastmod>2025-11-08</lastmod>
+        <loc>https://www.makario.in/bulk-orders</loc>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+    </url>
+
+    <!-- Export Quality -->
+    <url>
+        <loc>https://www.makario.in/bulk/export-quality</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.75</priority>
+    </url>
+
+    <!-- Cart -->
+    <url>
+        <loc>https://www.makario.in/cart</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Checkout -->
+    <url>
+        <loc>https://www.makario.in/checkout</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Wishlist -->
+    <url>
+        <loc>https://www.makario.in/wishlist</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.7</priority>
     </url>
 
     <!-- Contact - Makario Customer Service -->
     <url>
         <loc>https://www.makario.in/contact</loc>
-        <lastmod>2025-11-08</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -63,7 +111,7 @@
     <!-- Blog - Makhana Knowledge Hub -->
     <url>
         <loc>https://www.makario.in/blog</loc>
-        <lastmod>2025-11-08</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
@@ -71,7 +119,7 @@
     <!-- FAQ - Makhana Questions -->
     <url>
         <loc>https://www.makario.in/faq</loc>
-        <lastmod>2025-11-08</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -79,7 +127,7 @@
     <!-- Agriculture - Bihar Makhana Farming -->
     <url>
         <loc>https://www.makario.in/agriculture</loc>
-        <lastmod>2025-11-08</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -89,23 +137,10 @@
         </image:image>
     </url>
 
-    <!-- Global Export - International Makhana Supply -->
-    <url>
-        <loc>https://www.makario.in/global</loc>
-        <lastmod>2025-11-08</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-        <image:image>
-            <image:loc>https://www.makario.in/assets/homepage/Makhana_Cultivation_f677e7f8e0.webp</image:loc>
-            <image:title>Makario Global Export - Worldwide Makhana Delivery</image:title>
-            <image:caption>Exporting premium Bihar makhana to 50+ countries worldwide</image:caption>
-        </image:image>
-    </url>
-
     <!-- Farmers - Bihar Makhana Growers -->
     <url>
         <loc>https://www.makario.in/farmers</loc>
-        <lastmod>2025-11-08</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -115,26 +150,26 @@
         </image:image>
     </url>
 
-    <!-- Export Services - International Trade -->
+    <!-- Quality Assurance - Food Safety Standards -->
     <url>
-        <loc>https://www.makario.in/export-services</loc>
-        <lastmod>2025-11-08</lastmod>
+        <loc>https://www.makario.in/quality-assurance</loc>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
 
-    <!-- Quality Assurance - Food Safety Standards -->
+    <!-- Quality Process -->
     <url>
-        <loc>https://www.makario.in/quality-assurance</loc>
-        <lastmod>2025-11-08</lastmod>
+        <loc>https://www.makario.in/quality-process</loc>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.75</priority>
     </url>
 
     <!-- Custom Packaging - Private Label Makhana -->
     <url>
         <loc>https://www.makario.in/custom-packaging</loc>
-        <lastmod>2025-11-08</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -142,15 +177,79 @@
     <!-- Logistics - Makhana Delivery Services -->
     <url>
         <loc>https://www.makario.in/logistics</loc>
-        <lastmod>2025-11-08</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
+    </url>
+
+    <!-- Retailers & Wholesalers -->
+    <url>
+        <loc>https://www.makario.in/retailers-wholesalers</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Login -->
+    <url>
+        <loc>https://www.makario.in/login</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Signup -->
+    <url>
+        <loc>https://www.makario.in/signup</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- User Profile -->
+    <url>
+        <loc>https://www.makario.in/profile</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Orders -->
+    <url>
+        <loc>https://www.makario.in/orders</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Track Order -->
+    <url>
+        <loc>https://www.makario.in/track-order</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Settings -->
+    <url>
+        <loc>https://www.makario.in/settings</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Regional Pages -->
+    <url>
+        <loc>https://www.makario.in/regional</loc>
+        <lastmod>2025-12-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.75</priority>
     </url>
 
     <!-- Privacy Policy -->
     <url>
         <loc>https://www.makario.in/privacy</loc>
-        <lastmod>2025-11-08</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
@@ -158,81 +257,25 @@
     <!-- Terms of Service -->
     <url>
         <loc>https://www.makario.in/terms</loc>
-        <lastmod>2025-11-08</lastmod>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
 
-    <!-- Regional Pages - Target Markets -->
-    
-    <!-- Mumbai Makhana Delivery -->
+    <!-- Shipping Policy -->
     <url>
-        <loc>https://www.makario.in/mumbai</loc>
-        <lastmod>2025-11-08</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.makario.in/assets/hero-makhana.jpg</image:loc>
-            <image:title>Premium Makhana Delivery in Mumbai - Makario</image:title>
-            <image:caption>Same day makhana delivery across Mumbai, Thane, Navi Mumbai</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Gujarat Makhana Delivery -->
-    <url>
-        <loc>https://www.makario.in/gujarat</loc>
-        <lastmod>2025-11-08</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.makario.in/assets/hero-makhana.jpg</image:loc>
-            <image:title>Premium Makhana Delivery in Gujarat - Makario</image:title>
-            <image:caption>Fresh makhana delivery across Gujarat - Ahmedabad, Surat, Vadodara, Rajkot</image:caption>
-        </image:image>
-    </url>
-
-    <!-- South India Makhana Delivery -->
-    <url>
-        <loc>https://www.makario.in/south-india</loc>
-        <lastmod>2025-11-08</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://www.makario.in/assets/hero-makhana.jpg</image:loc>
-            <image:title>Premium Makhana Delivery in South India - Makario</image:title>
-            <image:caption>Fresh makhana delivery across South India - Bangalore, Chennai, Hyderabad, Kochi</image:caption>
-        </image:image>
-    </url>
-
-    <!-- Shop Pages -->
-    <url>
-        <loc>https://www.makario.in/shop</loc>
-        <lastmod>2025-11-14</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.85</priority>
-    </url>
-
-    <!-- Additional Policy Pages -->
-    <url>
-        <loc>https://www.makario.in/shipping-policy</loc>
-        <lastmod>2025-11-08</lastmod>
+        <loc>https://www.makario.in/shipping</loc>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
 
+    <!-- Refund Policy -->
     <url>
-        <loc>https://www.makario.in/refund-policy</loc>
-        <lastmod>2025-11-08</lastmod>
+        <loc>https://www.makario.in/refund</loc>
+        <lastmod>2025-12-14</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
-    </url>
-
-    <!-- Marketplace -->
-    <url>
-        <loc>https://www.makario.in/marketplace</loc>
-        <lastmod>2025-11-10</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
     </url>
 
 </urlset>
