@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Product } from '../../data/products';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
@@ -12,6 +12,12 @@ import LazyImage from '../LazyImage';
 import { useNavigate } from 'react-router-dom';
 import { StockAlert } from './StockAlert';
 import { AuthModal } from '../auth/AuthModal';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../ui/dialog';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
+import { toast } from 'sonner';
+import api from '../../utils/api';
+import { loadCashfreeScript, initializeCashfree } from '../../utils/loadCashfree';
 
 interface FeaturedProductCardProps {
   product: Product;
@@ -28,6 +34,33 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isToggleingWishlist, setIsTogglingWishlist] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showShippingModal, setShowShippingModal] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [shippingInfo, setShippingInfo] = useState({
+    fullName: user?.name || '',
+    email: user?.email || '',
+    phone: user?.phone || '',
+    address: user?.address || '',
+    city: user?.city || '',
+    state: user?.state || '',
+    pincode: user?.pincode || '',
+  });
+
+  // Update shipping info when user changes
+  useEffect(() => {
+    if (user) {
+      const defaultAddress = user.addresses?.find(addr => addr.isDefault) || user.addresses?.[0];
+      setShippingInfo({
+        fullName: user.name || '',
+        email: user.email || '',
+        phone: defaultAddress?.phone || user.phone || '',
+        address: defaultAddress?.street || user.address || '',
+        city: defaultAddress?.city || user.city || '',
+        state: defaultAddress?.state || user.state || '',
+        pincode: defaultAddress?.pincode || user.pincode || '',
+      });
+    }
+  }, [user]);
 
   if (!product) {
     return (
@@ -58,17 +91,185 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
     setIsTogglingWishlist(false);
   };
 
-  const handleBuyNow = (e: React.MouseEvent) => {
+  const getShippingInfo = () => {
+    // Check if user has a default address
+    if (user?.addresses && user.addresses.length > 0) {
+      const defaultAddress = user.addresses.find(addr => addr.isDefault) || user.addresses[0];
+      if (defaultAddress) {
+        return {
+          fullName: user.name || '',
+          email: user.email || '',
+          phone: defaultAddress.phone || user.phone || '',
+          address: defaultAddress.street || user.address || '',
+          city: defaultAddress.city || user.city || '',
+          state: defaultAddress.state || user.state || '',
+          pincode: defaultAddress.pincode || user.pincode || '',
+        };
+      }
+    }
+    
+    // Fallback to user profile info
+    if (user) {
+      return {
+        fullName: user.name || '',
+        email: user.email || '',
+        phone: user.phone || '',
+        address: user.address || '',
+        city: user.city || '',
+        state: user.state || '',
+        pincode: user.pincode || '',
+      };
+    }
+    
+    return shippingInfo;
+  };
+
+  const validateShippingInfo = (info: typeof shippingInfo) => {
+    return info.fullName && info.email && info.phone && 
+           info.address && info.city && info.state && info.pincode;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setShippingInfo(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const proceedToCashfreeCheckout = async (shippingData: typeof shippingInfo) => {
+    setIsProcessing(true);
+
+    try {
+      const totalAmount = product.price + 50; // Product price + shipping
+
+      // Create order in database
+      const orderData = {
+        items: [{
+          productId: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1,
+          image: product.image,
+        }],
+        shippingInfo: shippingData,
+        paymentMethod: 'online',
+        paymentDetails: {
+          paymentStatus: 'pending',
+        },
+        subtotal: product.price,
+        shippingCharge: 50,
+        discount: 0,
+        coupon: null,
+        total: totalAmount,
+      };
+
+      const orderResponse = await api.post('/orders', orderData);
+      
+      if (!orderResponse.data.success) {
+        throw new Error(orderResponse.data.message || 'Failed to create order');
+      }
+
+      const order = orderResponse.data.data.order;
+      const orderId = order.orderId;
+
+      // Create payment session with Cashfree
+      const paymentSessionResponse = await api.post('/payments/create-session', {
+        orderId,
+        amount: totalAmount,
+        customerDetails: {
+          customerId: user?.id || shippingData.email,
+          customerEmail: shippingData.email,
+          customerPhone: shippingData.phone,
+          customerName: shippingData.fullName,
+        },
+        orderNote: `Order ${orderId} - ${product.name}`,
+      });
+
+      if (!paymentSessionResponse.data.success) {
+        throw new Error(paymentSessionResponse.data.message || 'Failed to create payment session');
+      }
+
+      const paymentSessionId = paymentSessionResponse.data.data.paymentSessionId;
+
+      // Load Cashfree script and initialize
+      await loadCashfreeScript();
+      
+      const cashfreeMode = import.meta.env.VITE_CASHFREE_ENV === 'production' ? 'production' : 'sandbox';
+      const cashfree = initializeCashfree(cashfreeMode);
+
+      // Get return URL
+      const returnUrl = `${window.location.origin}/payment/callback?orderId=${orderId}`;
+
+      // Open Cashfree checkout
+      cashfree.checkout({
+        paymentSessionId,
+        returnUrl,
+      }).then((result: any) => {
+        // Payment successful or redirected
+        console.log('Payment result:', result);
+        if (result.error) {
+          toast.error('Payment failed', {
+            description: result.error.message || 'Please try again',
+          });
+          setIsProcessing(false);
+        }
+      }).catch((error: any) => {
+        console.error('Cashfree checkout error:', error);
+        toast.error('Payment initialization failed', {
+          description: error.message || 'Please try again',
+        });
+        setIsProcessing(false);
+      });
+
+    } catch (error: any) {
+      console.error('Buy now error:', error);
+      toast.error('Failed to initiate payment', {
+        description: error.response?.data?.message || error.message || 'Please try again',
+      });
+      setIsProcessing(false);
+    }
+  };
+
+  const handleShippingSubmit = async () => {
+    // Validate shipping info
+    if (!validateShippingInfo(shippingInfo)) {
+      toast.error('Please fill all shipping details');
+      return;
+    }
+
+    setShowShippingModal(false);
+    await proceedToCashfreeCheckout(shippingInfo);
+  };
+
+  const handleBuyNow = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    console.log('Featured Buy Now clicked - user:', user);
+    
     if (!user) {
-      console.log('Setting showAuthModal to true');
       setShowAuthModal(true);
       return;
     }
-    console.log('Buy now clicked for product:', product.id);
-    addToCart(product);
-    navigate('/checkout');
+
+    // Get shipping info from user profile or saved addresses
+    let currentShippingInfo = getShippingInfo();
+    
+    // If shipping info is incomplete, show modal
+    if (!validateShippingInfo(currentShippingInfo)) {
+      setShippingInfo({
+        fullName: user.name || '',
+        email: user.email || '',
+        phone: user.phone || '',
+        address: user.address || '',
+        city: user.city || '',
+        state: user.state || '',
+        pincode: user.pincode || '',
+      });
+      setShowShippingModal(true);
+      return;
+    }
+
+    // Proceed with payment
+    await proceedToCashfreeCheckout(currentShippingInfo);
   };
 
   const handleProductClick = () => {
@@ -191,10 +392,10 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
           {/* Buy Now Button */}
           <Button
             onClick={handleBuyNow}
-            disabled={!product.inStock}
+            disabled={!product.inStock || isProcessing}
             className={`flex-1 bg-golden hover:bg-golden/90 text-white border-0 transition-all duration-300 font-bold shadow-md hover:shadow-lg ${small ? 'text-xs py-1 px-1' : 'text-xs md:text-sm py-1.5 md:py-2 px-2'}`}
           >
-            <span className="truncate">{small ? 'Buy' : 'Buy'}</span>
+            <span className="truncate">{isProcessing ? 'Processing...' : (small ? 'Buy' : 'Buy')}</span>
           </Button>
 
           {/* Add to Cart Button */}
@@ -231,6 +432,113 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
             initialView="login"
           />
         )}
+
+        {/* Shipping Info Modal */}
+        <Dialog open={showShippingModal} onOpenChange={setShowShippingModal}>
+          <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Shipping Information</DialogTitle>
+              <DialogDescription>
+                Please provide your shipping details to proceed with the order.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+              <div className="md:col-span-2">
+                <Label htmlFor="modal-fullName">Full Name *</Label>
+                <Input
+                  id="modal-fullName"
+                  name="fullName"
+                  value={shippingInfo.fullName}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="modal-email">Email *</Label>
+                <Input
+                  id="modal-email"
+                  name="email"
+                  type="email"
+                  value={shippingInfo.email}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="modal-phone">Phone Number *</Label>
+                <Input
+                  id="modal-phone"
+                  name="phone"
+                  type="tel"
+                  value={shippingInfo.phone}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              
+              <div className="md:col-span-2">
+                <Label htmlFor="modal-address">Address *</Label>
+                <Input
+                  id="modal-address"
+                  name="address"
+                  value={shippingInfo.address}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="modal-city">City *</Label>
+                <Input
+                  id="modal-city"
+                  name="city"
+                  value={shippingInfo.city}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="modal-state">State *</Label>
+                <Input
+                  id="modal-state"
+                  name="state"
+                  value={shippingInfo.state}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              
+              <div>
+                <Label htmlFor="modal-pincode">Pincode *</Label>
+                <Input
+                  id="modal-pincode"
+                  name="pincode"
+                  value={shippingInfo.pincode}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button
+                variant="outline"
+                onClick={() => setShowShippingModal(false)}
+                disabled={isProcessing}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={handleShippingSubmit}
+                disabled={isProcessing}
+              >
+                {isProcessing ? 'Processing...' : 'Proceed to Payment'}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
         </>
         );
         };
