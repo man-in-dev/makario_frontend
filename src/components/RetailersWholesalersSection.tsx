@@ -16,12 +16,19 @@ import customer11 from "@/assets/our customers/IMG-20251204-WA0209.jpg";
 import customer12 from "@/assets/our customers/IMG-20251204-WA0210.jpg";
 import customer13 from "@/assets/our customers/IMG-20251204-WA0211.jpg";
 import customer14 from "@/assets/our customers/IMG-20251204-WA0212.jpg";
+import customer15 from "@/assets/our customers/WhatsApp Image 2025-12-11 at 12.46.43_c7dd0e99.jpg";
+import customer16 from "@/assets/our customers/WhatsApp Image 2025-12-11 at 12.46.43_d9e7bb99.jpg";
+import customer17 from "@/assets/our customers/WhatsApp Image 2025-12-11 at 12.46.44_c2ca368a.jpg";
+import customer18 from "@/assets/our customers/WhatsApp Image 2025-12-11 at 13.00.29_e7da7ffc.jpg";
+import customer19 from "@/assets/our customers/WhatsApp Image 2025-12-11 at 13.00.30_9307009b.jpg";
+import customer20 from "@/assets/our customers/WhatsApp Image 2025-12-11 at 13.29.30_7d1e4436.jpg";
 
 const RetailersWholesalersSection = ({ onShowBulkForm }: { onShowBulkForm: () => void }) => {
   const customerImages = [
     customer1, customer2, customer3, customer4, customer5, 
     customer6, customer7, customer8, customer9, customer10,
-    customer11, customer12, customer13, customer14
+    customer11, customer12, customer13, customer14, customer15,
+    customer16, customer17, customer18, customer19, customer20
   ];
 
   return (

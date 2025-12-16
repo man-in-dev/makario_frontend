@@ -1,8 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import ContactForm from "@/components/ContactForm";
-import QuoteForm from "@/components/QuoteForm";
 import SEO from "@/components/SEO";
 
 import SectionHeader from "@/components/SectionHeader";
@@ -15,7 +13,7 @@ import RetailersWholesalersSection from "@/components/RetailersWholesalersSectio
 import { getFeaturedProducts } from "../data/products";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Globe, Heart, Shield, Truck, Users, Sprout, Award, Leaf, Target, CheckCircle, MapPin, Package, Image as ImageIcon, Play } from "lucide-react";
+import { Globe, Heart, Shield, Truck, Users, Sprout, Award, Leaf, Target, CheckCircle, MapPin, Package, Image as ImageIcon, Play, MessageCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import biharFieldsImage from "@/assets/homepage/makhana khet farming.jpg";
@@ -26,9 +24,10 @@ import biharAgricultureImage from "@/assets/homepage/makhana khet farming.jpg";
 import brandStoryImage from "@/assets/homepage/makhana process 1.png";
 
 const Index = () => {
-  const [showContactForm, setShowContactForm] = useState(false);
-  const [showBulkForm, setShowBulkForm] = useState(false);
-  const [showQuoteForm, setShowQuoteForm] = useState(false);
+  const PHONE = "+91 9953240031";
+  const EMAIL = "info@makario.in";
+  const WHATSAPP_EXPORT = "https://wa.me/919953240031?text=Hi%20Makario!%20I%20am%20interested%20in%20exporting%20makhana.%20Can%20you%20provide%20me%20with%20details?";
+  const WHATSAPP_BULK = "https://wa.me/919953240031?text=Hi%20Makario!%20I%20am%20interested%20in%20bulk%20makhana%20orders.%20Can%20you%20provide%20me%20with%20a%20quote?";
   
   // Structured Data for Homepage - Kept for reference
   const homePageStructuredData = [
@@ -584,13 +583,15 @@ const Index = () => {
                   <p className="text-white/90 text-sm mb-4 transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200">
                     {item.description}
                   </p>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="border-golden bg-golden text-white hover:bg-white hover:text-golden hover:border-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-300 font-semibold"
-                  >
-                    View Details
-                  </Button>
+                  <a href="/shop" className="inline-block">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="border-golden bg-golden text-white hover:bg-white hover:text-golden hover:border-white transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-300 font-semibold"
+                    >
+                      View Details
+                    </Button>
+                  </a>
                 </div>
               </div>
             ))}
@@ -701,24 +702,26 @@ const Index = () => {
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Button 
-                  variant="hero" 
-                  size="lg" 
-                  onClick={() => setShowContactForm(true)}
-                  className="w-full flex items-center justify-center gap-2"
-                >
-                  <Globe className="w-5 h-5" />
-                  Contact for Export
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  onClick={() => setShowBulkForm(true)}
-                  className="w-full flex items-center justify-center gap-2 border-2"
-                >
-                  <Package className="w-5 h-5" />
-                  Global Bulk Orders
-                </Button>
+                <a href={WHATSAPP_EXPORT} target="_blank" rel="noopener noreferrer" className="w-full">
+                  <Button 
+                    variant="hero" 
+                    size="lg" 
+                    className="w-full flex items-center justify-center gap-2"
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    Contact for Export
+                  </Button>
+                </a>
+                <a href={WHATSAPP_BULK} target="_blank" rel="noopener noreferrer" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="w-full flex items-center justify-center gap-2 border-2"
+                  >
+                    <Package className="w-5 h-5" />
+                    Global Bulk Orders
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -1061,15 +1064,18 @@ const Index = () => {
           </div>
 
           <div className="text-center">
-            <Button variant="hero" size="lg" onClick={() => setShowBulkForm(true)}>
-              Get Bulk Quote
-            </Button>
+            <a href={WHATSAPP_BULK} target="_blank" rel="noopener noreferrer">
+              <Button variant="hero" size="lg">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Get Bulk Quote
+              </Button>
+            </a>
           </div>
         </div>
       </section>
 
       {/* Retailers & Wholesalers Section */}
-      <RetailersWholesalersSection onShowBulkForm={() => setShowBulkForm(true)} />
+      <RetailersWholesalersSection onShowBulkForm={() => window.location.href = WHATSAPP_BULK} />
 
       {/* Global Presence & SEO Section - Enhanced */}
       <section className="py-16 bg-gradient-to-br from-heritage/5 via-golden/5 to-muted/30 relative overflow-hidden">
@@ -1189,15 +1195,17 @@ const Index = () => {
             />
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button 
-                variant="hero" 
-                size="lg" 
-                onClick={() => setShowQuoteForm(true)}
-                className="group bg-heritage hover:bg-heritage/90 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                Request Quote
-                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
-              </Button>
+              <a href={WHATSAPP_BULK} target="_blank" rel="noopener noreferrer">
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="group bg-heritage hover:bg-heritage/90 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Request Quote
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
+                </Button>
+              </a>
               
               <Button 
                 variant="outline" 
@@ -1205,21 +1213,23 @@ const Index = () => {
                 asChild
                 className="group border-2 border-heritage text-heritage hover:bg-heritage hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:-translate-y-1"
               >
-                <Link to="/products">
+                <Link to="/shop">
                   View Products
                   <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
                 </Link>
               </Button>
               
-              <Button 
-                variant="outline" 
-                size="lg" 
-                onClick={() => setShowBulkForm(true)}
-                className="group border-2 border-golden text-golden hover:bg-golden hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:-translate-y-1"
-              >
-                Get Bulk Quote
-                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
-              </Button>
+              <a href={`tel:${PHONE}`}>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="group border-2 border-golden text-golden hover:bg-golden hover:text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:-translate-y-1"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Call Us
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
+                </Button>
+              </a>
             </div>
 
             {/* Trust Indicators */}
@@ -1248,35 +1258,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Contact Form Popups */}
-      {showContactForm && (
-        <ContactForm 
-          isOpen={showContactForm}
-          onClose={() => setShowContactForm(false)}
-          title="Export Inquiry"
-          formType="contact"
-          isPopup={true}
-        />
-      )}
-      
-      {showBulkForm && (
-        <ContactForm 
-          isOpen={showBulkForm}
-          onClose={() => setShowBulkForm(false)}
-          title="Bulk Order Quote"
-          formType="bulk"
-          isPopup={true}
-        />
-      )}
-
-      {/* Quote Form Popup */}
-      {showQuoteForm && (
-        <QuoteForm
-          isOpen={showQuoteForm}
-          onClose={() => setShowQuoteForm(false)}
-        />
-      )}
 
       <MarketplaceSlider />
       <Footer />

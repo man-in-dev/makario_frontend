@@ -1,16 +1,16 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
 import SectionHeader from "@/components/SectionHeader";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Package, Truck, Target, Globe, Shield, Award, CheckCircle, Users, Scale } from "lucide-react";
-import { useState } from "react";
+import { Package, Truck, Target, Globe, Shield, Award, CheckCircle, Users, Scale, MessageCircle, Phone, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 const BulkOrders = () => {
-  const [showBulkForm, setShowBulkForm] = useState(false);
+  const PHONE = "+91 9953240031";
+  const EMAIL = "info@makario.in";
+  const WHATSAPP_URL = "https://wa.me/919953240031?text=Hi%20Makario!%20I%20am%20interested%20in%20bulk%20makhana%20orders.%20Can%20you%20provide%20me%20with%20a%20quote?";
 
   const bulkCategories = [
     {
@@ -105,22 +105,27 @@ const BulkOrders = () => {
                 Direct from Bihar's finest producers at competitive prices.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button
-                  variant="hero"
-                  size="lg"
-                  onClick={() => setShowBulkForm(true)}
-                  className="group"
-                >
-                  Get Bulk Quote
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="border-2"
-                >
-                  Download Price List
-                </Button>
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="hero"
+                    size="lg"
+                    className="group"
+                  >
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    Get Bulk Quote
+                    <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
+                  </Button>
+                </a>
+                <a href={`tel:${PHONE}`}>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-2"
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call Us
+                  </Button>
+                </a>
               </div>
             </motion.div>
           </div>
@@ -171,13 +176,15 @@ const BulkOrders = () => {
                         </li>
                       ))}
                     </ul>
-                    <Button
-                      variant="hero"
-                      className="w-full mt-8"
-                      onClick={() => setShowBulkForm(true)}
-                    >
-                      Get Quote
-                    </Button>
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="w-full block">
+                      <Button
+                        variant="hero"
+                        className="w-full mt-8"
+                      >
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        Get Quote
+                      </Button>
+                    </a>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -281,36 +288,31 @@ const BulkOrders = () => {
               Get in touch with our bulk sales team for personalized quotes and special offers
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button
-                variant="hero"
-                size="lg"
-                onClick={() => setShowBulkForm(true)}
-                className="group"
-              >
-                Request Bulk Quote
-                <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-2"
-              >
-                Contact Sales Team
-              </Button>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                <Button
+                  variant="hero"
+                  size="lg"
+                  className="group"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Request Bulk Quote
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
+                </Button>
+              </a>
+              <a href={`tel:${PHONE}`}>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-2"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Contact Sales Team
+                </Button>
+              </a>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Bulk Form Popup */}
-      {showBulkForm && (
-        <ContactForm 
-          isOpen={showBulkForm}
-          onClose={() => setShowBulkForm(false)}
-          title="Bulk Order Quote"
-          formType="bulk"
-        />
-      )}
 
       <Footer />
     </div>

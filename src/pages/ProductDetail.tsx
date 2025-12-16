@@ -79,6 +79,8 @@ const ProductDetail: React.FC = () => {
     }, [user]);
     const [showBulkForm, setShowBulkForm] = useState(false);
     const [showAuthModal, setShowAuthModal] = useState(false);
+    const [pendingCheckout, setPendingCheckout] = useState(false);
+    const { user } = useAuth();
 
     // Find the product by ID (ensuring both are strings for comparison)
     const product = products.find(p => p.id === id);
@@ -182,6 +184,7 @@ const ProductDetail: React.FC = () => {
     const handleBuyNow = async () => {
         // Check if user is logged in
         if (!user) {
+            setPendingCheckout(true);
             setShowAuthModal(true);
             return;
         }
@@ -310,6 +313,16 @@ const ProductDetail: React.FC = () => {
                 description: error.response?.data?.message || error.message || 'Please try again',
             });
             setIsProcessing(false);
+        }
+    };
+
+    const handleAuthClose = () => {
+        setShowAuthModal(false);
+        // If login was successful and checkout was pending, proceed to checkout
+        if (user && pendingCheckout) {
+            addToCart(displayProduct, quantity);
+            navigate('/checkout');
+            setPendingCheckout(false);
         }
     };
 
@@ -1117,7 +1130,7 @@ const ProductDetail: React.FC = () => {
             {/* Login Modal */}
             <AuthModal 
                 isOpen={showAuthModal} 
-                onClose={() => setShowAuthModal(false)}
+                onClose={handleAuthClose}
                 initialView="login"
                 title="Login to Continue"
                 subtitle="Please sign in to your account to proceed with checkout"
