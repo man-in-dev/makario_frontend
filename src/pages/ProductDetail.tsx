@@ -80,7 +80,6 @@ const ProductDetail: React.FC = () => {
     const [showBulkForm, setShowBulkForm] = useState(false);
     const [showAuthModal, setShowAuthModal] = useState(false);
     const [pendingCheckout, setPendingCheckout] = useState(false);
-    const { user } = useAuth();
 
     // Find the product by ID (ensuring both are strings for comparison)
     const product = products.find(p => p.id === id);

@@ -11,7 +11,6 @@ import { Heart, ShoppingBag, Star, Eye } from 'lucide-react';
 import LazyImage from '../LazyImage';
 import { useNavigate } from 'react-router-dom';
 import { StockAlert } from './StockAlert';
-import { AuthModal } from '../auth/AuthModal';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../ui/dialog';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
@@ -33,7 +32,6 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
   const navigate = useNavigate();
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isToggleingWishlist, setIsTogglingWishlist] = useState(false);
-  const [showAuthModal, setShowAuthModal] = useState(false);
   const [showShippingModal, setShowShippingModal] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [shippingInfo, setShippingInfo] = useState({
@@ -59,8 +57,52 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
         state: defaultAddress?.state || user.state || '',
         pincode: defaultAddress?.pincode || user.pincode || '',
       });
+
     }
   }, [user]);
+
+  // Handle checkout after login (when user returns from login page)
+  useEffect(() => {
+    if (user) {
+      const pendingCheckoutData = localStorage.getItem('pendingCheckout');
+      if (pendingCheckoutData) {
+        try {
+          const { productId } = JSON.parse(pendingCheckoutData);
+          // Only proceed if this is the same product
+          if (productId === product.id) {
+            localStorage.removeItem('pendingCheckout');
+            
+            // Small delay to ensure user state is fully updated
+            setTimeout(async () => {
+              // Get shipping info from user profile or saved addresses
+              let currentShippingInfo = getShippingInfo();
+              
+              // If shipping info is incomplete, show modal
+              if (!validateShippingInfo(currentShippingInfo)) {
+                setShippingInfo({
+                  fullName: user.name || '',
+                  email: user.email || '',
+                  phone: user.phone || '',
+                  address: user.address || '',
+                  city: user.city || '',
+                  state: user.state || '',
+                  pincode: user.pincode || '',
+                });
+                setShowShippingModal(true);
+                return;
+              }
+
+              // Proceed with payment
+              await proceedToCashfreeCheckout(currentShippingInfo);
+            }, 500);
+          }
+        } catch (error) {
+          console.error('Error parsing pending checkout data:', error);
+          localStorage.removeItem('pendingCheckout');
+        }
+      }
+    }
+  }, [user, product.id]);
 
   if (!product) {
     return (
@@ -246,7 +288,13 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
     e.stopPropagation();
     
     if (!user) {
-      setShowAuthModal(true);
+      // Store product info for checkout after login
+      localStorage.setItem('pendingCheckout', JSON.stringify({
+        productId: product.id,
+        returnUrl: window.location.pathname + window.location.search,
+      }));
+      // Redirect to login page
+      navigate('/login');
       return;
     }
 
@@ -422,16 +470,6 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
         </Card>
 
         {/* Login Modal - Outside Card to avoid z-index issues */}
-        {showAuthModal && (
-          <AuthModal 
-            isOpen={true}
-            onClose={() => {
-              console.log('Closing Featured AuthModal');
-              setShowAuthModal(false);
-            }}
-            initialView="login"
-          />
-        )}
 
         {/* Shipping Info Modal */}
         <Dialog open={showShippingModal} onOpenChange={setShowShippingModal}>
