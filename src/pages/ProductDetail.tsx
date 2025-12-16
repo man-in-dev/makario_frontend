@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { useWishlist } from '../contexts/WishlistContext';
 import { useAuth } from '../contexts/AuthContext';
-import { AuthModal } from '../components/auth/AuthModal';
 import fssaiLogo from "../assets/1707841493fssai-logo-png.png";
 import makeInIndiaLogo from "../assets/Make-in-India.png";
 import amazonIcon from "../assets/amazon icon.png";
@@ -78,8 +77,6 @@ const ProductDetail: React.FC = () => {
         }
     }, [user]);
     const [showBulkForm, setShowBulkForm] = useState(false);
-    const [showAuthModal, setShowAuthModal] = useState(false);
-    const [pendingCheckout, setPendingCheckout] = useState(false);
 
     // Find the product by ID (ensuring both are strings for comparison)
     const product = products.find(p => p.id === id);
@@ -183,8 +180,14 @@ const ProductDetail: React.FC = () => {
     const handleBuyNow = async () => {
         // Check if user is logged in
         if (!user) {
-            setPendingCheckout(true);
-            setShowAuthModal(true);
+            // Store product info for checkout after login
+            localStorage.setItem('pendingCheckout', JSON.stringify({
+                productId: displayProduct.id,
+                quantity: quantity,
+                returnUrl: window.location.pathname + window.location.search,
+            }));
+            // Redirect to login page
+            navigate('/login');
             return;
         }
 
@@ -222,10 +225,14 @@ const ProductDetail: React.FC = () => {
     };
 
     const proceedToCashfreeCheckout = async (shippingData: typeof shippingInfo) => {
+        return proceedToCashfreeCheckoutWithQuantity(shippingData, quantity);
+    };
+
+    const proceedToCashfreeCheckoutWithQuantity = async (shippingData: typeof shippingInfo, qty: number = quantity) => {
         setIsProcessing(true);
 
         try {
-            const totalAmount = (displayProduct.price * quantity) + 50; // Product price + shipping
+            const totalAmount = (displayProduct.price * qty) + 50; // Product price + shipping
 
             // Create order in database
             const orderData = {
@@ -233,7 +240,7 @@ const ProductDetail: React.FC = () => {
                     productId: displayProduct.id,
                     name: displayProduct.name,
                     price: displayProduct.price,
-                    quantity: quantity,
+                    quantity: qty,
                     image: displayProduct.images[0],
                 }],
                 shippingInfo: shippingData,
@@ -241,7 +248,7 @@ const ProductDetail: React.FC = () => {
                 paymentDetails: {
                     paymentStatus: 'pending',
                 },
-                subtotal: displayProduct.price * quantity,
+                subtotal: displayProduct.price * qty,
                 shippingCharge: 50,
                 discount: 0,
                 coupon: null,
@@ -267,7 +274,7 @@ const ProductDetail: React.FC = () => {
                     customerPhone: shippingData.phone,
                     customerName: shippingData.fullName,
                 },
-                orderNote: `Order ${orderId} - ${displayProduct.name} (Qty: ${quantity})`,
+                orderNote: `Order ${orderId} - ${displayProduct.name} (Qty: ${qty})`,
             });
 
             if (!paymentSessionResponse.data.success) {
@@ -315,15 +322,54 @@ const ProductDetail: React.FC = () => {
         }
     };
 
-    const handleAuthClose = () => {
-        setShowAuthModal(false);
-        // If login was successful and checkout was pending, proceed to checkout
-        if (user && pendingCheckout) {
-            addToCart(displayProduct, quantity);
-            navigate('/checkout');
-            setPendingCheckout(false);
+    // Handle checkout after login (when user returns from login page)
+    useEffect(() => {
+        if (user && displayProduct) {
+            const pendingCheckoutData = localStorage.getItem('pendingCheckout');
+            if (pendingCheckoutData) {
+                try {
+                    const { productId, quantity: pendingQuantity } = JSON.parse(pendingCheckoutData);
+                    // Only proceed if this is the same product
+                    if (productId === displayProduct.id) {
+                        localStorage.removeItem('pendingCheckout');
+                        
+                        // Update quantity if it was different
+                        const quantityToUse = pendingQuantity || quantity;
+                        if (pendingQuantity && pendingQuantity !== quantity) {
+                            setQuantity(pendingQuantity);
+                        }
+                        
+                        // Small delay to ensure user state is fully updated
+                        setTimeout(async () => {
+                            // Get shipping info from user profile or saved addresses
+                            let currentShippingInfo = getShippingInfo();
+                            
+                            // If shipping info is incomplete, show modal
+                            if (!validateShippingInfo(currentShippingInfo)) {
+                                setShippingInfo({
+                                    fullName: user.name || '',
+                                    email: user.email || '',
+                                    phone: user.phone || '',
+                                    address: user.address || '',
+                                    city: user.city || '',
+                                    state: user.state || '',
+                                    pincode: user.pincode || '',
+                                });
+                                setShowShippingModal(true);
+                                return;
+                            }
+
+                            // Proceed with payment using the pending quantity
+                            await proceedToCashfreeCheckoutWithQuantity(currentShippingInfo, quantityToUse);
+                        }, 500);
+                    }
+                } catch (error) {
+                    console.error('Error parsing pending checkout data:', error);
+                    localStorage.removeItem('pendingCheckout');
+                }
+            }
         }
-    };
+    }, [user, displayProduct?.id, quantity]);
 
     const handleToggleWishlist = () => {
         toggleWishlist(displayProduct);
@@ -1126,14 +1172,6 @@ const ProductDetail: React.FC = () => {
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
-            {/* Login Modal */}
-            <AuthModal 
-                isOpen={showAuthModal} 
-                onClose={handleAuthClose}
-                initialView="login"
-                title="Login to Continue"
-                subtitle="Please sign in to your account to proceed with checkout"
-            />
         </>
     );
 };
