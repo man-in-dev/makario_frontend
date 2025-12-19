@@ -28,6 +28,7 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [isToggleingWishlist, setIsTogglingWishlist] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
   if (!product) {
     return (
@@ -110,15 +111,20 @@ export const FeaturedProductCard: React.FC<FeaturedProductCardProps> = ({ produc
        </button>
 
       {/* Product Image */}
-      <div className={`relative ${small ? 'aspect-[4/5] h-28' : 'aspect-[5/4] md:aspect-[4/5]'} overflow-hidden cursor-pointer bg-gradient-to-br from-orange-50 to-amber-50`} onClick={handleProductClick}>
+      <div 
+        className={`relative ${small ? 'aspect-[4/5] h-28' : 'aspect-[5/4] md:aspect-[4/5]'} overflow-hidden cursor-pointer bg-gradient-to-br from-orange-50 to-amber-50`} 
+        onClick={handleProductClick}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+      >
         <LazyImage
-          src={product.image}
+          src={isHovering && product.images?.length > 1 ? product.images[1] : product.image}
           alt={product.name}
-          className={`w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 ${small ? 'p-1' : ''}`}
+          className={`w-full h-full object-contain transition-all duration-300 ${small ? 'p-1' : ''}`}
         />
         {/* Overlay with Quick View on Hover */}
-        {!small && (
-          <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+        {!small && isHovering && (
+          <div className="absolute inset-0 bg-black/30 transition-opacity duration-300 flex items-center justify-center">
             <Button
               variant="secondary"
               size="sm"
