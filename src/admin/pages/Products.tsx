@@ -1,26 +1,71 @@
-import React, { useState } from 'react';
-import { Search, Filter, Plus, Grid, List, Edit, Trash2, Eye, EyeOff, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Search, Filter, Plus, Grid, List, Edit, Trash2, Loader2 } from 'lucide-react';
 import ProductForm from './ProductForm';
+import api from '../../utils/api';
+import { toast } from 'sonner';
+
+interface BackendProduct {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  sku: string;
+  price: number;
+  compareAtPrice?: number | null;
+  stock: number;
+  images: Array<{
+    url: string;
+    alt: string;
+    featured: boolean;
+  }>;
+  rating: number;
+  reviewCount: number;
+  features: string[];
+  specifications: {
+    weight: string;
+    speciality: string;
+    brand: string;
+    countryOfOrigin: string;
+    flavor: string;
+    storage: string;
+    type: string;
+  };
+  nutritionalInfo: {
+    servingSize: string;
+    calories: string;
+    fat: string;
+    protein: string;
+    sugars: string;
+    carbohydrates: string;
+    ingredients: string;
+  };
+  isActive: boolean;
+  inStock?: boolean;
+  image?: string; // Main/featured image URL (computed)
+  imagesArray?: string[]; // Array of image URLs (computed, renamed to avoid conflict)
+  createdAt?: string;
+  updatedAt?: string;
+}
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   sku: string;
   category: string;
   stock: number;
   price: string;
   status: 'active' | 'inactive';
-  visibility: 'public' | 'b2b';
   image: string;
 }
 
 export default function Products() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [showFilters, setShowFilters] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const [showProductForm, setShowProductForm] = useState(false);
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [editingProductId, setEditingProductId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const [filters, setFilters] = useState({
     category: '',
@@ -28,116 +73,177 @@ export default function Products() {
     status: '',
   });
 
-  const [products, setProducts] = useState<Product[]>([
-    {
-      id: 1,
-      name: 'Classic Makhana (500g)',
-      sku: 'MAKH-500-CLS',
-      category: 'Premium',
-      stock: 145,
-      price: '₹350',
-      status: 'active',
-      visibility: 'public',
-      image: '🥜',
-    },
-    {
-      id: 2,
-      name: 'Organic Makhana (1kg)',
-      sku: 'MAKH-1KG-ORG',
-      category: 'Organic',
-      stock: 89,
-      price: '₹650',
-      status: 'active',
-      visibility: 'public',
-      image: '🥜',
-    },
-    {
-      id: 3,
-      name: 'Premium Gift Box Set',
-      sku: 'GIFT-PREM-01',
-      category: 'Gifting',
-      stock: 45,
-      price: '₹1,200',
-      status: 'active',
-      visibility: 'public',
-      image: '🎁',
-    },
-  ]);
+  const [products, setProducts] = useState<Product[]>([]);
 
-  const [formData, setFormData] = useState<Product>({
-    id: 0,
-    name: '',
-    sku: '',
-    category: 'Premium',
-    stock: 0,
-    price: '',
-    status: 'active',
-    visibility: 'public',
-    image: '🥜',
-  });
+  // Transform backend product to frontend format
+  const transformProduct = (backendProduct: BackendProduct): Product => {
+    // Get image URL from computed image property, or from first image object, or fallback
+    const imageUrl = backendProduct.image 
+      || backendProduct.imagesArray?.[0]
+      || backendProduct.images?.find(img => img.featured)?.url
+      || backendProduct.images?.[0]?.url
+      || '🥜';
+    
+    return {
+      id: backendProduct.id,
+      name: backendProduct.title,
+      sku: backendProduct.sku,
+      category: backendProduct.category,
+      stock: backendProduct.stock,
+      price: `₹${backendProduct.price.toLocaleString('en-IN')}`,
+      status: backendProduct.isActive ? 'active' : 'inactive',
+      image: imageUrl,
+    };
+  };
+
+  // Transform frontend product to backend format for ProductForm
+  const transformToFormData = (backendProduct: BackendProduct) => {
+    return {
+      title: backendProduct.title,
+      description: backendProduct.description || '',
+      category: backendProduct.category,
+      sku: backendProduct.sku,
+      price: backendProduct.price.toString(),
+      compareAtPrice: backendProduct.compareAtPrice?.toString() || '',
+      stock: backendProduct.stock,
+      images: backendProduct.images.map((img, index) => ({
+        id: `img-${index}`,
+        url: img.url,
+        alt: img.alt || '',
+        featured: img.featured || false,
+      })),
+      rating: backendProduct.rating,
+      reviewCount: backendProduct.reviewCount,
+      features: backendProduct.features || [],
+      specifications: backendProduct.specifications || {
+        weight: '',
+        speciality: '',
+        brand: 'Makario',
+        countryOfOrigin: 'India (Bihar)',
+        flavor: '',
+        storage: 'Cool, dry place',
+        type: '',
+      },
+      nutritionalInfo: backendProduct.nutritionalInfo || {
+        servingSize: 'Per 5g serving',
+        calories: '',
+        fat: '',
+        protein: '',
+        sugars: '',
+        carbohydrates: '',
+        ingredients: '',
+      },
+    };
+  };
+
+  // Fetch products from API
+  const fetchProducts = async () => {
+    try {
+      setIsRefreshing(true);
+      const params: any = {};
+      
+      if (filters.category) {
+        params.category = filters.category;
+      }
+      
+      if (filters.status) {
+        params.isActive = filters.status === 'active';
+      }
+      
+      if (searchQuery) {
+        params.search = searchQuery;
+      }
+
+      const response = await api.get('/products', { params });
+      
+      if (response.data.success) {
+        const backendProducts: BackendProduct[] = response.data.data.products || [];
+        const transformedProducts = backendProducts.map(transformProduct);
+        setProducts(transformedProducts);
+      } else {
+        toast.error('Failed to load products');
+        setProducts([]);
+      }
+    } catch (error: any) {
+      console.error('Error fetching products:', error);
+      const errorMessage = error.response?.data?.message || 'Failed to load products';
+      toast.error(errorMessage);
+      setProducts([]);
+    } finally {
+      setIsLoading(false);
+      setIsRefreshing(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, [filters.category, filters.status, searchQuery]);
+
+  // Handle product deletion
+  const handleDelete = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this product?')) {
+      return;
+    }
+
+    try {
+      const response = await api.delete(`/products/${id}`);
+      
+      if (response.data.success) {
+        toast.success('Product deleted successfully');
+        fetchProducts(); // Refresh the list
+      } else {
+        throw new Error(response.data.message || 'Failed to delete product');
+      }
+    } catch (error: any) {
+      console.error('Delete product error:', error);
+      const errorMessage = error.response?.data?.message || 'Failed to delete product';
+      toast.error(errorMessage);
+    }
+  };
+
+  // Handle opening edit form
+  const handleEdit = async (productId: string) => {
+    try {
+      const response = await api.get(`/products/${productId}`);
+      
+      if (response.data.success) {
+        const backendProduct: BackendProduct = response.data.data.product;
+        setEditingProductId(productId);
+        setShowProductForm(true);
+      } else {
+        throw new Error('Failed to load product');
+      }
+    } catch (error: any) {
+      console.error('Error loading product:', error);
+      toast.error('Failed to load product details');
+    }
+  };
+
+  // Handle opening create form
+  const handleCreate = () => {
+    setEditingProductId(null);
+    setShowProductForm(true);
+  };
+
+  // Handle form success
+  const handleFormSuccess = () => {
+    fetchProducts();
+  };
 
   const getStatusColor = (status: string) => {
     return status === 'active' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700';
   };
 
+  // Client-side filtering for stock (since backend handles category and status)
   const filteredProducts = products.filter((product) => {
-    const matchesSearch =
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.sku.toLowerCase().includes(searchQuery.toLowerCase());
-
-    const matchesCategory = !filters.category || product.category === filters.category;
-    const matchesStatus = !filters.status || product.status === filters.status;
     const matchesStock =
       !filters.stock ||
       (filters.stock === 'in' && product.stock > 0) ||
       (filters.stock === 'out' && product.stock === 0) ||
       (filters.stock === 'low' && product.stock > 0 && product.stock <= 50);
 
-    return matchesSearch && matchesCategory && matchesStatus && matchesStock;
+    return matchesStock;
   });
-
-  const openCreateModal = () => {
-    setEditingId(null);
-    setFormData({
-      id: Math.max(...products.map((p) => p.id), 0) + 1,
-      name: '',
-      sku: '',
-      category: 'Premium',
-      stock: 0,
-      price: '',
-      status: 'active',
-      visibility: 'public',
-      image: '🥜',
-    });
-    setShowModal(true);
-  };
-
-  const openEditModal = (product: Product) => {
-    setEditingId(product.id);
-    setFormData(product);
-    setShowModal(true);
-  };
-
-  const handleSave = () => {
-    if (!formData.name || !formData.sku || !formData.price) {
-      alert('Please fill all required fields');
-      return;
-    }
-
-    if (editingId) {
-      setProducts(products.map((p) => (p.id === editingId ? formData : p)));
-    } else {
-      setProducts([formData, ...products]);
-    }
-
-    setShowModal(false);
-  };
-
-  const handleDelete = (id: number) => {
-    if (confirm('Are you sure you want to delete this product?')) {
-      setProducts(products.filter((p) => p.id !== id));
-    }
-  };
 
   return (
     <div className="space-y-6">
@@ -148,7 +254,7 @@ export default function Products() {
           <p className="text-gray-600 text-sm mt-1">Manage your product catalog.</p>
         </div>
         <button
-          onClick={() => setShowProductForm(true)}
+          onClick={handleCreate}
           className="px-4 py-2 bg-gradient-to-r from-[#d4af37] to-[#f4d03f] text-gray-800 rounded-lg font-medium hover:shadow-lg transition-shadow flex items-center gap-2"
         >
           <Plus size={18} />
@@ -201,6 +307,8 @@ export default function Products() {
               className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-sm"
             >
               <option value="">All Categories</option>
+              <option value="Raw Makhana">Raw Makhana</option>
+              <option value="Classic Makhana">Classic Makhana</option>
               <option value="Premium">Premium</option>
               <option value="Organic">Organic</option>
               <option value="Flavored">Flavored</option>
@@ -263,23 +371,9 @@ export default function Products() {
                   <span className={`px-2 py-1 rounded font-semibold ${getStatusColor(product.status)}`}>{product.status}</span>
                 </div>
 
-                <div className="text-xs text-gray-600 flex items-center gap-1">
-                  {product.visibility === 'public' ? (
-                    <>
-                      <Eye size={14} />
-                      Public
-                    </>
-                  ) : (
-                    <>
-                      <EyeOff size={14} />
-                      B2B Only
-                    </>
-                  )}
-                </div>
-
                 <div className="flex gap-2 pt-3 border-t border-gray-200">
                   <button
-                    onClick={() => setShowProductForm(true)}
+                    onClick={() => handleEdit(product.id)}
                     className="flex-1 px-3 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors text-xs font-medium flex items-center justify-center gap-1"
                   >
                     <Edit size={14} />
@@ -345,7 +439,7 @@ export default function Products() {
                     </td>
                     <td className="px-6 py-4 text-center">
                       <div className="flex justify-center gap-2">
-                        <button onClick={() => openEditModal(product)} className="text-[#d4af37] hover:text-[#f4d03f] text-sm font-medium">
+                        <button onClick={() => handleEdit(product.id)} className="text-[#d4af37] hover:text-[#f4d03f] text-sm font-medium">
                           <Edit size={16} />
                         </button>
                         <button onClick={() => handleDelete(product.id)} className="text-red-600 hover:text-red-700 text-sm font-medium">
@@ -361,122 +455,31 @@ export default function Products() {
         </div>
       )}
 
-      {/* Product Form */}
-      {showProductForm && (
-        <ProductForm onClose={() => setShowProductForm(false)} />
+      {/* Loading State */}
+      {isLoading && (
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="animate-spin text-[#d4af37]" size={32} />
+        </div>
       )}
 
-      {/* Create/Edit Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center p-6 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900">{editingId ? 'Edit Product' : 'Add Product'}</h2>
-              <button onClick={() => setShowModal(false)} className="text-gray-500 hover:text-gray-700">
-                <X size={24} />
-              </button>
-            </div>
-
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-1">Product Name *</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-sm"
-                  placeholder="Product name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-1">SKU *</label>
-                <input
-                  type="text"
-                  value={formData.sku}
-                  onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-sm"
-                  placeholder="SKU"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-1">Category</label>
-                <select
-                  value={formData.category}
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-sm"
-                >
-                  <option value="Premium">Premium</option>
-                  <option value="Organic">Organic</option>
-                  <option value="Flavored">Flavored</option>
-                  <option value="Gifting">Gifting</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-1">Price *</label>
-                <input
-                  type="text"
-                  value={formData.price}
-                  onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-sm"
-                  placeholder="₹ Price"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-1">Stock</label>
-                <input
-                  type="number"
-                  value={formData.stock}
-                  onChange={(e) => setFormData({ ...formData, stock: parseInt(e.target.value) || 0 })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-sm"
-                  placeholder="0"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-1">Status</label>
-                <select
-                  value={formData.status}
-                  onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-sm"
-                >
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-900 mb-1">Visibility</label>
-                <select
-                  value={formData.visibility}
-                  onChange={(e) => setFormData({ ...formData, visibility: e.target.value as any })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d4af37] text-sm"
-                >
-                  <option value="public">Public</option>
-                  <option value="b2b">B2B Only</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="flex gap-3 p-6 border-t border-gray-200">
-              <button
-                onClick={() => setShowModal(false)}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors font-medium"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleSave}
-                className="flex-1 px-4 py-2 bg-gradient-to-r from-[#d4af37] to-[#f4d03f] text-gray-800 rounded-lg hover:shadow-lg transition-shadow font-medium"
-              >
-                {editingId ? 'Update' : 'Create'}
-              </button>
-            </div>
-          </div>
+      {/* Empty State */}
+      {!isLoading && filteredProducts.length === 0 && (
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+          <p className="text-gray-600">No products found</p>
         </div>
+      )}
+
+      {/* Product Form */}
+      {showProductForm && (
+        <ProductForm
+          onClose={() => {
+            setShowProductForm(false);
+            setEditingProductId(null);
+          }}
+          isEditing={!!editingProductId}
+          productId={editingProductId || undefined}
+          onSuccess={handleFormSuccess}
+        />
       )}
     </div>
   );

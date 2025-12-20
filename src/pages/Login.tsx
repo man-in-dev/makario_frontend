@@ -41,9 +41,28 @@ export const LoginPage: React.FC = () => {
     
     if (result.success) {
       setSuccess('Login successful! Redirecting...');
-      setTimeout(() => {
-        navigate('/profile');
-      }, 1500);
+      
+      // Check if there's a pending checkout
+      const pendingCheckout = localStorage.getItem('pendingCheckout');
+      if (pendingCheckout) {
+        try {
+          const { returnUrl } = JSON.parse(pendingCheckout);
+          // Redirect back to shop page where the product card will handle checkout
+          setTimeout(() => {
+            navigate(returnUrl || '/shop');
+          }, 1000);
+        } catch (error) {
+          // If error parsing, just go to shop
+          setTimeout(() => {
+            navigate('/shop');
+          }, 1000);
+        }
+      } else {
+        // No pending checkout, go to profile
+        setTimeout(() => {
+          navigate('/profile');
+        }, 1500);
+      }
     } else {
       setError(result.message);
     }
