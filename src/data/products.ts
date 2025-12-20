@@ -1,7 +1,9 @@
 // Import product images - main package views
-import productFront from '../assets/PRODUCT/FRONT.jpg';
-import productBack from '../assets/PRODUCT/BACK.jpg';
-import productImage1 from '../assets/PRODUCT/1760353406527.jpg';
+import productFront from '../assets/PRODUCT/makario makhana 100g front.jpg';
+import productBowl from '../assets/PRODUCT/makario makhana 100g bowl.jpg';
+import productBowl2 from '../assets/PRODUCT/makario makhana 100g bowl 2.jpg';
+import productBack from '../assets/PRODUCT/makario makhana 100g back.jpg';
+import productDesign from '../assets/PRODUCT/makario makhana 100g deign.png';
 
 export interface Product {
   id: string;
@@ -60,7 +62,7 @@ export const products: Product[] = [
     price: 125,
     originalPrice: 199,
     image: productFront,
-    images: [productFront, productBack, productImage1],
+    images: [productFront, productBowl, productBowl2, productBack, productDesign],
     category: 'Classic Makhana',
     inStock: true,
     stockQuantity: 3,
@@ -78,7 +80,7 @@ export const products: Product[] = [
     price: 230,
     originalPrice: 398,
     image: productFront,
-    images: [productFront, productBack, productImage1],
+    images: [productFront, productBowl, productBowl2, productBack, productDesign],
     category: 'Classic Makhana',
     inStock: true,
     stockQuantity: 8,
@@ -96,7 +98,7 @@ export const products: Product[] = [
     price: 340,
     originalPrice: 597,
     image: productFront,
-    images: [productFront, productBack, productImage1],
+    images: [productFront, productBowl, productBowl2, productBack, productDesign],
     category: 'Classic Makhana',
     inStock: true,
     stockQuantity: 4,
@@ -114,7 +116,7 @@ export const products: Product[] = [
     price: 450,
     originalPrice: 796,
     image: productFront,
-    images: [productFront, productBack, productImage1],
+    images: [productFront, productBowl, productBowl2, productBack, productDesign],
     category: 'Classic Makhana',
     inStock: true,
     stockQuantity: 7,
@@ -132,7 +134,7 @@ export const products: Product[] = [
     price: 560,
     originalPrice: 995,
     image: productFront,
-    images: [productFront, productBack, productImage1],
+    images: [productFront, productBowl, productBowl2, productBack, productDesign],
     category: 'Classic Makhana',
     inStock: true,
     stockQuantity: 5,

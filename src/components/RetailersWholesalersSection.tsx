@@ -23,13 +23,15 @@ import customer18 from "@/assets/our customers/WhatsApp Image 2025-12-11 at 13.0
 import customer19 from "@/assets/our customers/WhatsApp Image 2025-12-11 at 13.00.30_9307009b.jpg";
 import customer20 from "@/assets/our customers/WhatsApp Image 2025-12-11 at 13.29.30_7d1e4436.jpg";
 
-const RetailersWholesalersSection = ({ onShowBulkForm }: { onShowBulkForm: () => void }) => {
-  const customerImages = [
+const RetailersWholesalersSection = ({ onShowBulkForm, limit }: { onShowBulkForm: () => void; limit?: number }) => {
+  const allCustomerImages = [
     customer1, customer2, customer3, customer4, customer5, 
     customer6, customer7, customer8, customer9, customer10,
     customer11, customer12, customer13, customer14, customer15,
     customer16, customer17, customer18, customer19, customer20
   ];
+
+  const customerImages = limit ? allCustomerImages.slice(0, limit) : allCustomerImages;
 
   return (
     <section className="py-16 bg-white">
