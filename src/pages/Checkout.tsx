@@ -16,7 +16,7 @@ import api from '../utils/api';
 import { loadCashfreeScript, initializeCashfree } from '../utils/loadCashfree';
 
 export const Checkout: React.FC = () => {
-  const { items, getTotalPrice, clearCart } = useCart();
+  const { items, getTotalPrice, getTotalItems, getShippingCharge, clearCart } = useCart();
   const [coupon, setCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
   const [discount, setDiscount] = useState(0);
@@ -117,7 +117,8 @@ export const Checkout: React.FC = () => {
     setIsProcessing(true);
 
     try {
-      const totalAmount = getTotalPrice() + 50 - discount;
+      const shippingCharge = getShippingCharge();
+      const totalAmount = getTotalPrice() + shippingCharge - discount;
 
       // First, create the order in our database with pending payment status
       const orderData = {
@@ -134,7 +135,7 @@ export const Checkout: React.FC = () => {
           paymentStatus: 'pending',
         },
         subtotal: getTotalPrice(),
-        shippingCharge: 50,
+        shippingCharge,
         discount,
         coupon: couponApplied ? coupon : null,
         total: totalAmount,
@@ -465,24 +466,24 @@ export const Checkout: React.FC = () => {
                 )}
               </div>
                 <div className="flex justify-between">
-                  <span>Subtotal</span>
-                  <span>₹{getTotalPrice().toLocaleString()}</span>
-                </div>
-                {discount > 0 && (
-                  <div className="flex justify-between text-green-600">
-                    <span>Discount</span>
-                    <span>-₹{discount.toLocaleString()}</span>
-                  </div>
-                )}
-                <div className="flex justify-between">
-                  <span>Shipping</span>
-                  <span>₹50</span>
-                </div>
-                <Separator />
-                <div className="flex justify-between text-lg font-semibold">
-                  <span>Total</span>
-                  <span>₹{(getTotalPrice() + 50 - discount).toLocaleString()}</span>
-                </div>
+                   <span>Subtotal</span>
+                   <span>₹{getTotalPrice().toLocaleString()}</span>
+                 </div>
+                 {discount > 0 && (
+                   <div className="flex justify-between text-green-600">
+                     <span>Discount</span>
+                     <span>-₹{discount.toLocaleString()}</span>
+                   </div>
+                 )}
+                 <div className="flex justify-between">
+                   <span>Shipping ({getTotalItems()} item{getTotalItems() !== 1 ? 's' : ''})</span>
+                   <span>₹{getShippingCharge().toLocaleString()}</span>
+                 </div>
+                 <Separator />
+                 <div className="flex justify-between text-lg font-semibold">
+                   <span>Total</span>
+                   <span>₹{(getTotalPrice() + getShippingCharge() - discount).toLocaleString()}</span>
+                 </div>
               {/* End of order summary content */}
             </CardContent>
           </Card>

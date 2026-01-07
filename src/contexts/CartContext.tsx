@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product } from '../data/products';
 import { lockScroll, unlockScroll } from '../utils/scrollManager';
+import { calculateShippingCharge } from '../utils/shippingCalculator';
 
 interface CartItem {
   product: Product;
@@ -15,6 +16,7 @@ interface CartContextType {
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
+  getShippingCharge: () => number;
   isInCart: (productId: string) => boolean;
   getItemQuantity: (productId: string) => number;
   isCartOpen: boolean;
@@ -109,6 +111,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return items.reduce((total, item) => total + (item.product.price * item.quantity), 0);
   };
 
+  const getShippingCharge = () => {
+    return calculateShippingCharge(getTotalItems());
+  };
+
   const isInCart = (productId: string) => {
     return items.some(item => item.product.id === productId);
   };
@@ -129,6 +135,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     clearCart,
     getTotalItems,
     getTotalPrice,
+    getShippingCharge,
     isInCart,
     getItemQuantity,
     isCartOpen,
