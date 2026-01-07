@@ -9,6 +9,7 @@ import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import LazyImage from './LazyImage';
 import { useNavigate } from 'react-router-dom';
 import { AuthModal } from './auth/AuthModal';
+import { calculateShippingCharge } from '../utils/shippingCalculator';
 
 export const Cart: React.FC = () => {
   const { 
@@ -154,21 +155,21 @@ export const Cart: React.FC = () => {
             </CardHeader>
             <CardContent className="space-y-3 md:space-y-4">
               <div className="flex justify-between text-sm md:text-base">
-                <span>Subtotal ({getTotalItems()} items)</span>
-                <span className="font-medium">₹{getTotalPrice().toLocaleString('en-IN')}</span>
-              </div>
-              
-              <div className="flex justify-between text-sm md:text-base">
-                <span>Shipping</span>
-                <span className="text-green-600 font-medium">Free</span>
-              </div>
-              
-              <Separator />
-              
-              <div className="flex justify-between text-base md:text-lg font-semibold">
-                <span>Total</span>
-                <span>₹{getTotalPrice().toLocaleString('en-IN')}</span>
-              </div>
+                 <span>Subtotal ({getTotalItems()} items)</span>
+                 <span className="font-medium">₹{getTotalPrice().toLocaleString('en-IN')}</span>
+               </div>
+               
+               <div className="flex justify-between text-sm md:text-base">
+                 <span>Shipping</span>
+                 <span className="font-medium">₹{calculateShippingCharge(getTotalItems()).toLocaleString('en-IN')}</span>
+               </div>
+               
+               <Separator />
+               
+               <div className="flex justify-between text-base md:text-lg font-semibold">
+                 <span>Total</span>
+                 <span>₹{(getTotalPrice() + calculateShippingCharge(getTotalItems())).toLocaleString('en-IN')}</span>
+               </div>
               
               <Separator />
               

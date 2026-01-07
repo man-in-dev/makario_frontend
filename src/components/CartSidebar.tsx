@@ -8,6 +8,7 @@ import { Minus, Plus, Trash2, ShoppingBag, X } from 'lucide-react';
 import LazyImage from './LazyImage';
 import { useNavigate } from 'react-router-dom';
 import { AuthModal } from './auth/AuthModal';
+import { calculateShippingCharge } from '../utils/shippingCalculator';
 
 export const CartSidebar: React.FC = () => {
   const { 
@@ -148,13 +149,25 @@ export const CartSidebar: React.FC = () => {
             </div>
 
             {/* Cart Summary */}
-            <div className="border-t border-gray-200 p-6 space-y-4 mt-auto">
-              <div className="flex justify-between items-center">
-                <span className="text-base font-medium text-gray-900">Total</span>
-                <span className="text-xl font-semibold text-gray-900">
-                  ₹{getTotalPrice().toLocaleString('en-IN')}
-                </span>
-              </div>
+             <div className="border-t border-gray-200 p-6 space-y-4 mt-auto">
+               <div className="flex justify-between items-center text-sm">
+                 <span>Subtotal</span>
+                 <span>₹{getTotalPrice().toLocaleString('en-IN')}</span>
+               </div>
+               
+               <div className="flex justify-between items-center text-sm">
+                 <span>Shipping</span>
+                 <span>₹{calculateShippingCharge(getTotalItems()).toLocaleString('en-IN')}</span>
+               </div>
+               
+               <Separator />
+               
+               <div className="flex justify-between items-center">
+                 <span className="text-base font-medium text-gray-900">Total</span>
+                 <span className="text-xl font-semibold text-gray-900">
+                   ₹{(getTotalPrice() + calculateShippingCharge(getTotalItems())).toLocaleString('en-IN')}
+                 </span>
+               </div>
 
               <Separator />
 
