@@ -8,23 +8,7 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Shop/Products Page -->
-  <url>
-    <loc>https://makario.in/shop</loc>
-    <lastmod>2025-01-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <!-- Product Pages - Update these with your actual products -->
-  <url>
-    <loc>https://makario.in/product/1</loc>
-    <lastmod>2025-01-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- About Page -->
+  <!-- About Pages -->
   <url>
     <loc>https://makario.in/about</loc>
     <lastmod>2025-01-07</lastmod>
@@ -32,55 +16,87 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Founders Story Page -->
   <url>
-    <loc>https://makario.in/founders-story</loc>
-    <lastmod>2025-01-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Agriculture/Farming Page -->
-  <url>
-    <loc>https://makario.in/agriculture</loc>
+    <loc>https://makario.in/about/founders</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
-  <!-- Farmers Support Page -->
+  <!-- Shop/Products Pages -->
   <url>
-    <loc>https://makario.in/farmers</loc>
+    <loc>https://makario.in/shop</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/product-categories</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/product/1</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Cart & Checkout -->
+  <url>
+    <loc>https://makario.in/cart</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Bulk Orders Page -->
+  <url>
+    <loc>https://makario.in/checkout</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/wishlist</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <!-- Business Pages -->
   <url>
     <loc>https://makario.in/bulk-orders</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/bulk/export-quality</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
-  <!-- Export Quality Page -->
   <url>
-    <loc>https://makario.in/export-quality</loc>
+    <loc>https://makario.in/retailers-wholesalers</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
-  <!-- Custom Packaging Page -->
+  <!-- Support Pages -->
   <url>
-    <loc>https://makario.in/custom-packaging</loc>
+    <loc>https://makario.in/contact</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
 
-  <!-- FAQ Page -->
   <url>
     <loc>https://makario.in/faq</loc>
     <lastmod>2025-01-07</lastmod>
@@ -88,7 +104,7 @@
     <priority>0.75</priority>
   </url>
 
-  <!-- Blog Section -->
+  <!-- Blog Pages -->
   <url>
     <loc>https://makario.in/blog</loc>
     <lastmod>2025-01-07</lastmod>
@@ -96,23 +112,144 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Contact Page -->
   <url>
-    <loc>https://makario.in/contact</loc>
+    <loc>https://makario.in/blog/regional/north</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/blog/regional/south</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/blog/regional/east</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/blog/regional/west</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/regional</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Agriculture & Farming Pages -->
+  <url>
+    <loc>https://makario.in/agriculture</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/farmers</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Quality Pages -->
+  <url>
+    <loc>https://makario.in/quality-assurance</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/quality/process</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Logistics Page -->
+  <url>
+    <loc>https://makario.in/quality-process</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Other Pages -->
+  <url>
+    <loc>https://makario.in/custom-packaging</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://makario.in/logistics</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- User Account Pages -->
+  <url>
+    <loc>https://makario.in/login</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/signup</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>never</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/profile</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/orders</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.65</priority>
   </url>
 
-  <!-- Terms & Conditions (if available) -->
+  <url>
+    <loc>https://makario.in/track-order</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/settings</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://makario.in/privacy</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
   <url>
     <loc>https://makario.in/terms</loc>
     <lastmod>2025-01-07</lastmod>
@@ -120,9 +257,15 @@
     <priority>0.5</priority>
   </url>
 
-  <!-- Privacy Policy (if available) -->
   <url>
-    <loc>https://makario.in/privacy</loc>
+    <loc>https://makario.in/shipping</loc>
+    <lastmod>2025-01-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://makario.in/refund</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
