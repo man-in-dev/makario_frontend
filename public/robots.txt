@@ -1,100 +1,35 @@
-# Robots.txt for Makario - Premium Bihar Makhana (Fox Nuts) Brand
-# Website: https://www.makario.in
-# Last Updated: October 23, 2025
+# Robots.txt for Makario.in
+# This file tells search engines which pages to crawl and which to avoid
 
-# Main search engine bot rules
-User-agent: Googlebot
-Allow: /
-Allow: /products/
-Allow: /blog/
-Allow: /about/
-Allow: /agriculture/
-Allow: /farmers/
-Allow: /global/
-Allow: /bulk-order/
-Allow: /export-services/
-Allow: /quality-assurance/
-Allow: /custom-packaging/
-Allow: /mumbai/
-Allow: /gujarat/
-Allow: /south-india/
-Allow: /logistics/
-Allow: /faq/
-Allow: /contact/
-Disallow: /api/
-Disallow: /admin/
-Disallow: /private/
-Disallow: /temp/
-Disallow: /cache/
-Disallow: /src/
-Disallow: /node_modules/
-Disallow: /.git/
-Disallow: /*.log
-
-# Google Image crawler
-User-agent: Googlebot-Image
-Allow: /assets/
-Allow: /public/
-Allow: /*.jpg
-Allow: /*.jpeg
-Allow: /*.gif
-Allow: /*.png
-Allow: /*.webp
-
-# Google Mobile crawler
-User-agent: Googlebot-Mobile
-Allow: /
-
-# Bing bot rules
-User-agent: Bingbot
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /private/
-
-# Social Media Bots - Allow product and blog pages
-User-agent: Twitterbot
-Allow: /products/
-Allow: /blog/
-Allow: /*.jpg
-Allow: /*.jpeg
-Allow: /*.png
-Allow: /*.webp
-
-User-agent: facebookexternalhit
-Allow: /products/
-Allow: /blog/
-Allow: /*.jpg
-Allow: /*.jpeg
-Allow: /*.png
-Allow: /*.webp
-
-# General rules for all other bots
 User-agent: *
 Allow: /
-Disallow: /api/
 Disallow: /admin/
-Disallow: /private/
-Disallow: /temp/
-Disallow: /cache/
-Disallow: /src/
+Disallow: /api/
+Disallow: /user/profile
+Disallow: /orders/
+Disallow: /checkout
+Disallow: /*.json$
 Disallow: /node_modules/
-Disallow: /.git/
-Disallow: /*.log
+Disallow: /.env
 
-# Block specific bots
+# Allow search engines to crawl sitemap
+Sitemap: https://makario.in/sitemap.xml
+
+# Crawl delay to avoid overloading the server
+Crawl-delay: 1
+
+# Rules for specific search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
 User-agent: AhrefsBot
 Disallow: /
 
 User-agent: SemrushBot
 Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-# XML Sitemaps - Index all pages, products and blog posts
-Sitemap: https://www.makario.in/sitemap.xml
-Sitemap: https://www.makario.in/products-sitemap.xml
-Sitemap: https://www.makario.in/blog-sitemap.xml
-
-
